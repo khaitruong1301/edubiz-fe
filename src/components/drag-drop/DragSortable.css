@@ -1,0 +1,6 @@
+.sortable-item{
+    background: #f2f2f2;
+}
+.sortable-item.draging{
+    background: #fff;
+}

@@ -1,0 +1,10 @@
+
+.answer{
+    border: 1px solid green !important; 
+    background: #4ee943 !important;
+}
+
+
+.single-choose-answer .ant-radio {
+    display: none;
+}
