@@ -1,38 +1,82 @@
-.App {
-  text-align: center;
+.loginBtn {
+  box-sizing: border-box;
+  position: relative;
+  margin: 0.2em;
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #fff;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.loginBtn:focus {
+  outline: none;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
 }
-
-.App-link {
-  color: #61dafb;
+.btn_xemLoTrinh_designCode {
+  background: linear-gradient(rgb(255, 255, 255) 0%, rgb(217, 223, 255) 100%);
+  border: none;
+  box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset,
+    rgb(23 0 102 / 20%) 0px 20px 40px, rgb(0 0 0 / 10%) 0px 1px 3px;
+  background: linear-gradient(rgb(255, 255, 255) 0%, rgb(217, 223, 255) 100%);
+  box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset,
+    rgb(23 0 102 / 20%) 0px 20px 40px, rgb(0 0 0 / 10%) 0px 1px 3px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition-duration: 0.5s;
 }
+.btn_xemLoTrinh_designCode:hover,
+.shadow_designCode:hover {
+  transform: translateY(-2px);
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset,
+    rgb(23 0 102 / 30%) 0px 40px 80px, rgb(0 0 0 / 30%) 0px 10px 30px;
+}
+.shadow_designCode {
+  box-shadow: rgb(255 255 255 / 20%) 0px 0px 0px 0.5px inset,
+    rgb(23 0 102 / 20%) 0px 20px 40px, rgb(0 0 0 / 10%) 0px 1px 3px;
+}
+.loginBtn--facebook {
+  background-color: #222260;
+  background-image: linear-gradient(#222260, #222260);
+  text-shadow: 0 -1px 0 #354c8c;
+}
+.loginBtn--facebook:before {
+  border-right: #222260 1px solid;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png")
+    6px 6px no-repeat;
+}
+.loginBtn--facebook:hover,
+.loginBtn--facebook:focus {
+  background-color: #222260;
+  background-image: linear-gradient(#222260, #222260);
+}
+.article_content a {
+  @apply text-blue-600;
+}
+.noiDung_QA h4 {
+  @apply font-medium;
+}
+.blurry_text {
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  color: transparent;
+}
+.ant-picker-cell::before {
+  display: none !important;
+}
+.backgoundTemplate {
+  /* background: url("/img/background.png"); */
 }

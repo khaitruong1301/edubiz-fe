@@ -1,0 +1,9 @@
+.card_animation:hover .bg_animation {
+  /* transform: translateX(0) translateY(0); */
+  z-index: -2;
+  transform: translateY(0) !important;
+  background: linear-gradient(to bottom, #227df9, #7462f9, #df3ef8) !important;
+}
+.card_animation:hover img {
+  transform: scale(1.1) !important;
+}

@@ -1,0 +1,25 @@
+.practice_fill_input {
+  padding: 1px;
+  padding-left: 5px;
+  width: 140px;
+  border-radius: 8px;
+  display: inline-block;
+  outline: none;
+  margin: 0 7px;
+  @apply bg-white border text-gray-900 border-gray-700 rounded-md  focus:border-blue-500 focus:outline-none focus:ring;
+}
+.practice_tieuDe::first-letter {
+  text-transform: capitalize;
+}
+.practice_output button {
+  margin: 10px 0;
+  @apply px-4 py-2 font-medium tracking-wide text-white  transition-colors duration-200 transform bg-blue-600 rounded-md  hover:bg-blue-500  focus:outline-none focus:bg-blue-500;
+}
+.practice_choose_ansewer {
+  margin: 0px 5px;
+  @apply px-4 py-1 cursor-pointer font-medium tracking-wide text-black   inline-block  transition-colors duration-200 transform bg-white rounded-md  hover:bg-blue-400 
+    hover:text-white  focus:outline-none focus:bg-blue-500;
+}
+.practice_choose_ansewer--active {
+  @apply border-dashed border-4 border-blue-500;
+}

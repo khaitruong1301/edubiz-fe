@@ -1,0 +1,5 @@
+.table_BangDiem table,
+.table_BangDiem th,
+.table_BangDiem td {
+  border: 1px solid black;
+}

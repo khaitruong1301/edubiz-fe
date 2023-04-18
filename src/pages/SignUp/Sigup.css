@@ -1,0 +1,17 @@
+.ant-steps-item-process > .ant-steps-item-container > .ant-steps-item-icon {
+  @apply bg-blue-theme text-white border-white inline-flex justify-center items-center !important;
+}
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon,
+.ant-steps-item-finish .ant-steps-item-icon {
+  @apply text-blue-theme border-blue-theme  !important;
+}
+.ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon,
+.ant-steps-item-finish .ant-steps-item-icon {
+  @apply inline-flex justify-center items-center  !important;
+}
+.ant-steps-item-finish
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title::after {
+  @apply bg-blue-theme   !important;
+}

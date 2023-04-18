@@ -1,22 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import './templates/login/SummerFont-Light.ttf';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import App from "./App";
+import "./index.css";
+import store from "./redux/store";
+import * as signalR from "@aspnet/signalr";
+import environment from "./environments/environment";
 
-import {Provider} from 'react-redux'; //npm install react-redux
-import ConfigStore from './redux/ConfigStore';
-
-const store = ConfigStore();
-
-ReactDOM.render(
+export const connection = new signalR.HubConnectionBuilder()
+  .withUrl(environment.baseUrl + "/apphub")
+  .configureLogging(signalR.LogLevel.Information)
+  .build();
+connection.start().then(() => {
+  ReactDOM.render(
     <Provider store={store}>
-        <App />
-    </Provider>
-    , document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+      <App />
+    </Provider>,
+    document.getElementById("root")
+  );
+});

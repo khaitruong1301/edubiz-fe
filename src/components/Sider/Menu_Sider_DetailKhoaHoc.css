@@ -1,0 +1,53 @@
+.ant-menu-submenu-expand-icon,
+.ant-menu-submenu-arrow {
+  font-size: 20px !important;
+}
+.ant-menu-submenu:hover
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-expand-icon,
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
+  @apply text-blue-theme;
+}
+.ant-menu-submenu > .ant-menu-submenu-title > .ant-menu-submenu-expand-icon,
+.ant-menu-submenu > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
+  @apply text-xl;
+}
+.ant-menu-submenu-expand-icon,
+.ant-menu-submenu-arrow {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+  width: 10px;
+  color: rgba(0, 0, 0, 0.85);
+  transform: translateY(-50%);
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.ant-menu-inline-collapsed .ant-menu-submenu-arrow::after,
+.ant-menu-submenu-inline .ant-menu-submenu-arrow::after {
+  width: 12px;
+  transform: rotate(45deg) translateX(-3px) translateY(2px);
+}
+.ant-menu-inline-collapsed .ant-menu-submenu-arrow::before,
+.ant-menu-submenu-inline .ant-menu-submenu-arrow::before {
+  /* transform: rotate(45deg) translateX(5px) translateY(2px); */
+  width: 12px;
+}
+.ant-menu-inline-collapsed .ant-menu-submenu-arrow::before,
+.ant-menu-submenu-inline .ant-menu-submenu-arrow::before {
+  transform: rotate(-45deg) translateX(3px) translateY(2px);
+}
+/* active */
+.ant-menu-submenu-open.ant-menu-submenu-inline
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-arrow::after {
+  transform: rotate(-45deg) translateX(-3px) translateY(-2px);
+}
+.ant-menu-submenu-open.ant-menu-submenu-inline
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-arrow::before {
+  transform: rotate(45deg) translateX(3px) translateY(-2px);
+}
+
+.ant-menu-submenu-title {
+  height: max-content !important;
+}

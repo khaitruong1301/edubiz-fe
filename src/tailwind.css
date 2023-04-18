@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card_theme {
+    background: linear-gradient(
+      117.76deg,
+      rgba(255, 255, 255, 0.7) -7.21%,
+      rgba(255, 255, 255, 0.5) 118.08%
+    );
+    /* backdrop-filter: blur(8px) !important; */
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    border: 1px solid #ffffff;
+    -webkit-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+    -moz-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+    -ms-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+    -o-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02) !important;
+  }
+  .card_dark_theme {
+    background: rgb(146 151 179 / 13%);
+    /* backdrop-filter: blur(0px) !important; */
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(16 18 27 / 40%);
+
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02) !important;
+  }
+  .center-position {
+    @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+  .text-reponsive-heading {
+    @apply text-lg md:text-xl;
+  }
+}

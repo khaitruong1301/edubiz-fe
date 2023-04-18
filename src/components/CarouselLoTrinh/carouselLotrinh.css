@@ -1,0 +1,95 @@
+.slick-list {
+  position: relative;
+}
+.carouselLotrinh .slick-track,
+.carouselLotrinh .slick-slide {
+  height: 100%;
+}
+.carouselLotrinh .slick-prev:before,
+.carouselLotrinh .slick-next:before {
+  opacity: 1 !important;
+  color: white;
+  font-size: 35px;
+  width: 35px;
+  height: 35px;
+  display: block !important;
+  border-radius: 50%;
+}
+
+.carouselLotrinh .slick-next:before {
+  opacity: 1 !important;
+  color: white;
+  font-size: 35px;
+  width: 35px;
+  height: 35px;
+  transform: translate(-6px);
+  display: block !important;
+  cursor: pointer;
+}
+.carouselLotrinh .slick-prev:before {
+  opacity: 1 !important;
+  color: white;
+  font-size: 35px;
+  width: 35px;
+  height: 35px;
+  transform: translate(-6px);
+  display: block !important;
+  /* @apply shadow-xl; */
+  cursor: pointer;
+}
+.carouselLotrinh .slick-arrow.slick-next {
+  right: 0px;
+  width: 25px;
+  height: 25px;
+  /* background: #000; */
+  @apply bg-blue-theme;
+  border-radius: 50%;
+  transform: translateX(50%);
+}
+.carouselLotrinh .slick-arrow.slick-prev {
+  @apply bg-blue-theme;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  z-index: 20;
+  left: initial;
+  left: 0px !important;
+  transform: translateX(-50%);
+}
+
+.carouselLotrinh .slick-dots {
+  position: absolute;
+  bottom: -30px;
+  right: inherit;
+  left: 40px !important;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.carouselLotrinh .slick-dots li,
+.carouselLotrinh .slick-dots button {
+  width: 32px !important;
+}
+.carouselLotrinh .slick-dots li.slick-active,
+.carouselLotrinh i.slick-active button {
+  width: 50px !important;
+}
+.carouselLotrinh .slick-dots li button:before {
+  content: "";
+  width: 32px;
+  height: 10px;
+  opacity: 1;
+  border-radius: 4px;
+  margin-right: 10px;
+  background: var(--color-bg-dot-acrousel) !important;
+
+  transition: width 0.3s linear, background-color 0.3s linear;
+}
+.carouselLotrinh .slick-dots li.slick-active button:before {
+  width: 50px;
+  background: var(--color-bg-dot-acrousel-active) !important;
+}

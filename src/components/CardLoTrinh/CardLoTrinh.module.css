@@ -1,0 +1,68 @@
+.card {
+  overflow: hidden;
+  /* background-color: #cdf0ea; */
+}
+.card::before {
+  position: absolute;
+  content: "";
+  display: block;
+  border-radius: 30% 70% 70% 30% / 47% 30% 70% 53%;
+  width: 200px;
+  height: 200px;
+  background: rgb(205, 240, 234);
+  bottom: 0;
+  left: 0;
+  transform: translate(-200px, 200px);
+  transition-duration: 300ms;
+  z-index: -1;
+}
+
+.card:hover::before {
+  transform: translate(-50px, 50px);
+}
+.card::after {
+  position: absolute;
+  content: "";
+  display: block;
+  /* border-radius: 53% 47% 22% 78% / 64% 45% 55% 36%; */
+  border-radius: 78% 22% 25% 75% / 77% 18% 82% 23%;
+  width: 200px;
+  height: 200px;
+  background: rgb(134, 122, 233);
+  top: 0;
+  right: 0;
+  transform: translate(100%, -200px);
+  /* transform: translateX(100%); */
+  transition-duration: 300ms;
+  z-index: 1;
+}
+
+.card:hover::after {
+  transform: translate(50%, -30px);
+}
+
+.card_bg_hover {
+  transform: translate(0, -100%);
+
+  z-index: 1;
+  /* background: rgb(103, 139, 149) !important;
+  background: linear-gradient(
+    255deg,
+    rgba(103, 139, 149, 1) 0%,
+    rgba(17, 54, 65, 1) 90%
+  ) !important; */
+}
+.card:hover .card_bg_hover {
+  transform: translate(0, 0);
+}
+
+.card:hover img {
+  opacity: 0.9;
+
+  transform: scale(1.1);
+}
+
+.card_content_intro {
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+}

@@ -1,0 +1,21 @@
+.ant-pagination-item-active,
+.ant-pagination-item:hove,
+.ant-pagination-item-active:focus-visible,
+.ant-pagination-item-active:hover,
+.ant-pagination-item:hover a,
+.ant-pagination-item-active:hover a {
+  /* border-color: #40a9ff; */
+  @apply border-blue-theme bg-blue-theme text-white !important;
+}
+.ant-pagination-item-active a {
+  @apply text-white !important;
+}
+.ant-pagination-item {
+  @apply border-none;
+}
+.ant-pagination-item-link {
+  @apply flex justify-center items-center !important;
+}
+.ant-list-pagination {
+  @apply flex justify-center;
+}

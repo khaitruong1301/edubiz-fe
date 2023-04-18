@@ -1,0 +1,59 @@
+.flash_sale_line_left {
+  -webkit-animation-name: left_line;
+  animation-name: left_line;
+  -webkit-animation-delay: 2s;
+  animation-delay: 2s;
+  -webkit-animation-duration: 8.5s;
+  animation-duration: 2.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  transform-origin: center center;
+  transform: rotate(45deg);
+}
+@-webkit-keyframes left_line {
+  0% {
+    transform: rotate(55deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(55deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(55deg) translateY(990px);
+  }
+}
+@keyframes left_line {
+  0% {
+    transform: rotate(55deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(55deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(55deg) translateY(990px);
+  }
+}
+.flash_sale_line_right {
+  -webkit-animation-name: right_line;
+  animation-name: right_line;
+  -webkit-animation-duration: 2.5s;
+  animation-duration: 2.5s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  transform: rotate(55deg);
+}
+@-webkit-keyframes right_line {
+  0% {
+    transform: rotate(55deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(55deg) translateY(-1000px);
+  }
+}
+@keyframes right_line {
+  0% {
+    transform: rotate(55deg) translateY(0px);
+  }
+  100% {
+    transform: rotate(55deg) translateY(-1000px);
+  }
+}

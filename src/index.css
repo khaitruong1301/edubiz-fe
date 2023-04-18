@@ -1,18 +1,154 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  font-family: "Roboto", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.dark {
+  --color-bg-header: #262b3c;
+  --color-bg-sider: #262b3c;
+  --color-bg-btn: #556ee6;
+  --color-text-btn: #fff;
+  --color-bg-dot-acrousel: rgba(255, 255, 255, 0.625);
+  --color-bg-dot-acrousel-active: rgb(255, 255, 255);
+
+  --color-bg-primary: rgb(26, 34, 63);
+  --color-bg-secondary: #rgb(33, 41, 70);
+  --color-text-title: #ffffff;
+  /* --color-text-title: #f6f6f6; */
+
+  --color-text-subTitle: #e2e8f0;
+  --color-text-accent: #81e6d9;
+  --color-text-body: #a6b0cf;
+  --color-text-navigate: #a6b0cf;
+  --color-text-navigate--active: #f6f6f6;
+  --color-text-blue-white: #f6f6f6;
+
+  --color-text-content: #d4d7e1;
 }
 
-@font-face {
-  font-family: 'SummerFont';
-  src: local('SummerFont'), url(./templates/login/SummerFont-Light.ttf) format('truetype');
+.light {
+  --color-header: linear-gradient(
+    117.76deg,
+    rgba(255, 255, 255, 0.7) -7.21%,
+    rgba(255, 255, 255, 0.5) 118.08%
+  );
+  --color-sider: linear-gradient(
+    rgb(255, 255, 255) 0%,
+    rgb(217, 223, 255) 100%
+  );
+  --color-bg-btn: #222260;
+  --color-text-btn: #fff;
+  --color-bg-dot-acrousel: #2222607b;
+  --color-bg-dot-acrousel-active: #222260;
+  --color-bg-secondary: #edf2f7;
+  --color-bg-card: #edf2f7;
+  --color-text-content: rgb(55, 65, 81);
+
+  --color-text-primary: #2d3748;
+  --color-text-secondary: #4a5568;
+  --color-text-accent: #2b6cb0;
+  --color-text-title: rgba(0, 0, 0, 0.87);
+  --color-text-body: #a6b0cf;
+
+  --color-text-navigate: #222260;
+  --color-text-navigate--active: #222260;
+  --color-text-blue-white: #222260;
+}
+.text-color-blue-white {
+  color: var(--color-text-blue-white) !important;
+}
+.text-color-title {
+  color: var(--color-text-title) !important;
+}
+.text-color-content {
+  color: var(--color-text-content) !important;
+}
+.btn-theme {
+  color: var(--color-text-btn) !important;
+  background: var(--color-bg-btn) !important;
+}
+.btn-highlight-baihoc {
+  color: var(--color-text-btn) !important;
+  background-color: var(--color-bg-btn) !important;
+}
+.dark .btn-highlight-baihoc {
+  background: rgba(119, 118, 190, 0.3) !important;
+}
+.text-color-navigate {
+  color: var(--color-text-navigate) !important;
+}
+
+.text-color-navigate:hover {
+  color: var(--color-text-navigate--active) !important;
+}
+.card_theme {
+  background: linear-gradient(
+    117.76deg,
+    rgba(255, 255, 255, 0.6) -7.21%,
+    rgba(255, 255, 255, 0.3) 118.08%
+  );
+  /* -webkit-backdrop-filter: blur(8px) !important; */
+  /* backdrop-filter: blur(8px) !important; */
+  border-radius: 8px;
+  border: 1px solid #ffffff;
+  -ms-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+  -o-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02) !important;
+}
+.dot-bg-carousel {
+  background: var(--color-bg-dot-acrousel);
+}
+.dot-bg-carousel-active {
+  background: var(--color-bg-dot-acrousel-active);
+}
+.dark .card_theme {
+  background: #2a3042;
+  border: none;
+}
+.card_theme_item {
+  background: linear-gradient(
+    117.76deg,
+    rgba(255, 255, 255, 0.6) -7.21%,
+    rgba(255, 255, 255, 0.3) 118.08%
+  );
+  /* -webkit-backdrop-filter: blur(8px) !important; */
+  /* backdrop-filter: blur(8px) !important; */
+  border-radius: 8px;
+  border: 1px solid #ffffff;
+  -ms-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+  -o-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02) !important;
+}
+.dark .card_theme_item {
+  border: none;
+  background: rgba(119, 118, 190, 0.1) !important;
+  box-shadow: rgba(68, 66, 178, 0.2) 0px 0px 0px 0.5px inset !important;
+}
+
+.ant-progress-inner {
+  width: 100% !important;
+  height: 100% !important;
+}
+.dark .text-color-gioi-thieu * {
+  color: white !important;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card_dark_theme {
+    background: rgb(146 151 179 / 13%);
+    /* -webkit-backdrop-filter: blur(0px) !important; */
+    /* backdrop-filter: blur(0px) !important; */
+    border-radius: 8px;
+    border: 1px solid rgba(16 18 27 / 40%);
+
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02) !important;
+  }
+  .center-position {
+    @apply top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+  .text-reponsive-heading {
+    @apply text-lg md:text-xl;
+  }
 }

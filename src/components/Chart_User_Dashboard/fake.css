@@ -1,0 +1,29 @@
+.textActive {
+  background-color: #5364ff;
+}
+.purle {
+  border-radius: 7% 46% 6% 7% / 5% 52% 9% 11%;
+  height: 350px;
+  width: 350px;
+  border-width: 8px;
+  border-color: #473d93;
+  background: transparent;
+}
+
+.orang {
+  border-radius: 7% 46% 6% 7% / 5% 52% 9% 11%;
+  width: 150px;
+  height: 150px;
+  border-width: 8px;
+  border-color: #ee8150;
+}
+.img-fake {
+  height: 350px;
+  width: 350px;
+  display: block;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* border-radius: 20px; */
+  border-radius: 7% 46% 6% 7% / 5% 52% 9% 11%;
+}

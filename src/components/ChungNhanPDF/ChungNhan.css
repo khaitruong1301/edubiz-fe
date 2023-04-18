@@ -1,0 +1,174 @@
+@font-face {
+  font-family: "iCielNovecentosans";
+  src: url("../../assets/font/iCielNovecentosans-UltraBold.ttf")
+    format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "iCielNovecentosans-regular";
+  src: url("../../assets/font/iCielNovecentosans-DemiBold.ttf")
+    format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Lobster";
+  src: url("../../assets/font/Lobster-Regular.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "Neutraface";
+  src: url("../../assets/font/Neutraface_Display_Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+.imgCertificate {
+  width: 100%;
+}
+.flex-container {
+  display: flex;
+}
+
+.divFullName {
+  top: 31.2%;
+  width: 100%;
+  text-align: center;
+
+  /* margin-top: -50px; */
+}
+.fullName {
+  font-family: "Lobster" !important;
+
+  font-size: 3rem;
+  color: rgb(70, 24, 21);
+}
+.tenChungNhan {
+  font-family: "iCielNovecentosans";
+  color: rgb(70, 24, 21);
+  font-size: 2rem;
+  font-weight: bold;
+  width: 98%;
+  padding: 0 30px;
+}
+.divTenChungNhan {
+  width: 100%;
+  top: 48.9%;
+}
+.divScore {
+  width: 100%;
+  top: 64.75%;
+  text-align: left;
+}
+.Score {
+  color: rgb(70, 24, 21);
+  margin-left: 23%;
+  font-weight: bold;
+  font-size: 4rem;
+}
+.divDuration {
+  width: 100%;
+  top: 58.2%;
+  text-align: left;
+}
+.Duration {
+  color: rgb(70, 24, 21);
+  font-family: "Neutraface";
+  font-size: 22px !important;
+  margin-left: 44%;
+  font-weight: bold;
+  text-transform: lowercase;
+}
+.divTimeTraining {
+  width: 100%;
+  top: 60.3%;
+  text-align: left;
+}
+.TimeTraining {
+  font-size: 18px !important;
+
+  margin-left: 44%;
+  font-weight: normal;
+  color: rgb(165, 128, 45);
+  font-family: "iCielNovecentosans-regular";
+}
+.divGrade {
+  width: 100%;
+  top: 64.5%;
+  text-align: left;
+}
+.Grade {
+  font-size: 3.7rem;
+  color: rgb(70, 24, 21);
+  margin-left: 64%;
+  font-family: "Neutraface";
+}
+.divXepLoai {
+  width: 100%;
+  top: 69.1%;
+  text-align: left;
+}
+.XepLoai {
+  font-family: "iCielNovecentosans-regular";
+  margin-left: 64%;
+  font-size: 2rem;
+  color: rgb(165, 128, 45);
+}
+.divSoChungNhan {
+  width: 100%;
+
+  top: 90.33%;
+
+  text-align: left;
+}
+.SoChungNhan {
+  font-size: 1.3rem;
+  color: rgb(70, 24, 21);
+  margin-left: 40%;
+  font-family: "iCielNovecentosans";
+}
+.divCapNgay {
+  width: 100%;
+  bottom: 5%;
+
+  text-align: left;
+}
+.CapNgay {
+  font-size: 1.3rem;
+  color: rgb(70, 24, 21);
+  margin-left: 34%;
+  font-family: "iCielNovecentosans-regular";
+}
+.divChuKy {
+  bottom: 12%;
+  right: 15%;
+  background: transparent;
+  width: 100%;
+  text-align: right;
+}
+
+.imgChuKy {
+  background: transparent;
+  width: 20%;
+}
+
+@media print {
+  header,
+  Form {
+    display: none !important;
+  }
+  .print {
+    background: #ffffff;
+    z-index: 9999;
+  }
+  .certificate {
+    background: #ffffff;
+    z-index: 9999;
+  }
+  .divNotPrint {
+    display: none;
+  }
+}
+
+.ant-input-number {
+  width: 100%;
+}

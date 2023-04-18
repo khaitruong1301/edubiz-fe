@@ -1,0 +1,12 @@
+.dialogItem .ant-btn-primary {
+  color: #fff;
+  @apply border-blue-theme bg-blue-theme shadow-lg !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+.dialogItem .ant-btn:hover,
+.dialogItem .ant-btn:focus {
+  @apply border-blue-theme text-blue-theme shadow-lg  !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}

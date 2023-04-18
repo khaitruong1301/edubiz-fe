@@ -1,0 +1,18 @@
+export const arrBg_LinearGgradient = [
+  "  linear-gradient(209.21deg, rgb(4, 55, 174) 13.57%, rgb(29, 81, 146) 98.38%)",
+  "linear-gradient(209.21deg, rgb(16, 114, 204) 13.57%, rgb(89, 0, 159) 98.38%) ",
+  "linear-gradient(09.21deg, rgb(0, 6, 149) 13.57%, rgb(116, 69, 154) 98.38%)",
+  "linear-gradient(209.21deg, rgb(87, 15, 141) 13.57%, rgb(243, 91, 160) 98.38%)",
+  "linear-gradient(209.21deg, rgb(22, 155, 173) 13.57%, rgb(0, 54, 135) 98.38%)",
+  "linear-gradient(209.21deg, rgb(73, 38, 173) 13.57%, rgb(52, 53, 99) 98.38%)",
+  "linear-gradient(209.21deg, rgb(12, 39, 178) 13.57%, rgb(133, 218, 213) 98.38%)",
+  "linear-gradient(209.21deg, rgb(48, 173, 221) 13.57%, rgb(64, 26, 190) 98.38%)",
+  "linear-gradient(209.21deg, rgb(225, 72, 133) 13.57%, rgb(241, 67, 102) 98.38%)",
+  "linear-gradient(209.21deg, rgb(57, 17, 123) 13.57%, rgb(191, 149, 248) 98.38%)",
+  "linear-gradient(209.21deg, rgb(10, 57, 136) 13.57%, rgb(188, 168, 255) 98.38%)",
+  "linear-gradient(209.21deg, rgb(90, 54, 192) 13.57%, rgb(29, 145, 252) 98.38%)",
+  "linear-gradient(209.21deg, rgb(45, 14, 171) 13.57%, rgb(109, 81, 231) 98.38%)",
+  "linear-gradient(209.21deg, rgb(17, 39, 174) 13.57%, rgb(90, 113, 251) 98.38%)",
+  "linear-gradient(209.21deg, rgb(193, 48, 39) 13.57%, rgb(226, 131, 115) 98.38%)",
+  "linear-gradient(209.21deg, rgb(14, 11, 147) 13.57%, rgb(94, 182, 202) 98.38%)",
+];
