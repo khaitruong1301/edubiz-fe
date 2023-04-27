@@ -123,14 +123,17 @@ const columns = [
     },
   },
 ];
-export default function StaticBaiTapKhoaHoc({ data, loTrinh }) {
+
+export default function StaticBaiTapKhoaHoc({ data, loTrinh, idLoTrinh}) {
   const { userInfor } = useSelector((state) => state.authUser);
   useEffect(() => {
-    !data &&
-      httpServ.getDiemAndBaiTap(loTrinh.id, userInfor?.id).then((res) => {
+    if(!data && userInfor && idLoTrinh){
+      httpServ.getDiemAndBaiTap(idLoTrinh, userInfor?.id).then((res) => {
         setDataRaw(res.data.content);
       });
+    }
   }, []);
+
   const [dataRaw, setDataRaw] = useState([]);
   let dataMap = data ? data : dataRaw;
   let dataSource = dataMap?.map((baiTap, index) => {

@@ -6,6 +6,7 @@ import BtnLoginFacebook from "../../components/BtnLoginFacebook/BtnLoginFacebook
 import LogoCyber from "../../components/LogoCyber/LogoCyber";
 import Switch_Theme from "../../components/Buttons/Switch_Theme";
 import { NavLink } from "react-router-dom";
+import LoginForm from "../../components/LoginForm/LoginForm";
 
 export default function LoginPageDeskTop() {
   return (
@@ -30,11 +31,9 @@ export default function LoginPageDeskTop() {
           <div className="h-full w-3/5 flex-shrink-0 border-none p-5 flex flex-col items-start ">
             <LogoCyber />
             <div className="  flex-grow  w-full flex flex-col justify-center space-y-7  ml-10 pb-24 relative z-10">
-              <p className="title_login ">Hệ thống học tập CyberLearn</p>
-              <p className="text-color-content text-base">
-                Vui lòng đăng nhập bằng Facebook để học tập
-              </p>
-              <BtnLoginFacebook />
+              <p className="title_login ">Hệ thống học tập Edubiz</p>
+              {/* <BtnLoginFacebook /> */}
+              <LoginForm />
             </div>
           </div>
           <div className="w-2/5 h-full flex items-center justify-center relative ‹  ">

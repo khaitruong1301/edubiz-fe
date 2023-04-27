@@ -9,6 +9,12 @@ class HttpRequestService {
     return AxiosServ.postMethod(uri, data, setLoading);
   };
 
+  signIn = (data, setLoading = true) => {
+    const uri = "nguoidung/signin";
+    return AxiosServ.postMethod(uri, data, setLoading);
+  };
+
+
   getLoTrinhDaDangKI = (idUser, setLoading = true) => {
     const uri = `/lotrinh/lay-ds-tt-lotrinh/${idUser}/1`;
     return AxiosServ.getMethod(uri, setLoading);
