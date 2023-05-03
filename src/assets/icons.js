@@ -142,7 +142,7 @@ export let iconsLanguage = {
 export const iconXp = (
   <div
     data-v-3d9e1b30=""
-    className="w-6 h-6  svg-icon_xp transform translate-x-1 mr-2"
+    className="icon-img_xp w-6 h-6  svg-icon_xp transform translate-x-1 mr-2"
   >
     <svg
       className="w-full h-full overflow-hidden"
@@ -174,7 +174,7 @@ export const iconCoin = (
 //   <Lottie animationData={dollar_lottie} style={{ width: 25, height: 25 }} />
 // );
 export const iconTichCuc = (
-  <img src={img_heart} className="w-8 h-8 m-0 object-fit" alt="" />
+  <img src={img_heart} className="icon-img_heart w-8 h-8 m-0 object-fit" alt="" />
 );
 export const iconVatPham = <i className="fa fa-user-shield"></i>;
 export const iconThongBao = {

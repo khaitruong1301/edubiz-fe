@@ -1,0 +1,44 @@
+/* .profile-mobile{
+    
+} */
+
+.profile-mobile_item{
+    display: flex;
+    align-items: center;
+    background: linear-gradient(117.76deg,hsla(0,0%,100%,.6) -7.21%,hsla(0,0%,100%,.3) 118.08%);
+    border: 1px solid #fff;
+    -ms-box-shadow: 0 10px 20px 0 rgba(0,0,0,.02);
+    -o-box-shadow: 0 10px 20px 0 rgba(0,0,0,.02);
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,.02)!important;
+    padding-bottom: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.profile-mobile .card_theme_mobile{
+    background: transparent !important;
+    border: 0 !important;
+    -ms-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    box-shadow: none !important;
+    font-size: 0.8rem;
+}
+
+.profile-mobile .CarouselYourtemsMobile{
+    padding-top: 0 !important;
+    font-size: 0.8rem !important;
+}
+
+.profile-mobile .DeadlineMobile{
+    width: 100vw !important;
+}
+
+.profile-mobile_button{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.profile-mobile_button{
+    padding: 0.25rem 1rem;
+    border: 1px solid;
+}

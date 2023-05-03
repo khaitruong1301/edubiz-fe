@@ -1,0 +1,39 @@
+.navbar{
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 500;
+}
+
+.navbar .navbar-icon{
+    margin-right: .5rem;
+}
+
+.navbar .navbar-icon > a{
+    position: relative;
+    font-size: 1rem;
+    color: darkslategrey;
+}
+
+.navbar .navbar-icon a span:first-child{
+    font-size: 0.65rem;
+    position: absolute;
+    top: -8px;
+    right: -5px;
+}
+
+.navbar .navbar-icon .navbar-icon_chat{
+    margin-left: 0.65rem;
+}
+
+.navbar .navbar-icon .navbar-icon_chat span:first-child{
+    right: -8px;
+}

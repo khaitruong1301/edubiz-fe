@@ -1,0 +1,50 @@
+.profileinfo{
+    padding-top: 1rem;
+}
+
+.profileinfo-experience b,
+.profileinfo-positive b {
+    font-size: 0.75rem;
+}
+
+.profileinfo-level{
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.profileinfo-level b{
+    color: rgb(72, 132, 238);
+}
+
+.profileinfo-level_coin{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.profileinfo_span{
+    font-size: 0.75rem;
+}
+
+.profileinfo-progress{
+    display: flex;
+}
+
+.profileinfo-progress_item{
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-img_heart{
+    width: 1.55rem !important;
+    height: 1.55rem !important;
+}
+
+.icon-img_xp{
+    width: 1.1rem !important;
+    height: 1.1rem !important;
+    margin-top: 3px;
+}

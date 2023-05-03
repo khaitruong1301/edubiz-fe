@@ -1,0 +1,35 @@
+.tabmobile{
+    margin-top: 0.5rem;
+}
+
+.tabmobile .tabmobile-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tabmobile .tabmobile-head{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    background: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 5px;
+}
+
+.tabmobile .tabmobile-head_item{
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    margin-left: 0.25rem;
+    border-radius: 5px;
+}
+
+.tabmobile .tabmobile-head_item.active {
+    background-color: #222260;
+    color: white;
+}
+
+.tabmobile .tabmobile-head_item:first-child{
+    margin-left: 0;
+}

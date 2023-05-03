@@ -4,15 +4,12 @@ import { useDispatch } from "react-redux";
 import { setCurrentLesson } from "../../redux/reducer/baiHocContentReducer";
 import { checkDemoUser } from "../../utils/HocDemoUtils";
 
-function BtnTitleArticle({
-  isCancelUserClick,
-  lesson,
-  hightLightcss,
-  isLearned,
-}) {
+function BtnTitleArticle({ isCancelUserClick, lesson, hightLightcss, isLearned, onToggle}) {
   const dispatch = useDispatch();
   const getContent = () => {
     dispatch(setCurrentLesson(lesson));
+    if(onToggle) 
+          onToggle();
   };
   let disableXemdemo = checkDemoUser() && !lesson.xemDemo;
 
@@ -25,7 +22,7 @@ function BtnTitleArticle({
     return (
       <div
         className={
-          "  cursor-pointer  flex flex-col   justify-center h-max-content items-start  px-1 min-h-16   border-gray-200 rounded-none border-b-1 w-full border-l-0 border-r-0  transform duration-300 card_theme " +
+          "lession-menu-item  cursor-pointer  flex flex-col   justify-center h-max-content items-start  px-1 min-h-16   border-gray-200 rounded-none border-b-1 w-full border-l-0 border-r-0  transform duration-300 card_theme " +
           hightLightcss
         }
         key={lesson.id + "menuItem"}

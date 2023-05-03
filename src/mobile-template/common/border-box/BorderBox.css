@@ -1,0 +1,24 @@
+.border-box{
+    padding: 0.25rem;
+    min-height: 5rem;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.border-box .border-box-wrapper{
+    flex: 1;
+    position: relative;
+    padding-top: 0.9rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.border-box .border-box-title{
+    padding: 0 0.5rem;
+    position: absolute;
+    top: -0.7rem;
+    left: 0.5rem;
+    font-size: 0.9rem;
+    background: #fff;
+    border-radius: 0.2rem;
+}

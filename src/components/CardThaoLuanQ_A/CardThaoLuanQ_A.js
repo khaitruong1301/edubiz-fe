@@ -25,7 +25,7 @@ export default function CardThaoLuanQ_A({ idLoTrinh }) {
       return (item.id === filterId);
     });
   return (
-    <div className="w-full space-y-5 p-3 overflow-hidden">
+    <div className="CardThaoLuanQ_A w-full space-y-5 p-3 overflow-hidden">
       <Select
         showSearch
         style={{ width: 200 }}

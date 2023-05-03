@@ -44,8 +44,7 @@ export default function Shop_Item() {
   }, []);
   return (
     <div
-      className="flex flex-col h-full w-full card_theme items-center  
-    "
+      className={`flex flex-col h-full w-full card_theme_mobile card_theme items-center`}
       data-tour="db-step-2"
     >
       <Dialog_Item

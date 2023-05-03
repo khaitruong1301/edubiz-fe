@@ -1,0 +1,60 @@
+.login-mobile-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .login-mobile-container .login-mobile-wrapper {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  
+  .login-mobile-container h2 {
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .login-mobile-container .mobile-input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .login-mobile-container .mobile-input-group label {
+    margin-bottom: 0.2rem;
+  }
+  
+  .login-mobile-container .mobile-input-group input {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    outline: none;
+    height: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  .login-mobile-container .mobile-button-box {
+    margin-top: 2rem;
+    display: flex;
+  }
+
+  .login-mobile-container .mobile-button-box {
+    padding: 0;
+  }
+  
+  .login-mobile-container .mobile-button-box button {
+    border-radius: 0;
+    padding: 0.45rem 1.5rem;
+    border: 1px solid #ddd;
+    background-color: #30b566;
+    color: #fff;
+    box-shadow: unset;
+    outline: unset;
+    width: 100%;
+  }

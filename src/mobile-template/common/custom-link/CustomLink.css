@@ -1,0 +1,7 @@
+.cutomlink-button{
+    font-size: 0.75rem !important;
+    border-radius: 0.25rem !important;
+    padding: 0.2rem 0.5rem !important;
+    display: flex;
+    align-items: center;
+}

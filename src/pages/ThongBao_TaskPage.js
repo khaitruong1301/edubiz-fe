@@ -84,8 +84,8 @@ export default function ThongBao_TaskPage() {
 
           <Tabs
             defaultActiveKey="1"
-            className="lg:p-3"
-            className="w-full felx flex-col flex-grow "
+            // className="lg:p-3"
+            className="w-full felx flex-col flex-grow lg:p-3"
           >
             <TabPane
               tab={<p className="font-medium px-1 lg:px-3">Thông báo</p>}
@@ -116,8 +116,8 @@ export default function ThongBao_TaskPage() {
         <div className="w-full flex-grow  overflow-y-auto list_khoaHoc ">
           <Tabs
             defaultActiveKey="1"
-            className="lg:p-3"
-            className="w-full flex-grow "
+            // className="lg:p-3"
+            className="w-full flex-grow lg:p-3"
           >
             <TabPane
               tab={<p className="font-medium px-1 lg:px-3">Sắp tới hạn</p>}

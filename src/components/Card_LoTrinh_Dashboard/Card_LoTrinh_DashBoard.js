@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { LoTrinhCuaBan_Fake_Data } from "../../fakeData/LoTrinhCuaBan_Fake_Data";
 import { checkDemoUser } from "../../utils/HocDemoUtils";
 import "./Card_LoTrinh_Dashboard.css";
-import ItemLoTrinhDashboard from "./ItemLoTrinhDashboard";
+import ItemLoTrinhDashboard from "./ItemLoTrinhDashboard"; 
 
 const Card_LoTrinh_DashBoard = () => {
   let listLoTrinh = [];

@@ -1,0 +1,168 @@
+.course-mobile{
+    position: relative;
+}
+
+.course-mobile .water-mark-wrapper{
+    height: unset !important;
+}
+
+.course-mobile .article_content p{
+    font-size: 0.75rem;
+}
+
+.course-mobile_menucontent .chapter-menu-item{
+    min-height: unset !important;
+    padding: 0.5rem !important;
+    font-size: 0.9rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.course-mobile_menucontent .lession-menu-item{
+    min-height: unset !important;
+    font-size: 0.8rem !important;
+    background: #fff;
+}
+
+.course-mobile_menucontent .lession-menu-item button{
+    min-height: unset !important;
+    font-size: 0.8rem !important;
+    padding: 0.5rem 0 !important;
+}
+
+.course-mobile_menucontent .lession-menu-item a button{
+    padding: 0.15rem 0.5rem !important;
+}
+
+.course-mobile_menucontent .fa-play:before {
+    content: "\f04b";
+    margin-left: 3px;
+}
+
+.course-mobile_menucontent .text-color-titlebtn-highlight-baihoc{
+    color: #fff !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile{
+    padding: 0 !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-tab{
+    padding: 0.25rem 0.5rem !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-tab span{
+    font-size: 0.9rem !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item{
+    font-size: 0.85rem !important;
+    padding: 0.25rem 0.5rem !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item .text-lg{
+    font-size: 0.9rem !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item p{
+    font-size: 0.85rem !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A{
+    padding: 0 !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item{
+    margin: 0 !important;
+    padding: 0.25rem !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item .ant-collapse{
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item .ant-collapse-header{
+    padding: 0.5rem !important;
+}
+
+.course-mobile .ant-layout-content > div.card_theme .ant-collapse-header{
+    padding: 0 !important;
+}
+
+.course-mobile .ant-layout-content > div.card_theme > .w-full.flex.items-start.justify-between{
+    position: relative;
+    padding: 0.25rem !important;
+}
+
+.course-mobile .ant-layout-content > div.card_theme > .w-full.flex.items-start.justify-between .ant-collapse-icon-position-left{
+    border-radius: 0 !important;
+}
+
+.course-mobile .ant-layout-content > div.card_theme  .ant-collapse-content-active > .ant-collapse-content-box{
+    position: absolute;
+    top: 37px;
+    left: 0.5rem;
+    right: 0.5rem;
+    display: flex; 
+    z-index: 800;
+    background: #fff;
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+}
+
+.course-mobile_menu{
+    position: fixed;
+    top: 2.5rem;
+    right: 0;
+    left: 0;
+    bottom: 6rem;
+    z-index: 999;
+    background: transparent;
+    transition: all 0.5s ease-in-out;
+    transform: translateX(100%);
+    display: flex;
+}
+
+.course-mobile_menucontent{
+    background: #ddd;
+    width: 100%;
+    height: calc(100vh - 6rem);
+    overflow-y: scroll;
+}
+
+.course-mobile_menu.show{
+    transform: translateX(0);
+}
+
+.course-mobile #containerTracNhiem div.w-full.flex-col.flex-grow{
+    padding: 0.25rem !important;
+}
+
+.course-mobile #containerTracNhiem #editor{
+    margin-top: 0 !important;
+}
+
+.course-mobile #containerTracNhiem .text-color-title.font-medium{
+    font-size: 1rem !important;
+}
+
+.course-mobile #containerTracNhiem div.w-full.h-max-content.grid.auto-rows-auto.grid-auto-rows{
+    display: flex !important;
+    flex-direction: column;
+    margin: 0 !important;
+}
+
+.course-mobile #containerTracNhiem div.w-full.h-max-content.grid.auto-rows-auto.grid-auto-rows > .card_theme_item{
+    padding: 0.5rem !important;
+    margin-bottom: -0.8rem;
+}
+
+#footerTracNghiem{
+    width: unset !important;
+    margin-left: unset !important;
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 3.5rem !important;
+    border-radius: 0 !important;
+}

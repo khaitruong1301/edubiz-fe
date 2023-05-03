@@ -1,0 +1,49 @@
+.listseriesitem{
+    margin-bottom: 1.5rem;
+}
+
+.listseriesitem-head{
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+    /* padding: 1rem 0.5rem; */
+}
+
+.listseriesitem-item .CardThaoLuanQ_A{
+    padding: 0 !important;
+}
+
+
+
+.listseriesitem-item .CardThaoLuanQ_A .ant-collapse-content, 
+.listseriesitem-item .CardThaoLuanQ_A .ant-collapse,
+.listseriesitem-item .CardThaoLuanQ_A .rounded-xl{
+    border-radius: 0 !important;
+}
+
+.listseriesitem-item .CardThaoLuanQ_A .card_theme_item{
+    margin-top: 0.35rem !important;
+}
+
+.listseriesitem-courses{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listseriesitem-courses > a{
+    flex: 0 0 50%;
+    width: 50% !important;
+    max-width: 50%;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.listseriesitem-courses .card_khoa_hoc_design_code_wrapper{
+    width: 100% !important;
+    height: unset !important;
+    border-radius: 5px !important;
+}
+
+.listseriesitem-courses .card_khoa_hoc_design_code_wrapper p{
+    font-size: 0.75rem !important;
+    text-align: left !important;
+}
+

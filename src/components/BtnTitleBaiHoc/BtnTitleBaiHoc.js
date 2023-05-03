@@ -5,7 +5,7 @@ import BtnTitleQuizz_Write from "./BtnTitleQuizz_Write";
 import BtnTitleVideo from "./BtnTitleVideo";
 import { useSelector } from "react-redux";
 
-export default function BtnTitleBaiHoc({ lesson, isDemoUser }) {
+export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
   const danhSachBaiDaHoc = useSelector(
     (state) => state.khoaHoc.danhSachBaiDaHoc
   );
@@ -59,6 +59,7 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser }) {
           isLearned={isLearned}
           isCancelUserClick={isCancelUserClick()}
           isDemoUser={isDemoUser}
+          onToggle={onToggle}
         />
       );
 
@@ -69,7 +70,7 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser }) {
           lesson={lesson}
           isLearned={isLearned}
           isCancelUserClick={isCancelUserClick()}
-
+          onToggle={onToggle}
         />
       );
 
@@ -80,6 +81,7 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser }) {
           lesson={lesson}
           isLearned={isLearned}
           isCancelUserClick={isCancelUserClick()}
+          onToggle={onToggle}
         />
       );
     case "QUIZ_WRITE":
@@ -89,7 +91,7 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser }) {
           lesson={lesson}
           isLearned={isLearned}
           isDemoUser={isDemoUser}
-
+          onToggle={onToggle}
         />
       );
 

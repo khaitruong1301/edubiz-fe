@@ -1,0 +1,16 @@
+.seriesmobile .slick-slider{
+    height: 10rem !important;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2.5rem;
+    border-radius: 0;
+}
+
+.seriesmobile .carouselLotrinh .slick-arrow.slick-prev{
+    transform: translateX(25%);
+    top: 40%;
+}
+
+.seriesmobile .carouselLotrinh .slick-arrow.slick-next{
+    transform: translateX(-20%);
+    top: 40%;
+}

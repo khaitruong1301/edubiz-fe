@@ -46,7 +46,7 @@ export default function CarouselYourtems({ yourItems }) {
             );
           })
         ) : (
-          <p className="p-3 text-color-content text-base mt-5">
+          <p className="p-3 text-color-content text-base mt-5 CarouselYourtemsMobile">
             Bạn chưa có vật phẩm nào, hãy học tập thật tốt & rèn luyện thật
             nhiều để đổi lấy các vật phẩm bạn nhé! Hoặc tham khảo các Vật Phẩm
             bên Cửa Hàng nè!

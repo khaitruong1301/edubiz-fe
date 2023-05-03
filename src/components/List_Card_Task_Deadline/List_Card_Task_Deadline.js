@@ -39,7 +39,7 @@ export default function List_Card_Task_Deadline() {
   }, []);
   return (
     <div
-      className="h-max-content  lg:h-full  xl:h-max-content w-80 lg:w-96 xl:w-84 flex-shrink-0  card_theme p-3 flex flex-col justify-start space-y-3 relative"
+      className="DeadlineMobile .card_theme_mobile h-max-content  lg:h-full  xl:h-max-content w-80 lg:w-96 xl:w-84 flex-shrink-0  card_theme p-3 flex flex-col justify-start space-y-3 relative"
     // data-tour="db-step-3"
     >
       <div className="flex justify-between items-center">

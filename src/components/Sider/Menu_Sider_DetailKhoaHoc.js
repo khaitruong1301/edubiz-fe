@@ -4,7 +4,7 @@ import "./Menu_Sider_DetailKhoaHoc.css";
 import SubMenu_Sider_DetailKhoaHoc from "./SubMenu_Sider_DetailKhoaHoc";
 import { useSelector } from "react-redux";
 
-export default function Menu_Sider_DetailKhoaHoc() {
+export default function Menu_Sider_DetailKhoaHoc({ onToggle }) {
   const listChuongHoc = useSelector(
     (state) => state.khoaHoc.khoaHocContent?.danhSachChuongHoc
   )
@@ -13,7 +13,7 @@ export default function Menu_Sider_DetailKhoaHoc() {
     <div className=" w-full h-ful ">
 
       {listChuongHoc?.map((item, index_ChuongHoc) => {
-        return <SubMenu_Sider_DetailKhoaHoc key={index_ChuongHoc} course={item} />;
+        return <SubMenu_Sider_DetailKhoaHoc onToggle={onToggle} key={index_ChuongHoc} course={item} />;
       })}
     </div>
   );

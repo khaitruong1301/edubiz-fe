@@ -5,11 +5,13 @@ import { useDispatch } from "react-redux";
 import { setCurrentLesson } from "../../redux/reducer/baiHocContentReducer";
 import httpServ from "../../services/http.service";
 const BtnTitleVideo = React.memo(
-  ({ lesson, isLearned, hightLightcss, isCancelUserClick, isDemoUser }) => {
+  ({ lesson, isLearned, hightLightcss, isCancelUserClick, isDemoUser,  onToggle }) => {
     const dispatch = useDispatch();
     const getUrlVideo = (noiDung) => {
       httpServ.getUrlVideo_FPT(noiDung).then((res) => {
         dispatch(setCurrentLesson(lesson));
+        if(onToggle) 
+          onToggle();
       });
     };
     let disableXemdemo = isDemoUser && !lesson.xemDemo;
@@ -23,7 +25,7 @@ const BtnTitleVideo = React.memo(
       return (
         <div
           className={
-            "  cursor-pointer flex flex-col   justify-center h-max-content items-start  px-1 min-h-16   border-gray-200 rounded-none border-b-1 w-full border-l-0 border-r-0  transform duration-300 card_theme " +
+            "lession-menu-item cursor-pointer flex flex-col   justify-center h-max-content items-start  px-1 min-h-16   border-gray-200 rounded-none border-b-1 w-full border-l-0 border-r-0  transform duration-300 card_theme " +
             hightLightcss
           }
           key={lesson.id + "menuItem"}

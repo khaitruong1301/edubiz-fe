@@ -1,0 +1,38 @@
+.profile-avatar{
+    display: flex;
+    padding-top: 0.5rem;
+}
+
+.profile-avatar_left{
+    width: 10rem;
+    height: 9.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-progress_1{
+    width: 115px;
+    height: 115px;
+    position: absolute;
+}
+.profile-progress_2{
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    transform: rotate(180deg);
+}
+
+.profile-image{
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.profile-stylized{
+    position: absolute;
+    top: 145px
+}

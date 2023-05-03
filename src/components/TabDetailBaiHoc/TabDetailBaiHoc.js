@@ -25,7 +25,7 @@ function TabDetailBaiHoc() {
   }
   return (
     <div
-      className=" bg-transparent w-full h-max-content  "
+      className="coursemobile-lessioninfo bg-transparent w-full h-max-content  "
       data-tour="detail-step-5"
     >
       <div className="w-full h-full card_theme_item  ">
@@ -74,7 +74,7 @@ function TabDetailBaiHoc() {
             </div>
           </TabPane>
           <TabPane tab={<span className="text-lg">Điểm bài tập</span>} key="2">
-            <StaticBaiTapKhoaHoc data={diemAndBaiTap}></StaticBaiTapKhoaHoc>
+            <StaticBaiTapKhoaHoc data={diemAndBaiTap} idLoTrinh={khoaHoc.khoaHocContent.maLoTrinh}></StaticBaiTapKhoaHoc>
           </TabPane>
           <TabPane
             tab={<span className="text-lg">Q&A</span>}

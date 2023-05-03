@@ -1,0 +1,9 @@
+.dashdoardseries{
+    padding: 0.25rem;
+    border-bottom: 1px solid rgb(99 99 99 / 20%);
+    background: transparent;
+}
+
+.dashdoardseries-minus span{
+    font-size: 0.75rem !important;
+}

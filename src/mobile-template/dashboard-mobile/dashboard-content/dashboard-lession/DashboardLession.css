@@ -1,0 +1,26 @@
+/* .dashboard-lession{
+
+} */
+
+.dashboard-lession .dashboard-lession_bottom{
+    display: flex;
+}
+
+.dashboard-lession .dashboard-lession_process{
+    width: 25%;
+    padding: 0.5rem;
+    padding-left: 0;
+}
+
+.dashboard-lession .dashboard-lession_lession{
+    width: 75%;
+    padding-top: 0.75rem;
+}
+
+.dashboard-lession .dashboard-lession_lession button{
+    font-size: 0.75rem !important;
+    border-radius: 0.25rem !important;
+    padding: 0.2rem 0.5rem !important;
+    display: flex;
+    align-items: center;
+}

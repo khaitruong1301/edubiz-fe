@@ -11,7 +11,7 @@ import Content_DetailKhoaHoc from "../components/Content_DetailKhoaHoc/Content_D
 import {
   setCurrentLesson,
   setIdBaiDangHocDashboard,
-  setlastVideoCanWatchIndex,
+  setlastVideoCanWatchIndex, 
 } from "../redux/reducer/baiHocContentReducer";
 import {
   setAllLessons,

@@ -6,7 +6,7 @@ import "./CardKhoaHoc_DesignCode.css";
 import { getHinhAnh } from "../../utils/GetHinhanh";
 import { checkDemoUser } from "../../utils/HocDemoUtils";
 import LazyLoad from "react-lazyload";
-function CardKhoaHoc_DesignCode({ khoaHoc, bg_color, id_tool_tip, loTrinh, isDemoUser = false, isBlackFridayDay = false }) {
+function CardKhoaHoc_DesignCode({ khoaHoc, bg_color, id_tool_tip, loTrinh, isDemoUser = false, isBlackFridayDay = false, urlCourse = '/detail-khoa-hoc' }) {
   let isDisableUserClick = loTrinh?.daHetHan || !loTrinh?.daDangKy;
   if (checkDemoUser()) {
     isDisableUserClick = false;
@@ -127,12 +127,14 @@ function CardKhoaHoc_DesignCode({ khoaHoc, bg_color, id_tool_tip, loTrinh, isDem
         console.log(visible);
       }}
     >
+      <a>
       {renderCard()}
+      </a>
     </Tooltip>
   ) : (
     <NavLink
       className=""
-      to={`/detail-khoa-hoc/${khoaHoc.id}`}
+      to={`${urlCourse}/${khoaHoc.id}`}
       style={{ color: "inherit", textDecoration: "inherit" }}
     >
       {renderCard()}

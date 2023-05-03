@@ -8,13 +8,7 @@ import {
 import httpServ from "../../services/http.service";
 import localStorageServ from "../../services/locaStorage.service";
 
-export default function BtnTitleQuizz_Write({
-  lesson,
-  hightLightcss,
-  isLearned,
-  isDemoUser
-
-}) {
+export default function BtnTitleQuizz_Write({ lesson, hightLightcss, isLearned, isDemoUser, onToggle }) {
   const dispatch = useDispatch();
 
 
@@ -26,7 +20,7 @@ export default function BtnTitleQuizz_Write({
     return (
       <div
         className={
-          "cursor-pointer card_theme rounded-none flex flex-col   justify-center items-center  px-1 min-h-16    w-full   transform duration-100 border-gray-200  border-b-1 border-l-0 border-r-0 " +
+          "lession-menu-item cursor-pointer card_theme rounded-none flex flex-col   justify-center items-center  px-1 min-h-16    w-full   transform duration-100 border-gray-200  border-b-1 border-l-0 border-r-0 " +
           hightLightcss
         }
         key={lesson.id + "menuItem"}
@@ -37,6 +31,8 @@ export default function BtnTitleQuizz_Write({
               .getThongTinBaiTapNop(userInfor?.id, lesson.id)
               .then((res) => {
                 dispatch(setBaiTapNop(res.data.content));
+                if (onToggle)
+                  onToggle();
               })
               .catch((err) => {
                 console.log(err);

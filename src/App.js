@@ -30,6 +30,8 @@ import { DARK_MODE, LIGHT_MODE } from "./constants/theme";
 import LuckyTetPage from "./pages/LuckyTetPage/LuckyTetPage";
 import { ChinhSachBaoMat } from "./pages/ChinhSachBaoMat";
 import TestQuizPage from "./pages/TestQuizPage/TestQuizPage";
+import { useMediaQuery } from "react-responsive";
+import { MobileTemplate } from "./mobile-template";
 
 // useEffect(() => {
 const root = window.document.documentElement;
@@ -48,7 +50,7 @@ if (theme === LIGHT_MODE) {
 }
 // }, [])
 
-function App() {
+function DesktopTemlate() {
   const theme = useSelector((state) => state.theme.theme);
 
   const dispatch = useDispatch();
@@ -61,7 +63,7 @@ function App() {
       dispatch(setAllThongBao(items));
     });
     if (!isDemoUser) {
-      connection.on("GetThongBaoFakeRT", (items) => {});
+      connection.on("GetThongBaoFakeRT", (items) => { });
     }
   }, []);
 
@@ -161,21 +163,6 @@ function App() {
   } else {
     css_bg_theme.background = `url(${backGrountTemplate})`;
   }
-  // useEffect(() => {
-  //   const root = window.document.documentElement;
-
-  //   let theme = localStorageServ.modeTheme.get() ? localStorageServ.modeTheme.get() : LIGHT_MODE
-  //   if (theme === DARK_MODE) {
-
-  //     root.classList.add(DARK_MODE)
-  //     root.classList.remove(LIGHT_MODE)
-  //   }
-
-  //   if (theme === LIGHT_MODE) {
-  //     root.classList.add(LIGHT_MODE)
-  //     root.classList.remove(DARK_MODE);
-  //   }
-  // }, [])
   return (
     <div style={css_bg_theme} className="backgoundTemplate bg-cover  ">
       {isDemoUser ? (
@@ -191,14 +178,6 @@ function App() {
       <SpinnerComponent />
       <BrowserRouter>
         <Switch>
-          {/* <Route
-            path="/"
-            exact={true}
-            component={() => {
-              window.location.replace("https://cyberlearn.vn/");
-              return null;
-            }}
-          /> */}
           <Route path="/baomat" component={ChinhSachBaoMat} />
           <Route path="/signup" component={SignUpPage} />
           <Route path="/lms" component={LoginPage} />
@@ -219,6 +198,15 @@ function App() {
       </BrowserRouter>
     </div>
   );
+}
+
+
+function App() {
+  const mediaQuery = useMediaQuery({ maxWidth: 767 });
+
+  return (
+    mediaQuery ? <MobileTemplate /> : <DesktopTemlate />
+  )
 }
 
 export default App;

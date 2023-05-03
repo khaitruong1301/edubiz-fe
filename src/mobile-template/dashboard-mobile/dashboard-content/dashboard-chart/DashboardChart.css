@@ -1,0 +1,4 @@
+.dashboardchart-tab{
+    display: flex;
+    justify-content: space-between;
+}

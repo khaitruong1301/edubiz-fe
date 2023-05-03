@@ -1,0 +1,13 @@
+.event-content > div.ant-tabs {
+    width: 100vw !important;
+}
+
+.event-content .ant-tabs-top > .ant-tabs-nav, .ant-tabs-bottom > .ant-tabs-nav, .ant-tabs-top > div > .ant-tabs-nav, .ant-tabs-bottom > div > .ant-tabs-nav{
+    margin-bottom: 7px;
+}
+
+.event-content .cart-mobile-item{
+    background: #fff !important ;
+    border-radius: 0 !important;
+    margin: 0.15rem 0 !important;
+}

@@ -1,0 +1,35 @@
+.tabchart{
+    margin-top: 0.5rem;
+}
+
+.tabchart .tabchart-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tabchart .tabchart-head{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    background: #fff;
+    border-radius: 5px;
+    padding: 0.25rem 0.5rem;
+}
+
+.tabchart .tabchart-head_item{
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+}
+
+.tabchart .tabchart-head_item.active {
+    background-color: #222260;
+    color: white;
+}
+
+.tabchart .tabchart-head_item:first-child{
+    margin-left: 0;
+}

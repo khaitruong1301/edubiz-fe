@@ -1,0 +1,27 @@
+.courseheader{
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 500;
+}
+
+.courseheader-prev{
+    width: 11%;
+}
+
+.courseheader .courseheader-icon{
+    width: 11%;
+    font-size: 1rem;
+    color: darkslategrey;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

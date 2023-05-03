@@ -1,0 +1,80 @@
+.info-series {
+    width: 100vw;
+    padding: 0.5rem;
+    padding-bottom: 0;
+    background: #fff;
+}
+
+.info-series .info-series-title {
+    display: flex;
+    margin-bottom: 0.75rem;
+    background: #fff;
+    border-radius: 1rem;
+    justify-content: center;
+    padding: 0.2rem 0;
+    font-size: 0.8rem;
+}
+
+.info-series .info-series-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-series_text {
+    margin-top: 0.5rem;
+}
+
+.info-series_text span {
+    font-size: 0.75rem;
+    display: block;
+    text-align: center;
+}
+
+.info-series-button {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.info-series-button_down {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a6a2a2;
+    font-size: 0.7rem;
+    position: absolute;
+    top: 25px;
+    left: 47%;
+    overflow: hidden;
+    background: linear-gradient(rgb(255, 255, 255) 0%, rgba(234, 83, 172, 0.2) 100%);
+}
+
+.info-series-button_down--child {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.info-series-button_down--child i {
+    animation-duration: 0.7s;
+    animation-name: fly-ball-y;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes fly-ball-y {
+    from {
+        transform: translateY(-2px);
+    }
+
+    to {
+        transform: translateY(2px);
+    }
+}

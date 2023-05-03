@@ -4,7 +4,7 @@ export default function Task_Card({ data, color }) {
   return (
     <div
       style={{ backgroundColor: color.bg }}
-      className="w-full  p-2 px-3  min-h-22 justify-between flex items-center relative rounded-lg shadow-lg"
+      className="cart-mobile-item w-full  p-2 px-3  min-h-22 justify-between flex items-center relative rounded-lg shadow-lg"
     >
       <div className="w-max pl-6 h-full flex flex-col  relative ">
         <p className="text-gray-600">{data.tenKhoaHoc}</p>
