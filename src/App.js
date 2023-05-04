@@ -202,6 +202,28 @@ function DesktopTemlate() {
   );
 }
 
+function MobileApp() {
+  const maximizableElement = useRef(null);
+  let isFullscreen, setIsFullscreen;
+
+  try {
+    [isFullscreen, setIsFullscreen] = useFullscreenStatus(maximizableElement);
+  } catch (e) {
+    console.log("Fullscreen not supported");
+  }
+
+  useEffect(() => {
+    if (!isFullscreen)
+      setIsFullscreen();
+  })
+
+  return (
+    <div ref={maximizableElement}>
+      <MobileTemplate />
+    </div>
+  )
+}
+
 
 
 function App() {
@@ -209,7 +231,7 @@ function App() {
   const mediaQuery = useMediaQuery({ maxWidth: 991 });
 
   return (
-    mediaQuery ? <MobileTemplate /> : <DesktopTemlate />
+    mediaQuery ? <MobileApp /> : <DesktopTemlate />
   )
 }
 
