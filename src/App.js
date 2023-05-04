@@ -32,6 +32,8 @@ import { ChinhSachBaoMat } from "./pages/ChinhSachBaoMat";
 import TestQuizPage from "./pages/TestQuizPage/TestQuizPage";
 import { useMediaQuery } from "react-responsive";
 import { MobileTemplate } from "./mobile-template";
+import useFullscreenStatus from "./hook/useFullscreenStatus";
+import { useRef } from "react";
 
 // useEffect(() => {
 const root = window.document.documentElement;
@@ -201,12 +203,11 @@ function DesktopTemlate() {
 }
 
 
+
 function App() {
   // const mediaQuery = useMediaQuery({ maxWidth: 767 });992
   const mediaQuery = useMediaQuery({ maxWidth: 991 });
-  if(mediaQuery){
-    document.getElementById('root').requestFullscreen()
-  }
+
   return (
     mediaQuery ? <MobileTemplate /> : <DesktopTemlate />
   )
