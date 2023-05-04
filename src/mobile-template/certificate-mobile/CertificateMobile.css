@@ -1,0 +1,29 @@
+.certificate {}
+
+.certificate .certificate-banner {
+    position: relative;
+}
+
+.certificate .certificate-banner_image {
+    height: 8rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.certificate .certificate-banner_slogan {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 100;
+}
+
+.certificate .certificate-banner_slogan b{
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.certificate .certificate-banner_slogan p{
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+}

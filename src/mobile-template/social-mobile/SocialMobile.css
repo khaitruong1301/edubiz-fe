@@ -1,0 +1,165 @@
+.socailmobile-item{
+    border-top: 1px solid #ddd;
+    border-bottom: 5px solid #eee;
+    padding-top: 0.75rem;
+}
+
+.socailmobile .socailmobile-status{
+    border-bottom: 1px solid #ddd;
+    padding: 0 0.5rem;
+}
+
+.socailmobile .socailmobile-statusinfo{
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+}
+
+.socailmobile .socailmobile-statusinfo_icon{
+    width: 2.5rem;
+    min-width: 2.5rem;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #aaa;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socailmobile .socailmobile-statusinfo_icon--image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+}
+
+.socailmobile .socailmobile-statusinfo_profile{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.socailmobile .socailmobile-statusinfo_profile span:last-child{
+    color: #757575;
+    font-size: 0.75rem;
+}
+
+.socailmobile .socailmobile-statusinfo_more{
+    width: 1rem;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #aaa;
+    font-size: 0.75rem;
+}
+
+.socailmobile .socailmobile-statuscontent{
+    width: 100%;
+    padding: 0.5rem 0.25rem 0.75rem 0;
+    font-size: 0.85rem;
+}
+
+/* ==================== */
+.socailmobile .socailmobile-action{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.75rem 0.5rem;
+    padding-bottom: 0;
+    background: #fff;
+}
+
+.socailmobile .socailmobile-action .socailmobile-action_item{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-left: 1rem;
+}
+
+.socailmobile .socailmobile-action .socailmobile-action_item span:last-child  i{
+    margin-right: 0.25rem;
+}
+
+.socailmobile .socailmobile-action .socailmobile-action_item span:first-child{
+    position: absolute;
+    left: -10px;
+    top: -8px;
+    font-size: 0.65rem;
+}
+
+.socailmobile .socailmobile-action .socailmobile-action_like span:first-child{
+    left: -5px;
+}
+
+/* =================== */
+
+
+.socailmobile-comments{
+    background: #fff;
+}
+
+.socailmobile-comments .socailmobile-commentitem{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    padding-bottom: 0;
+    padding-top: 0.75rem;
+}
+
+.socailmobile-comments .socailmobile-commentitem:first-child{
+    padding-top: 0;
+}
+
+.socailmobile-comments .socailmobile-commentitem_icon{
+   display: flex;
+   align-items: center;
+}
+
+.socailmobile-comments .socailmobile-commentitem_icon--image{
+    width: 2.25rem;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.25rem;
+    font-size: 1rem;
+}
+
+.socailmobile-comments .socailmobile-commentitem_icon--profile{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+}
+
+.socailmobile-comments .socailmobile-commentitem_icon--profile span{
+    font-size: 0.75rem;
+    color: #757575;
+    margin-top: -2px;
+}
+
+.socailmobile-comments .socailmobile-commentitem_content{
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+}
+
+.socailmobile-comments .socailmobile-commentitem:last-child .socailmobile-commentitem_content{
+    border-bottom: 0;
+}
+
+.socailmobile-comments .socailmobile-commentitem_content--wrapper{
+    width: calc(100% - 2rem);
+    padding: 0.25rem;
+    padding-top: 0;
+    font-size: 0.85rem;
+}

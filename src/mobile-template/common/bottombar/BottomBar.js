@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { URL_PAGE } from '../index'
 import './BottomBar.css'
 
@@ -15,8 +15,8 @@ export default function BottomBar() {
     ]
 
     useEffect(() => {
-        setActive(URL_PAGE.DASHBOARD)
-    }, []);
+        setActive(window.location.pathname)
+    }, [window.location.pathname]);
 
     const handleClick = (id) => {
         setActive(id)

@@ -1,0 +1,10 @@
+.certificateitem-courses.hide{
+    height: 0;
+    transition: height 0.5s ease-out;
+    overflow: hidden;
+}
+
+.certificateitem-courses.show{
+    height: auto;
+    transition: height 0.75s ease-in;
+}

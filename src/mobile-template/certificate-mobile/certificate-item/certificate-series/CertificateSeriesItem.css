@@ -1,0 +1,109 @@
+.certificateseries-item{
+    display: flex;
+    align-items: center;
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+}
+
+.certificateseries-item_left{
+    width: 95%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.certificateseries-item_right{
+    width: 5%;
+    display: flex;
+    align-items: center;
+    font-size: 1.15rem;
+    margin-right: 0.5rem;
+    color: #757575;
+    position: relative;
+}
+
+.certificateseries-item_viewall{
+    position: absolute;
+    top: 0;
+    right: 1.5rem;
+    width: 9rem;
+    background: #fff;
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+    padding: 0.25rem 0.5rem;
+    z-index: 400;
+}
+
+.certificateseries-item_viewall.show{
+    display: block;
+}
+
+.certificateseries-item_viewall.hide{
+    display: none;
+}
+
+.certificateseries-item_viewll--item{
+    padding: 0.5rem 0.25rem;
+    font-size: 0.75rem;
+    border-bottom: 1px solid #ddd;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.certificateseries-item_viewll--item:last-child{
+    border-bottom: 0;
+}
+
+.certificateseries-item_progress{
+    min-width: 5rem;
+    max-width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.certificateseries-item_title{
+    font-size: 0.85rem;
+}
+
+.certificateseries-item_dropdown{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a6a2a2;
+    font-size: 0.6rem;
+    position: absolute;
+    top: 3.7rem;
+    left: 50%;
+    overflow: hidden;
+    background: linear-gradient(rgb(255, 255, 255) 0%, rgba(234, 83, 172, 0.2) 100%);
+}
+
+.certificateseries-item_dropdown--child{
+    width: 1rem;
+    height: 1rem;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.certificateseries-item_dropdown--child i {
+    animation-duration: 0.7s;
+    animation-name: fly-ball-y;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes fly-ball-y {
+    from {
+        transform: translateY(-1px);
+    }
+
+    to {
+        transform: translateY(1px);
+    }
+}

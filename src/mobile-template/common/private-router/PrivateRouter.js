@@ -17,7 +17,7 @@ function PrivateRouter() {
         <>
             <LayoutContent>
                 <Route path={URL_PAGE.DASHBOARD} component={(props) => <DashboardMobile {...props} title="Trang chủ"/>} />
-                <Route path={URL_PAGE.CERTIFICATE} component={(props) => <CertificateMobile {...props} title="Chứng chỉ"/>} />
+                <Route path={URL_PAGE.CERTIFICATE} component={(props) => <CertificateMobile {...props} title="Chứng nhận"/>} />
                 <Route path={URL_PAGE.PROFILE} component={(props) => <ProfileMobile {...props} title="Tài khoản"/>} />
                 <Route path={URL_PAGE.SERIES} component={(props) => <SeriesMobile {...props} title="Lộ trình"/>} />
                 <Route path={URL_PAGE.SOCIAL} component={(props) => <SocialMobile {...props} title="Thảo luận"/>} />

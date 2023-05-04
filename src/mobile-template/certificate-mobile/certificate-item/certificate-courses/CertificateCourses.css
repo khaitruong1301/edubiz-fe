@@ -1,0 +1,49 @@
+.certificatecourses-item{
+    padding-top: 0.5rem;
+}
+
+.certificatecourses-title{
+    padding: 0.5rem;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.certificatecourses-info{
+    padding: 0.5rem;
+    padding-bottom: 0;
+}
+
+.certificatecourses-info.show{
+    height: auto;
+    transition: height 0.75s ease-in;
+}
+
+.certificatecourses-info.hide{
+    height: 0;
+    transition: height 0.5s ease-out;
+    overflow: hidden;
+}
+
+.certificatecourses-info_item{
+    padding: 0.5rem;
+    background: #fff;
+    margin-bottom: 0.15rem;
+    box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+}
+
+.certificatecourses-info_row span{
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.certificatecourses-info_row span:first-child{
+    color: #413f3f;
+    margin-right: 0.5rem;
+    width: 5rem;
+}
+
+.certificatecourses-info_row span:last-child{
+    color: #000;
+}
