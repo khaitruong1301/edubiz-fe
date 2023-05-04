@@ -18,6 +18,7 @@ function DashboardMobile(props) {
 
     const dispatch = useDispatch();
     let userInfor = useSelector((state) => state.authUser.userInfor);
+
     useEffect(() => {
         !checkDemoUser() &&
             httpServ.getLoTrinhDaDangKI(userInfor?.id).then((res) => {
@@ -33,7 +34,7 @@ function DashboardMobile(props) {
 
                 dispatch(setTatCaLoTrinh(resLoTrinh));
             });
-    }, []);
+    }, [window.location.pathname]);
     // let userTour = useSelector((state) => state.tour.userTour);
     return (
         <>

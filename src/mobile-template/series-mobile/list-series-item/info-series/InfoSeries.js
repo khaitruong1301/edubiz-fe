@@ -30,7 +30,7 @@ export default function InfoSeries({ loTrinhDetail, onChange, isShow }) {
     return (
         <div className="info-series">
             <b className="info-series-title">{loTrinhDetail.tenLoTrinh}</b>
-            <div className="info-series-wrapper">
+            <div className="info-series-wrapper" onClick={(onChange)}>
                 <div className="info-series_progress">
                     <Progress
                         format={(percent) => (

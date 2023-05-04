@@ -204,6 +204,9 @@ function DesktopTemlate() {
 function App() {
   // const mediaQuery = useMediaQuery({ maxWidth: 767 });992
   const mediaQuery = useMediaQuery({ maxWidth: 991 });
+  if(mediaQuery){
+    document.getElementById('root').requestFullscreen()
+  }
   return (
     mediaQuery ? <MobileTemplate /> : <DesktopTemlate />
   )
