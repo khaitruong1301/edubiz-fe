@@ -1,13 +1,26 @@
 import { NavLink } from "react-router-dom";
 import './CertificateCourses.css';
 import { QUIZ } from "../../../../utils/Constant";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Badge } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { setCertificateCourseKeyIndex } from "../../../../redux/reducer/certificateReducer";
 
-export default function CertificateCourses({ khoaHoc, userInfo }) {
+export default function CertificateCourses({ khoaHoc, keyIndex }) {
+    const dispatch = useDispatch();
+    const certificateItemCourseKey = useSelector(state => state.certificate.certificateCourseKeyIndex);
     const [toggle, setToggle] = useState(false);
+
+    useEffect(() => {
+        if(certificateItemCourseKey.certificateCourseKeyIndex != keyIndex){
+            setToggle(false);
+        }
+    }, [certificateItemCourseKey.certificateCourseKeyIndex])
+
+
     const onToggle = () => {
         setToggle(!toggle);
+        dispatch(setCertificateCourseKeyIndex(keyIndex));
     }
 
     const renderStatus = (status) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Progress } from "antd";
 import { useDispatch } from "react-redux";
-import { CustomLink } from "../../../common";
+import { CustomLink, URL_PAGE } from "../../../common";
 import { setIdBaiDangHocDashboard } from "../../../../redux/reducer/baiHocContentReducer";
 import './DashboardLession.css'
 
@@ -26,7 +26,7 @@ export default function DashboardLession({ lesson }) {
         </div>
         <div className="dashboard-lession_lession">
           <p className="mb-2">{lesson.baiHocChu}</p>
-          <CustomLink onClick={() => { dispatch(setIdBaiDangHocDashboard(lesson.baiHocId)); }} to={`/detail-khoa-hoc/${lesson.khoaHocId}`}>
+          <CustomLink onClick={() => { dispatch(setIdBaiDangHocDashboard(lesson.baiHocId)); }} to={`${URL_PAGE.COURSE}/${lesson.khoaHocId}`}>
             Tiếp tục học
           </CustomLink>
         </div>

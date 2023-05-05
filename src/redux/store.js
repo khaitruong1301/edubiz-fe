@@ -12,6 +12,8 @@ import spinnerReducer from "./reducer/spinnerReducer";
 import themeReducer from "./reducer/themeReducer";
 import thongBaoReducer from "./reducer/thongBaoReducer";
 import tourReducer from "./reducer/tourReducer";
+import historyReducer from "./reducer/historyReducer";
+import certificateReducer from "./reducer/certificateReducer";
 
 export default configureStore({
   reducer: {
@@ -28,7 +30,9 @@ export default configureStore({
     layout: layoutReducer,
     signUp: signUpReducer,
     spinner: spinnerReducer,
-    theme: themeReducer
+    theme: themeReducer,
+    history: historyReducer,
+    certificate: certificateReducer
   },
   // devTools: process.env.NODE_ENV === "development" ? true : false,
   devTools: process.env.NODE_ENV !== 'production',

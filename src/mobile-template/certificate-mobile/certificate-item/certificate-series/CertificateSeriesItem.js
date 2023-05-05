@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
 import './CertificateSeriesItem.css'
 import { Progress } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CertificateReport from './certificate-report/CertificateReport';
+import { setCertificateReportKeyIndex } from '../../../../redux/reducer/certificateReducer';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function CertificateSeriesItem({ loTrinh, userInfo, onToggle, isShow = false }) {
-
+export default function CertificateSeriesItem({ loTrinh, onToggle, isShow = false, keyIndex }) {
+    const dispatch = useDispatch();
+    const certificateItemReportKey = useSelector(state => state.certificate.certificateReportKeyIndex);
     const [toggleReport, setToggleReport] = useState(false);
 
     let isDisable = false;
@@ -38,7 +41,14 @@ export default function CertificateSeriesItem({ loTrinh, userInfo, onToggle, isS
 
     const handleToggleReport = () => {
         setToggleReport(!toggleReport);
+        dispatch(setCertificateReportKeyIndex(keyIndex));
     }
+
+    useEffect(() => {
+        if(certificateItemReportKey.certificateReportKeyIndex != keyIndex){
+            setToggleReport(false);
+        }
+    }, [certificateItemReportKey.certificateReportKeyIndex])
 
 
     return (

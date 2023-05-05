@@ -3,7 +3,7 @@ import { Progress } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { LO_TRINH_CUA_BAN_TAB } from "../../../../utils/Constant";
 import { setCurrentTabLoTrinh } from "../../../../redux/reducer/layoutReducer";
-import { CustomLink } from "../../../common";
+import { CustomLink, URL_PAGE } from "../../../common";
 import './DashboardSeries.css'
 
 export default function DashboardSeries({ loTrinh }) {
@@ -92,7 +92,7 @@ export default function DashboardSeries({ loTrinh }) {
                 </div>
             </div>
             <div className="w-max">
-                <CustomLink className="mt-3 mb-2" onClick={() => { dispatch(setCurrentTabLoTrinh(LO_TRINH_CUA_BAN_TAB));}} to={`/lo-trinh#${loTrinh.id}`}>
+                <CustomLink className="mt-3 mb-2" onClick={() => { dispatch(setCurrentTabLoTrinh(LO_TRINH_CUA_BAN_TAB));}} to={`${URL_PAGE.SERIES}#${loTrinh.id}`}>
                     Đi đến lộ trình
                 </CustomLink>
             </div>

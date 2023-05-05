@@ -51,7 +51,7 @@ function SocialMobile(props) {
                             <div className='socailmobile-commentitem'>
                                 <div className='socailmobile-commentitem_icon'>
                                     <div className='socailmobile-commentitem_icon--image'>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <i className="fa fa-user" aria-hidden="true"></i>
                                     </div>
                                     <div className='socailmobile-commentitem_icon--profile'>
                                         <b>Trấn Thành</b>
@@ -68,7 +68,7 @@ function SocialMobile(props) {
                             <div className='socailmobile-commentitem'>
                                 <div className='socailmobile-commentitem_icon'>
                                     <div className='socailmobile-commentitem_icon--image'>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <i className="fa fa-user" aria-hidden="true"></i>
                                     </div>
                                     <div className='socailmobile-commentitem_icon--profile'>
                                         <b>Hoài Linh</b>
@@ -89,7 +89,7 @@ function SocialMobile(props) {
                             <div className='socailmobile-statusinfo'>
                                 <div className='socailmobile-statusinfo_icon'>
                                     <div className='socailmobile-statusinfo_icon--image'>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <i className="fa fa-user" aria-hidden="true"></i>
                                     </div>
                                 </div>
                                 <div className='socailmobile-statusinfo_profile'>
@@ -97,7 +97,7 @@ function SocialMobile(props) {
                                     <span>Quản lý</span>
                                 </div>
                                 <div className='socailmobile-statusinfo_more'>
-                                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                    <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div className='socailmobile-statuscontent'>
@@ -108,14 +108,14 @@ function SocialMobile(props) {
                             <div className='socailmobile-action_like socailmobile-action_item'>
                                 <span>5</span>
                                 <span>
-                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    <i className="fa fa-thumbs-up" aria-hidden="true"></i>
                                     Thích
                                 </span>
                             </div>
                             <div className='socailmobile-action_comment socailmobile-action_item'>
                                 <span>10</span>
                                 <span>
-                                    <i class="fa fa-comment" aria-hidden="true"></i>
+                                    <i className="fa fa-comment" aria-hidden="true"></i>
                                     Bình luận
                                 </span>
                             </div>
@@ -124,7 +124,7 @@ function SocialMobile(props) {
                             <div className='socailmobile-commentitem'>
                                 <div className='socailmobile-commentitem_icon'>
                                     <div className='socailmobile-commentitem_icon--image'>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <i className="fa fa-user" aria-hidden="true"></i>
                                     </div>
                                     <div className='socailmobile-commentitem_icon--profile'>
                                         <b>Trấn Thành</b>
@@ -141,7 +141,7 @@ function SocialMobile(props) {
                             <div className='socailmobile-commentitem'>
                                 <div className='socailmobile-commentitem_icon'>
                                     <div className='socailmobile-commentitem_icon--image'>
-                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        <i className="fa fa-user" aria-hidden="true"></i>
                                     </div>
                                     <div className='socailmobile-commentitem_icon--profile'>
                                         <b>Hoài Linh</b>

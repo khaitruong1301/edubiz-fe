@@ -1,0 +1,96 @@
+.all-series{
+    padding: 0 0.25rem;
+}
+
+.allseriesitem-head{
+    display: flex;
+    padding: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0;
+    position: relative;
+}
+
+.allseriesitem-head_left{
+    flex: 1 1;
+    padding-bottom: 2.75rem;
+    
+}
+
+.allseriesitem-head_right{
+    display: flex;
+    align-items: center;
+    font-size: 1.15rem;
+}
+
+.allseriesitem-head_right i{
+    margin-top: -1rem;
+}
+
+.allseriesitem-body{
+    background: #fff;
+    height: 0;
+    overflow: hidden;
+}
+
+.allseriesitem-body.show{
+    height: auto;
+}
+
+.allseriesitem-body .menutab {
+    padding: 0;
+    padding-top: 0.5rem;
+}
+
+.allseriesitem-body .menutab-wrapper{
+  align-items: flex-end;
+}
+
+.allseriesitem-body .menutab-head{
+    background: #fff;
+    box-shadow: 0 0 2px #ddd;
+}
+
+.allseriescourseitem{
+    border-bottom: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+.allseriesitem-button{
+    position: absolute;
+    bottom: 0.1rem;
+    left: 0;
+    z-index: 100;
+}
+
+.allseriescourseitem-info{
+    display: flex;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.allseriescourseitem-info_item{
+    margin-right: 1rem;
+}
+.allseriescourseitem-info_item span{
+    margin-left: 0.25rem;
+}
+
+.allseriesitem-tab_head{
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.2rem;
+    border-bottom: 1px solid #ddd;
+}
+.allseriesitem-tab_head--item{
+    padding: 0.5rem;
+}
+
+.allseriesitem-tab_head--item.active{
+    border-bottom: 2px solid #ddd;
+}
+
+.allseriesitem-details{
+    padding: 0 0.25rem;
+}

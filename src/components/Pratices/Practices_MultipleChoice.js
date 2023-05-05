@@ -104,6 +104,7 @@ export default function Practices_MultipleChoice({
 
               return (
                 <div
+                  key={index}
                   className={
                     "w-full cursor-pointer  flex  shadow-lg  items-center space-x-5  rounded-lg transition duration-200 card_theme_item text-color-title p-5  py-2  hover:shadow-xl"
                   }

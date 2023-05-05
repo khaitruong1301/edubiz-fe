@@ -8,7 +8,7 @@ export default function BottomBar() {
 
     const menus = [
         { id: URL_PAGE.SERIES, title: 'Lộ trình', icon: 'fa fa-list-ol' },
-        { id: URL_PAGE.CERTIFICATE, title: 'Chứng chỉ', icon: 'fa fa-graduation-cap' },
+        { id: URL_PAGE.CERTIFICATE, title: 'Chứng nhận', icon: 'fa fa-graduation-cap' },
         { id: URL_PAGE.DASHBOARD, title: 'Trang chủ', icon: 'fa fa-home' },
         { id: URL_PAGE.SOCIAL, title: 'Thảo luận', icon: 'fa fa-users' },
         { id: URL_PAGE.PROFILE, title: 'Tôi', icon: 'fa fa-user' }

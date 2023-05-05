@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ListSeriesItem from "../list-series-item/ListSeriesItem";
 import { getYoursItemAciton } from "../../../redux/reducer/dashboardReducer";
+import AllSeriesItem from "./all-series-item/AllSeriesItem";
+import './AllSeries.css'
 
 export default function AllSeries() {
     const dispatch = useDispatch();
@@ -23,11 +24,11 @@ export default function AllSeries() {
             });            
 
     return (
-        <div className="list-series">
+        <div className="all-series">
             {
                 listLoTrinh?.map((item, index) => {
                     return (
-                        <ListSeriesItem key={index} loTrinh={item} />
+                        <AllSeriesItem key={index} keyIndex={index+1} loTrinh={item} />
                     );
                 })
             }

@@ -49,7 +49,7 @@ function CertificateMobile(props) {
                 </div>
                 <div>
                     {danhSachLoTrinh.map((loTrinh, index) => {
-                        return <CertificateItem key={index} loTrinh={loTrinh} />;
+                        return <CertificateItem key={index} loTrinh={loTrinh} keyIndex={index + 1} />;
                     })}
                 </div>
             </div>
