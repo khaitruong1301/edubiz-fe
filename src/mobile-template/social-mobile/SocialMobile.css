@@ -1,3 +1,16 @@
+.socailmobile-open-form{
+    padding: 0.25rem;
+    background: #eee;
+}
+
+.socailmobile-open-form-wrapper{
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 2rem;
+    margin: 0.25rem 0;
+}
+
 .socailmobile-item{
     border-top: 1px solid #ddd;
     border-bottom: 5px solid #eee;
@@ -162,4 +175,61 @@
     padding: 0.25rem;
     padding-top: 0;
     font-size: 0.85rem;
+}
+
+
+/* FORM MODAL */
+.socailmobile-status-form{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    display: flex;
+    padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
+    background: rgba(0,0,0,0.5);
+}
+
+.socailmobile-status-form-wrapper{
+    width: 100vw;
+}
+
+.socailmobile-status-form-head{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25rem 0.5rem;
+    background: #eee;
+}
+
+.socailmobile-status-form-body{
+    width: 100%;
+}
+
+.socailmobile-status-form-body textarea{
+    width: 100%;
+    min-height: calc(100vh * 0.3);
+    padding: 0.5rem;
+    outline: none;
+}
+
+.socailmobile-status-form-footer{
+    background: #eee;
+    padding: 0.35rem 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -6px;
+}
+
+.socailmobile-status-form-footer button{
+    background: #757575;
+    padding: 0.15rem 0.5rem;
+    color: #fff;
+}
+
+.socailmobile-status-form-footer button span:last-child{
+    margin-left: 0.25rem;
 }

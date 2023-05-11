@@ -7,12 +7,14 @@ import './ProfileMobile.css'
 import { ProfileAvatar, ProfileInfo } from './index';
 import Shop_Item from '../../components/Shop_Item/Shop_Item';
 import List_Card_Task_Deadline from '../../components/List_Card_Task_Deadline/List_Card_Task_Deadline';
+import localStorageServ from '../../services/locaStorage.service';
 
 function ProfileMobile(props) {
     const { userInfor } = useSelector((state) => state.authUser);
     const history = useHistory();
 
     const handleLogoutClick = () => {
+        localStorageServ.userInfor.remove();
         history.push(URL_PAGE.LOGIN);
     }
 

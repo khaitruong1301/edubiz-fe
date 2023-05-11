@@ -9,6 +9,7 @@ import {
 import httpServ from "../../services/http.service";
 import { checkDemoUser } from "../../utils/HocDemoUtils";
 import './DashboardMobile.css'
+import { log } from "@craco/craco/lib/logger";
 
 function DashboardMobile(props) {
     const tabs = [
@@ -22,16 +23,19 @@ function DashboardMobile(props) {
     useEffect(() => {
         !checkDemoUser() &&
             httpServ.getLoTrinhDaDangKI(userInfor?.id).then((res) => {
-                const resLoTrinh = res.data.content;
-
+                let resLoTrinh = [];
+                if(res.data.content && res.data.content.length){
+                    
+                    resLoTrinh = res.data.content.filter(item => item.choDuyet);
+                }
                 dispatch(setLoTrinhDaDangKi(resLoTrinh));
             });
         !checkDemoUser() &&
             httpServ.getTatCaLoTrinh(userInfor?.id).then((res) => {
-                const resLoTrinh = res.data.content.filter((item) => {
-                    return !item.daDangKy;
-                });
-
+                let resLoTrinh = [];
+                if(res.data.content && res.data.content.length){
+                    resLoTrinh = res.data.content.filter(item => !item.daDangKy);
+                }
                 dispatch(setTatCaLoTrinh(resLoTrinh));
             });
     }, [window.location.pathname]);

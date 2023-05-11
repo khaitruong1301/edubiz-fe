@@ -24,7 +24,7 @@ export const getTatCaLoTrinhAciton = createAsyncThunk(
     return response.data.content;
   }
 );
-export const loTrinhSlice = createSlice({
+export const loTrinhSlice = createSlice({ 
   name: "loTrinhReducer",
   initialState,
   reducers: {
@@ -39,6 +39,9 @@ export const loTrinhSlice = createSlice({
     },
     setCurrentActiveTypeFilter: (state, action) => {
       state.currentActiveTypeFilter = action.payload;
+    },
+    setCapNhatDanhSachLoTrinh: (state, action) => {
+      state.tatCaLoTrinh = action.payload.tatCaLoTrinh;
     },
   },
   extraReducers: {
@@ -63,5 +66,6 @@ export const {
   setTypeFiltersLoTrinh,
   setLoTrinhDaDangKi,
   setTatCaLoTrinh,
+  setCapNhatDanhSachLoTrinh
 } = loTrinhSlice.actions;
 export default loTrinhSlice.reducer;

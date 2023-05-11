@@ -4,20 +4,20 @@ import AllSeriesCourseItem from "../all-series-course-item/AllSeriesCourseItem";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSeriesAllKeyIndex } from "../../../../redux/reducer/certificateReducer";
+import httpServ from "../../../../services/http.service";
+import { setCapNhatDanhSachLoTrinh } from "../../../../redux/reducer/loTrinhReducer";
+import { useAlert } from 'react-alert'
 
-export default function AllSeriesItem({ loTrinh, keyIndex }) {
+export default function AllSeriesItem({ loTrinh, userInfo, keyIndex }) {
     const dispatch = useDispatch();
     const seriesAlCourseKey = useSelector(state => state.certificate.seriesAllKeyIndex);
+    const { tatCaLoTrinh, loTrinhDaDangKi } = useSelector((state) => state.loTrinh);
     const [selectItem, setSelectItem] = useState('courses');
     const [toggle, setToggle] = useState(false);
-
-    // useEffect(() => {
-    //     if(keyIndex == 1){
-    //         setToggle(!toggle);
-    //     }
-    // }, [])
-
+    const alert = useAlert()
+    
     useEffect(() => {
+        
         if (seriesAlCourseKey.seriesAllKeyIndex != keyIndex) {
             setToggle(false);
         }
@@ -33,7 +33,23 @@ export default function AllSeriesItem({ loTrinh, keyIndex }) {
     }
 
     const handleRegister = () => {
-        alert('hihi')
+        let ngayBatDau = new Date();
+        let ngayKetThuc = new Date();
+        ngayKetThuc.setMonth(ngayBatDau.getMonth() + loTrinh.thoiHan);
+
+        const model = {
+            maNguoiDung: userInfo.id,
+            maLoTrinh: loTrinh.id,
+            ngayBatDau: ngayBatDau,
+            ngayKetThuc: ngayKetThuc
+        }
+        const dsTatCaLoTrinh = tatCaLoTrinh.filter(x => x.id != loTrinh.id);
+        httpServ.ghiDanhLoTrinh(model)
+        .then(res => {
+            dispatch(setCapNhatDanhSachLoTrinh({ tatCaLoTrinh: dsTatCaLoTrinh }));
+            alert.show('Ghi danh thành công, vui lòng chờ duyệt!')
+        })
+        .catch(err => console.log(err));
     }
 
     return (

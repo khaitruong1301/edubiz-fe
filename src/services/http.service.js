@@ -23,6 +23,10 @@ class HttpRequestService {
     const uri = `/lotrinh/lay-ds-tt-lotrinh/${idUser}/0`;
     return AxiosServ.getMethod(uri, setLoading);
   };
+  ghiDanhLoTrinh = (data, setLoading = true) => {
+    const uri = "lotrinh/ghi-danh";
+    return AxiosServ.postMethod(uri, data, setLoading);
+  };
 
   getDetailKhoaHoc = (id, setLoading = true) => {
     //sang update
@@ -219,6 +223,22 @@ class HttpRequestService {
   getDanhSachCauHoiTestDauVao = (setLoading = true) => {
     const uri = `/cauhinh/48`;
     return AxiosServ.getMethod(uri, setLoading);
+  };
+
+  // ============= SOCIAL ==================
+  getThongTinBangMaNguoiDung = (maNguoiDung, setLoading = true) => {
+    const uri = `/mangxahoi/thongtin/${maNguoiDung}`;
+    return AxiosServ.getMethod(uri, setLoading);
+  };
+
+  ketNoiMangXaHoi = (data, setLoading = true) => {
+    const uri = `/mangxahoi/ketnoi`;
+    return AxiosServ.postMethod(uri, data, setLoading);
+  };
+
+  dangTrangThai = (data, setLoading = true) => {
+    const uri = `/mangxahoi`;
+    return AxiosServ.postMethod(uri, data, setLoading);
   };
 }
 

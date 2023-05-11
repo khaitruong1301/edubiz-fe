@@ -14,7 +14,6 @@ function SeriesMobile(props) {
         <>
             <NavBar title={props.title} isPrev={false}/>
             <div className='seriesmobile'>
-                {/* <CarouselLoTrinh /> */}
                 <TabMobile tabs={tabs} />
             </div>
         </>
