@@ -84,7 +84,7 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
         .then((res) => {
           dispatch(setdanhSachBaiDaHoc(res.data.content.baiDaHoc));
         })
-        .catch((err) => {});
+        .catch((err) => { });
 
     if (checkDemoUser()) {
       let newInfor = { ...userInfor };
