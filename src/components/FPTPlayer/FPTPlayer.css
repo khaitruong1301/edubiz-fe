@@ -1,0 +1,31 @@
+.FPTPlayer{
+    position: relative;
+}
+
+.FPTPlayerBar{
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: none;
+}
+
+.FPTPlayerBar .FPTPlayerBarItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+}
+
+.FPTPlayer:focus .FPTPlayerBar,
+.FPTPlayer:hover .FPTPlayerBar{
+    display: flex;
+}
+
+
+.FPTPlayerBar .FPTPlayerBarSlider{
+    width: 100%;
+    margin-left: 0 0.25rem 0 0.5rem;
+}

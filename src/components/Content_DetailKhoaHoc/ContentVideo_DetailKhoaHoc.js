@@ -14,8 +14,11 @@ import CollapseGhiChu from "../CollapseGhiChu/CollapseGhiChu";
 import localStorageServ from "../../services/locaStorage.service";
 import CloneObjectByJSON from "../../utils/CloneObjectByJSON";
 import axios from "axios";
+import FPTPlayer from "../FPTPlayer/FPTPlayer";
 const { Content } = Layout;
+
 const ContentVideo_DetailKhoaHoc = React.memo(() => {
+
   const [isDisableHoanThanh, seIsDisableHoanThanh] = useState(true);
   const dispatch = useDispatch();
   const userInforRedux = useSelector((state) => state.authUser.userInfor);
@@ -26,6 +29,8 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
   const { isSiderDetailKhoaHocOpen } = useSelector((state) => state.layout);
   const [urlVideo, setUrlVideo] = useState("");
   const [isPlayVideo, setIsPlayVideo] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
     let infor = userInfor.hoTen + " - " + userInfor.dienThoai;
@@ -34,18 +39,19 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
       userInfor.nuocNgoai = localStorageServ.nuocngoaiDemo.get() * 1;
     }
 
-    let myInterval = Mark_Video(infor);
-    seIsDisableHoanThanh(true);
-    setTimeout(() => {
-      seIsDisableHoanThanh(false);
-    }, 60 * 1000);
-    setTimeout(() => {
-      setIsPlayVideo(true);
-    }, 1.5 * 1000);
-    return () => {
-      clearInterval(myInterval);
-    };
+    // let myInterval = Mark_Video(infor);
+    // seIsDisableHoanThanh(true);
+    // setTimeout(() => {
+    //   seIsDisableHoanThanh(false);
+    // }, 60 * 1000);
+    // setTimeout(() => {
+    //   setIsPlayVideo(true);
+    // }, 1.5 * 1000);
+    // return () => {
+    //   clearInterval(myInterval);
+    // };
   }, [urlVideo]);
+
 
   useEffect(() => {
     !userInfor.nuocNgoai &&
@@ -133,33 +139,26 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
   if (checkDemoUser()) {
     userInfor.nuocNgoai = localStorageServ.nuocngoaiDemo.get() * 1;
   }
+
   const renderVideoContent = () => {
     if (!userInfor.nuocNgoai) {
       return (
-        <ReactPlayer
-          playbackRate={1}
-          playing={isPlayVideo}
-          url={urlVideo}
-          width="100%"
-          height="100%"
-          controls={true}
-          config={{
-            file: {
-              forceHLS: true,
-            },
-          }}
-        />
+        <FPTPlayer source={urlVideo} seIsDisableHoanThanh={seIsDisableHoanThanh} />
       );
     } else {
       if (currentLesson.video * 1 == 0) {
         return (
           <ReactPlayer
+            playsinline={true}
             playbackRate={1}
             playing={isPlayVideo}
             url={urlVideo}
             width="100%"
             height="100%"
             controls={true}
+            onProgress={(e) => {
+              console.log(e.playedSeconds)
+            }}
             config={{
               file: {
                 forceHLS: true,
