@@ -29,3 +29,7 @@
     width: 100%;
     margin-left: 0 0.25rem 0 0.5rem;
 }
+
+.ant-modal-wrap{
+    width: 100vw;
+}

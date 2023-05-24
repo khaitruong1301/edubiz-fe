@@ -28,9 +28,6 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
   const { danhSachBaiDaHoc } = useSelector((state) => state.khoaHoc);
   const { isSiderDetailKhoaHocOpen } = useSelector((state) => state.layout);
   const [urlVideo, setUrlVideo] = useState("");
-  const [isPlayVideo, setIsPlayVideo] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
     let infor = userInfor.hoTen + " - " + userInfor.dienThoai;
@@ -38,18 +35,6 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
       infor = localStorageServ.codeDemo.get();
       userInfor.nuocNgoai = localStorageServ.nuocngoaiDemo.get() * 1;
     }
-
-    // let myInterval = Mark_Video(infor);
-    // seIsDisableHoanThanh(true);
-    // setTimeout(() => {
-    //   seIsDisableHoanThanh(false);
-    // }, 60 * 1000);
-    // setTimeout(() => {
-    //   setIsPlayVideo(true);
-    // }, 1.5 * 1000);
-    // return () => {
-    //   clearInterval(myInterval);
-    // };
   }, [urlVideo]);
 
 
@@ -143,37 +128,31 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
   const renderVideoContent = () => {
     if (!userInfor.nuocNgoai) {
       return (
-        <FPTPlayer source={urlVideo} seIsDisableHoanThanh={seIsDisableHoanThanh} />
+        <FPTPlayer
+          source={urlVideo}
+          setIsDisableHoanThanh={seIsDisableHoanThanh}
+        />
       );
     } else {
       if (currentLesson.video * 1 == 0) {
         return (
-          <ReactPlayer
-            playsinline={true}
-            playbackRate={1}
-            playing={isPlayVideo}
-            url={urlVideo}
-            width="100%"
-            height="100%"
-            controls={true}
-            onProgress={(e) => {
-              console.log(e.playedSeconds)
-            }}
-            config={{
-              file: {
-                forceHLS: true,
-              },
-            }}
+          <FPTPlayer
+            source={urlVideo}
+            setIsDisableHoanThanh={seIsDisableHoanThanh}
           />
         );
       } else {
         return (
-          <ReactPlayer
-            playbackRate={1}
-            width="100%"
-            height="100%"
-            controls={true}
-            url={`https://vimeo.com/${currentLesson.video}`}
+          // <ReactPlayer
+          //   playbackRate={1}
+          //   width="100%"
+          //   height="100%"
+          //   controls={true}
+          //   url={`https://vimeo.com/${currentLesson.video}`}
+          // />
+          <FPTPlayer
+            source={`https://vimeo.com/${currentLesson.video}`}
+            setIsDisableHoanThanh={seIsDisableHoanThanh}
           />
         );
       }

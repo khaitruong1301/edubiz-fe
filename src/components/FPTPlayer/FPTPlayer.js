@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ReactPlayer from "react-player";
-import { Progress } from 'antd';
+import { Progress, Modal } from 'antd';
 import { findDOMNode } from 'react-dom'
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import './FPTPlayer.css'
 export default class FPTPlayer extends Component {
 
@@ -9,13 +10,15 @@ export default class FPTPlayer extends Component {
         super(props);
         this.state = {
             duration: 0,
-            muted: true,
+            muted: false,
             play: false,
             progress: 0,
-            fullScreen: false
+            fullScreen: false,
+            isShowQuestion: false
         };
 
         this.playerRef = React.createRef(null);
+        this.checkFollowScreen = this.checkFollowScreen.bind(this);
     }
 
     onDuration = (duration) => {
@@ -26,11 +29,43 @@ export default class FPTPlayer extends Component {
 
     onProgress = (time) => {
         const progress = Math.ceil((time / this.state.duration) * 100);
-        this.setState({ progress: progress })
-        if (progress > 90)
-            this.props.seIsDisableHoanThanh(false);
-        else
-            this.props.seIsDisableHoanThanh(true);
+        this.setState({ progress: progress });
+        if (progress == 4 && !this.state.isShowQuestion) {
+            this.showMessage(40);
+        }
+        else if (progress == 50) {
+            this.setState({ isShowQuestion: false });
+        }
+        else if (progress == 15 && !this.state.isShowQuestion) {
+            this.showMessage(70);
+        }
+        else if (progress == 80) {
+            this.setState({ isShowQuestion: false });
+        }
+        else if (progress == 90)
+            this.props.setIsDisableHoanThanh(false);
+    }
+
+    showMessage = (percent) => {
+        this.setState({ play: false, isShowQuestion: true });
+        const confirm = Modal.success({
+            title: `Bạn đã hoàn thành ${percent}% bài học`,
+            content: 'Hãy chắc chắn rằng bạn vẫn đang ngồi trước màn hình?',
+            onOk: () => {
+                this.setState({ play: true })
+            }
+        });
+        setTimeout(() => {
+            this.checkFollowScreen(confirm);
+        }, 5000);
+    }
+
+    checkFollowScreen = (confirm) => {
+        if(!this.state.play){
+            this.playerRef.current.seekTo(0);
+            confirm.destroy();
+            this.setState({ progress: 0, isShowQuestion: false });
+        }
     }
 
     handleFullScreen = () => {
@@ -49,7 +84,7 @@ export default class FPTPlayer extends Component {
             }
             this.setState({ fullScreen: true })
         }
-        else{
+        else {
             document.exitFullscreen();
             this.setState({ fullScreen: false })
         }
@@ -68,8 +103,12 @@ export default class FPTPlayer extends Component {
     }
 
     render() {
+        // const display = this.state.isShow ? 'flex' : 'none'
         return (
-            <div className="FPTPlayer">
+            <div className="FPTPlayer"
+            // onMouseEnter={(this.setState({ isShow: true }))}
+            // onMouseLeave={(this.setState({ isShow: false }))}
+            >
                 <ReactPlayer
                     ref={this.playerRef}
                     playsinline={true}
@@ -79,11 +118,10 @@ export default class FPTPlayer extends Component {
                     width="100%"
                     height="100%"
                     controls={false}
-                    onSeek={(e) => this.onSeek(e)}
                     onDuration={(e) => this.onDuration(e)}
                     onProgress={(e) => this.onProgress(e.playedSeconds)}
                     muted={this.state.muted}
-
+                    volume={1}
                     config={{
                         file: {
                             forceHLS: true,
@@ -103,8 +141,8 @@ export default class FPTPlayer extends Component {
                     </div>
                     <div className="FPTPlayerBarItem" onClick={(this.toggleMuted)}>
                         {
-                            this.state.muted ? <span><i className="fa fa-volume-up" aria-hidden="true"></i></span>
-                                : <span><i className="fa fa-volume-off" aria-hidden="true"></i></span>
+                            this.state.muted ? <span><i className="fa fa-volume-off" aria-hidden="true"></i></span>
+                                : <span><i className="fa fa-volume-up" aria-hidden="true"></i></span>
                         }
                     </div>
                     <div className="FPTPlayerBarItem FPTPlayerBarSlider ">
