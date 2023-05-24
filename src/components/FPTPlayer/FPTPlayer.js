@@ -30,13 +30,13 @@ export default class FPTPlayer extends Component {
     onProgress = (time) => {
         const progress = Math.ceil((time / this.state.duration) * 100);
         this.setState({ progress: progress });
-        if (progress == 4 && !this.state.isShowQuestion) {
+        if (progress == 40 && !this.state.isShowQuestion) {
             this.showMessage(40);
         }
         else if (progress == 50) {
             this.setState({ isShowQuestion: false });
         }
-        else if (progress == 15 && !this.state.isShowQuestion) {
+        else if (progress == 70 && !this.state.isShowQuestion) {
             this.showMessage(70);
         }
         else if (progress == 80) {
@@ -103,15 +103,11 @@ export default class FPTPlayer extends Component {
     }
 
     render() {
-        // const display = this.state.isShow ? 'flex' : 'none'
         return (
-            <div className="FPTPlayer"
-            // onMouseEnter={(this.setState({ isShow: true }))}
-            // onMouseLeave={(this.setState({ isShow: false }))}
-            >
+            <div className="FPTPlayer">
                 <ReactPlayer
                     ref={this.playerRef}
-                    playsinline={true}
+                    playsInline
                     playbackRate={1}
                     playing={this.state.play}
                     url={this.props.source}

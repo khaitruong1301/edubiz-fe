@@ -8,7 +8,6 @@ import SeriesMobile from './series-mobile/SeriesMobile'
 import SocialMobile from './social-mobile/SocialMobile'
 import EventMobile from './event-mobile/EventMobile'
 import CourseMobile from "./course-mobile/CourseMobile"
-import CourseMobile2 from "./course-mobile/CourseMobile2"
 
 export {
     MobileTemplate,
@@ -20,6 +19,5 @@ export {
     SeriesMobile,
     SocialMobile,
     EventMobile,
-    CourseMobile,
-    CourseMobile2
+    CourseMobile
 }
