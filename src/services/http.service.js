@@ -2,7 +2,7 @@ import AxiosServ from "./axios.service";
 
 /* eslint-disable no-useless-constructor */
 class HttpRequestService {
-  constructor() {}
+  constructor() { }
 
   login = (data, setLoading = true) => {
     const uri = "nguoidung/facebook";
@@ -42,6 +42,7 @@ class HttpRequestService {
     const uri = `file/ftp-video/${noiDung}`;
     return AxiosServ.getMethod(uri, setLoading);
   };
+
   getCheckUserDetailBaiHoc = (idUser, idLoTrinh, setLoading = true) => {
     const uri = `tientrinhhoc/kiemtrahethan/${idUser}/${idLoTrinh}`;
     return AxiosServ.getMethod(uri, setLoading);
@@ -239,6 +240,12 @@ class HttpRequestService {
   dangTrangThai = (data, setLoading = true) => {
     const uri = `/mangxahoi`;
     return AxiosServ.postMethod(uri, data, setLoading);
+  };
+
+  // ============= EXAM TEST ==================
+  getDeThiTheoId = (id, setLoading = true) => {
+    const uri = `/nganhangdethi/${id}`;
+    return AxiosServ.getMethod(uri, setLoading);
   };
 }
 

@@ -1,0 +1,54 @@
+.examtest-mobile{
+    padding: 0.5rem 0.25rem;
+    background: #fff;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.mobile-section{
+    border-bottom: 1px solid #ddd;
+    padding: 0 0.25rem;
+}
+
+.mobile-section .mobile-section-title{
+    width: 100vw;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-section .mobile-section-title-text{
+    width: 100vw;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-section .mobile-section-title-text h2{
+    display: block;
+    font-size: 1.35em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.mobile-section .mobile-section-desc{
+    width: 100vw;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-section .mobile-section-image{
+    width: 100vw;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-section .mobile-section-video{
+    width: 100vw;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-section .mobile-section-youtube{
+    width: 100vw;
+    margin-bottom: 0.5rem;
+}
+
+.mobile-section .mobile-section-image{
+    width: 100vw;
+    margin-bottom: 0.5rem;
+}

@@ -4,31 +4,32 @@ import { Progress, Modal } from 'antd';
 import { findDOMNode } from 'react-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import './FPTPlayer.css'
+import HLSSource from "./HLSSource";
+import { ControlBar, PlaybackRateMenuButton, Player } from "video-react";
 export default class FPTPlayer extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            duration: 0,
             muted: false,
             play: false,
             progress: 0,
             fullScreen: false,
             isShowQuestion: false
         };
-
-        this.playerRef = React.createRef(null);
+        this.handlePause = this.handlePause.bind(this);
+        this.handlePlay = this.handlePlay.bind(this);
+        this.toggleMuted = this.toggleMuted.bind(this);
         this.checkFollowScreen = this.checkFollowScreen.bind(this);
+        this.player = null;
     }
 
-    onDuration = (duration) => {
-        this.setState({
-            duration: duration
-        })
+    componentDidMount() {
+      // this.player.subscribeToStateChange(this.handleStateChange.bind(this));
     }
 
-    onProgress = (time) => {
-        const progress = Math.ceil((time / this.state.duration) * 100);
+    handleStateChange(state, prevState) {
+        const progress = Math.ceil((state.currentTime / state.duration) * 100);
         this.setState({ progress: progress });
         if (progress == 40 && !this.state.isShowQuestion) {
             this.showMessage(40);
@@ -47,83 +48,75 @@ export default class FPTPlayer extends Component {
     }
 
     showMessage = (percent) => {
+        this.player.pause();
         this.setState({ play: false, isShowQuestion: true });
         const confirm = Modal.success({
             title: `Bạn đã hoàn thành ${percent}% bài học`,
             content: 'Hãy chắc chắn rằng bạn vẫn đang ngồi trước màn hình?',
             onOk: () => {
+                this.player.play();
                 this.setState({ play: true })
             }
         });
         setTimeout(() => {
             this.checkFollowScreen(confirm);
-        }, 5000);
+        }, 10000);
     }
 
     checkFollowScreen = (confirm) => {
-        if(!this.state.play){
-            this.playerRef.current.seekTo(0);
+        if (!this.state.play) {
+            this.player.seek(0);
             confirm.destroy();
             this.setState({ progress: 0, isShowQuestion: false });
         }
     }
 
     handleFullScreen = () => {
-        const el = this.playerRef.current;
-        if (!this.state.fullScreen) {
-            if (typeof document.fullscreenElement !== "undefined") {
-                findDOMNode(el).requestFullscreen();
-            } else if (typeof document.mozFullScreenElement !== "undefined") {
-                findDOMNode(el).mozRequestFullScreen();
-            } else if (typeof document.msFullscreenElement !== "undefined") {
-                findDOMNode(el).msRequestFullscreen();
-            } else if (typeof document.webkitFullscreenElement !== "undefined") {
-                findDOMNode(el).webkitRequestFullscreen();
-            } else {
-                console.log("fullscreenElement is not supported by this browser")
-            }
-            this.setState({ fullScreen: true })
-        }
-        else {
-            document.exitFullscreen();
-            this.setState({ fullScreen: false })
-        }
+        this.player.toggleFullscreen()
     }
 
     handlePause = () => {
-        this.setState({ play: false });
+        this.player.pause();
+        this.setState({ play: false })
     }
 
     handlePlay = () => {
-        this.setState({ play: true });
+        this.player.play();
+        this.setState({ play: true })
     }
 
     toggleMuted = () => {
-        this.setState({ muted: !this.state.muted });
+        const muted = this.state.muted;
+        this.setState({ muted: !muted })
+        return () => {
+            this.player.muted = !muted;
+        };
     }
 
     render() {
         return (
             <div className="FPTPlayer">
-                <ReactPlayer
-                    ref={this.playerRef}
-                    playsInline
-                    playbackRate={1}
-                    playing={this.state.play}
-                    url={this.props.source}
-                    width="100%"
-                    height="100%"
-                    controls={false}
-                    onDuration={(e) => this.onDuration(e)}
-                    onProgress={(e) => this.onProgress(e.playedSeconds)}
-                    muted={this.state.muted}
-                    volume={1}
-                    config={{
-                        file: {
-                            forceHLS: true,
-                        },
-                    }}
-                />
+                {
+                    this.props.source ?
+                        <Player
+                            ref={player => {
+                                this.player = player;
+                            }}
+                            playsInline
+                            fluid={false}
+                            width={"100%"}
+
+                        >
+
+                            <HLSSource
+                                isVideoChild
+                                src={this.props.source}
+                            />
+                            <ControlBar disableDefaultControls={true} />
+
+                        </Player>
+                        : null
+                }
                 <div className="FPTPlayerBar">
                     <div className="FPTPlayerBarItem">
                         {

@@ -1,0 +1,56 @@
+.muieditor {
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.muieditor p, 
+.muieditor h1, 
+.muieditor h2, 
+.muieditor h3, 
+.muieditor h4, 
+.muieditor h5, 
+.muieditor h6 {
+    margin: 0;
+}
+
+.muieditor-content {
+    min-height: 1.5rem;
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    box-shadow: none;
+    outline: none;
+    width: 100%;
+    padding: 0.25rem 0;
+}
+
+/* div.muieditor-content {
+    font-size: 1rem;
+} */
+
+.muieditor-toolbar {
+    display: flex;
+}
+
+.toolbar-item {
+    padding: 0.5rem;
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.toolbar-item:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    -webkit-transition: background-color 300ms linear;
+    -ms-transition: background-color 300ms linear;
+    transition: background-color 300ms linear;
+}
+
+[data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    color: #555;
+    font-style: italic;
+}

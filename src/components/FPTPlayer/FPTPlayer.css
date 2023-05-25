@@ -33,3 +33,11 @@
 .ant-modal-wrap{
     width: 100vw;
 }
+
+.course-mobile .video-react-controls-enabled{
+    height: auto !important;
+}
+
+.course-mobile .video-react-button{
+    display: none;
+}
