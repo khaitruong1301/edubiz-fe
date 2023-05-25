@@ -3,6 +3,10 @@ import { VC } from "../../utils/Constant";
 import GetGameItem from "../../utils/GetGameItem";
 import { checkDemoUser } from "../../utils/HocDemoUtils";
 // import Registed_Users_Bar from "../Registed_Users_Bar/Registed_Users_Bar";
+import { useSelector, useDispatch } from "react-redux";
+import { Modal } from 'antd'
+import httpServ from "../../services/http.service";
+import { setCapNhatDanhSachLoTrinh } from "../../redux/reducer/loTrinhReducer";
 
 function Static_Public_Desktop({ loTrinhPublic, isBlackFridayDay = false }) {
   let loTrinh = loTrinhPublic;
@@ -11,6 +15,39 @@ function Static_Public_Desktop({ loTrinhPublic, isBlackFridayDay = false }) {
 
   let textTitle = "font-medium text-base lg:text-lg text-color-title";
   let textNumber = "font-bold text-lg lg:text-2xl text-color-title";
+
+  const dispatch = useDispatch();
+  const { userInfor } = useSelector((state) => state.authUser);
+  const { tatCaLoTrinh, currentActiveTypeFilter } = useSelector((state) => state.loTrinh);
+
+  const handleRegister = () => {
+    let ngayBatDau = new Date();
+    let ngayKetThuc = new Date();
+    ngayKetThuc.setMonth(ngayBatDau.getMonth() + loTrinh.thoiHan);
+
+    const model = {
+      maNguoiDung: userInfor.id,
+      maLoTrinh: loTrinh.id,
+      ngayBatDau: ngayBatDau,
+      ngayKetThuc: ngayKetThuc
+    }
+
+    Modal.confirm({
+      title: 'Ghi danh lộ trình',
+      content: 'Bạn chắc chắn muốn ghi danh vào lộ trình này?',
+      okText: 'Ghi danh',
+      onOk: () => {
+        const dsTatCaLoTrinh = tatCaLoTrinh.filter(x => x.id != loTrinh.id);
+        httpServ.ghiDanhLoTrinh(model)
+          .then(res => {
+            dispatch(setCapNhatDanhSachLoTrinh({ tatCaLoTrinh: dsTatCaLoTrinh }));
+            alert.show('Ghi danh thành công, vui lòng chờ duyệt!')
+          })
+          .catch(err => console.log(err));
+      }
+    });
+  }
+
   return (
     <div className="w-full h-full flex flex-col  card_theme md:p-2 lg:p-3 relative">
       <div className="flex absolute w-max space-x-4 lef -top-5 right-3">
@@ -116,15 +153,9 @@ function Static_Public_Desktop({ loTrinhPublic, isBlackFridayDay = false }) {
           dsAvatar={loTrinh.dsAvatar}
           totalUser={loTrinh.tongHocVien}
         /> */}
-        <button className=" btn-theme text-white text-base lg:text-lg font-medium lg:font-bold md:px-3 lg:px-7 p-2  rounded leading-10 flex-shrink-0  shadow_designCode ">
-          <a
-            href="https://www.facebook.com/lophocviet"
-            target="_blank"
-            className="text-white hover:text-white"
-          >
-            Tư vấn & Đăng kí
-          </a>
-        </button>
+        <div onClick={(handleRegister)} className=" btn-theme text-white text-base lg:text-lg font-medium lg:font-bold md:px-3 lg:px-7 p-2  rounded leading-10 flex-shrink-0  shadow_designCode ">
+          Đăng kí
+        </div>
       </div>
     </div>
   );

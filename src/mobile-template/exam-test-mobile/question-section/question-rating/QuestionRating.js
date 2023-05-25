@@ -2,11 +2,14 @@ import { Rate } from "antd";
 import environment from '../../../../environments/environment'
 import { useState } from "react";
 
-function QuestionRating({ question }) {
+function QuestionRating({ question, handleDapAn }) {
 
-    const [rating, setRating] = useState(3); 
+    const handleChange = (value) => {
+        handleDapAn([], value)
+    }
 
     const listRating = question.options.map(item => item.value);
+    const rating = question.dapAn ?? 2;
     return (
         <div className="mobile-question">
             <div className="mobile-question-text">
@@ -25,8 +28,8 @@ function QuestionRating({ question }) {
             <div className="mobile-question-option">
                 {
                     <span>
-                        <Rate tooltips={listRating} onChange={setRating} value={rating} style={{ fontSize: 16 }} />
-                        { rating ? <span className="ant-rate-text ml-3" style={{ fontSize: 14 }}>{listRating[rating - 1]}</span> : ''}
+                        <Rate tooltips={listRating} onChange={handleChange} value={rating} style={{ fontSize: 20 }} />
+                        { rating ? <span className="ant-rate-text ml-3" style={{ fontSize: 16 }}>{listRating[rating - 1]}</span> : ''}
                     </span>
                 }
             </div>

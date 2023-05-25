@@ -21,15 +21,16 @@ export default function IntroLoTrinh({
     >
       <div className=" iusqHF flex flex-col justify-between    space-y-3 lg:space-y-5 ">
         <div className="grid grid-cols-5 gap-2 lg:gap-3 bg ">
-          {JSON.parse(loTrinh.iconNgonNgu).map((icon) => {
-            return (
-              <LazyLoad>
-                <div className=" md:w-6 md:h-6 lg:w-8 lg:h-8">
-                  <img src={getHinhAnh(icon)} alt="" />
-                </div>
-              </LazyLoad>
-            );
-          })}
+          {/* {
+            JSON.parse(loTrinh.iconNgonNgu).map((icon) => {
+              return (
+                <LazyLoad>
+                  <div className=" md:w-6 md:h-6 lg:w-8 lg:h-8">
+                    <img src={getHinhAnh(icon)} alt="" />
+                  </div>
+                </LazyLoad>
+              );
+            })} */}
         </div>
 
         <div className="HandbookCard__TextWrapper-sc-7b5434-5 kqcNFY">
@@ -48,11 +49,14 @@ export default function IntroLoTrinh({
           )}
         </div>
         <button className="  xem-lo-trinh-btn  border-none rounded-2xl block    h-15 w-max  text-blue-theme  mx-auto  p-3 px-4 text-base  font-medium z-10 shadow_designCode btn_xemLoTrinh_designCode">
-          {btn_tuVan
-            ? isBlackFridayDay
-              ? "Xem thêm"
-              : "HỌC THỬ"
-            : "Tiếp tục học"}
+          {/* {
+            btn_tuVan
+              ? isBlackFridayDay
+                ? "Xem thêm"
+                : "HỌC THỬ"
+              : "Tiếp tục học"
+          } */}
+          Xem thêm
         </button>
         {/* <ReportPDF loTrinhId={loTrinh.id} /> */}
       </div>

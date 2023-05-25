@@ -8,20 +8,23 @@ export default function TatCaLoTrinhPage({ isGridView }) {
   const refs = useRef([]);
   const dispatch = useDispatch();
   const { userInfor } = useSelector((state) => state.authUser);
-
   const { tatCaLoTrinh, currentActiveTypeFilter } = useSelector(
     (state) => state.loTrinh
   );
+  
   // console.log("tatCaLoTrinh", tatCaLoTrinh);
   useEffect(() => {
     dispatch(getYoursItemAciton(userInfor.id));
-  }, []);
+  }, [tatCaLoTrinh]);
+
   let listLoTrinh =
     currentActiveTypeFilter === "all"
       ? tatCaLoTrinh
       : tatCaLoTrinh.filter((loTrinh) => {
-        return loTrinh.loaiLoTrinh.includes(currentActiveTypeFilter);
+        return loTrinh.loaiLoTrinh ? loTrinh.loaiLoTrinh.includes(currentActiveTypeFilter) : [];
       });
+
+
   return (
     <>
       {isGridView ? (

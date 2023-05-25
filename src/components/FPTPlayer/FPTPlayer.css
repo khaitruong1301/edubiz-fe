@@ -1,8 +1,8 @@
-.FPTPlayer{
+.FPTPlayer {
     position: relative;
 }
 
-.FPTPlayerBar{
+.FPTPlayerBar {
     display: flex;
     align-items: center;
     padding: 0.25rem 0.5rem;
@@ -12,7 +12,7 @@
     display: flex;
 }
 
-.FPTPlayerBar .FPTPlayerBarItem{
+.FPTPlayerBar .FPTPlayerBarItem {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,19 +20,57 @@
 }
 
 
-.FPTPlayerBar .FPTPlayerBarSlider{
+.FPTPlayerBar .FPTPlayerBarSlider {
     width: 100%;
     margin-left: 0 0.25rem 0 0.5rem;
 }
 
-.ant-modal-wrap{
+.ant-modal-wrap {
     width: 100vw;
 }
 
-.course-mobile .video-react-controls-enabled{
+.course-mobile .video-react-controls-enabled {
     height: auto !important;
 }
 
-.course-mobile .video-react-button{
+.course-mobile .video-react-button {
     display: none;
+}
+
+@media only screen and (min-width: 992px) {
+    .FPTPlayer {
+        height: auto;
+        max-height: 100%;
+    }
+
+    .fpt-player {
+        width: 100% !important;
+    }
+
+    .water-mark-wrapper {
+        height: auto !important;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .video-react-video {
+        width: 100%;
+        height: 805px;
+    }
+
+    .video-react-button {
+        display: none;
+    }
+
+    .FPTPlayerBar {
+        bottom: 10px;
+    }
+
+    .article_content {
+        height: 805px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        background: #fff;
+    }
 }

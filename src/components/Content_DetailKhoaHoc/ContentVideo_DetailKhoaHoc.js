@@ -56,9 +56,11 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
           console.log(err);
         });
   }, [currentLesson.id]);
+  
   const baiDaHoc = useSelector((state) => state.khoaHoc.danhSachBaiDaHoc);
   const khoaHocContent = useSelector((state) => state.khoaHoc.khoaHocContent);
   const tatCaBaiHoc = useSelector((state) => state.khoaHoc.allLessons);
+
   const handleNextLesson = () => {
     let currentLessonIndex = tatCaBaiHoc.findIndex((item) => {
       return item.id === currentLesson.id;

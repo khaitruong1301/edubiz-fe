@@ -23,11 +23,9 @@ export default function CourseMobile(props) {
     let { id } = useParams();
     let userInfo = localStorageServ.userInfor.get()
     let dataKhoaHocReducer = useSelector((state) => state.khoaHoc);
-    let { userTour } = useSelector((state) => state.tour);
     let dataBaiHocHocReducer = useSelector((state) => state.baiHoc);
     let khoaHoc = CloneObjectByJSON(dataKhoaHocReducer)
     let baiHoc = CloneObjectByJSON(dataBaiHocHocReducer)
-    let baiDaHoc = khoaHoc.danhSachBaiDaHoc;
     let { idBaiDangHocDashboard } = baiHoc
 
     let isDemoUser = useMemo(() => checkDemoUser(), [])

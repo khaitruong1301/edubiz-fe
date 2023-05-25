@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import ReactPlayer from "react-player";
 import { Progress, Modal } from 'antd';
-import { findDOMNode } from 'react-dom'
-import { ExclamationCircleOutlined } from '@ant-design/icons';
 import './FPTPlayer.css'
 import HLSSource from "./HLSSource";
 import { ControlBar, Player } from "video-react";
+import { useMediaQuery } from "react-responsive";
+
+
+
 export default class FPTPlayer extends Component {
 
     constructor(props) {
@@ -25,13 +26,12 @@ export default class FPTPlayer extends Component {
     }
 
     componentDidMount() {
-      setTimeout(() => {
-        if(this.player){
-            this.player.subscribeToStateChange(this.handleStateChange.bind(this));
-            this.setState({ play: true });
-        }
-            
-      }, 1000)
+        setTimeout(() => {
+            if (this.player) {
+                this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+                this.setState({ play: true });
+            }
+        }, 1000)
     }
 
     handleStateChange(state, prevState) {
@@ -81,6 +81,19 @@ export default class FPTPlayer extends Component {
         this.player.toggleFullscreen()
     }
 
+    // toggleFullScreen = () => {
+    //     var el = document.querySelector(".fpt-player");
+    //     if (el.requestFullscreen) {
+    //         el.requestFullscreen();
+    //     } else if (el.msRequestFullscreen) {
+    //         el.msRequestFullscreen();
+    //     } else if (el.mozRequestFullScreen) {
+    //         el.mozRequestFullScreen();
+    //     } else if (el.webkitRequestFullscreen) {
+    //         el.webkitRequestFullscreen();
+    //     }
+    // };
+
     handlePause = () => {
         this.player.pause();
         this.setState({ play: false })
@@ -99,7 +112,7 @@ export default class FPTPlayer extends Component {
         };
     }
 
-    
+
     render() {
         return (
             <div className="FPTPlayer">
@@ -113,6 +126,7 @@ export default class FPTPlayer extends Component {
                             fluid={false}
                             width={"100%"}
                             autoPlay={true}
+                            className='fpt-player'
                         >
 
                             <HLSSource

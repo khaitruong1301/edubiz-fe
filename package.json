@@ -38,6 +38,7 @@
     "react-alert": "^7.0.3",
     "react-alert-template-basic": "^1.0.2",
     "react-animate-height": "^2.0.23",
+    "react-beautiful-dnd": "^13.1.1",
     "react-calendar": "^3.4.0",
     "react-chartjs-2": "^3.0.4",
     "react-confetti": "^6.0.1",

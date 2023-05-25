@@ -51,11 +51,12 @@ export default function LoTrinhPage() {
         <div className=" mx-auto text-color-title card_theme_wrapper_lotrinh card_theme_item  2xl:w-full lg:w-full">
           <div className="py-3 lg:py-5  w-full  transform px-5 h-full relative">
             <MenuLoTrinh></MenuLoTrinh>
-            {currentTabLoTrinh === TAT_CA_LO_TRINH_TAB ? (
+            {/* {currentTabLoTrinh === TAT_CA_LO_TRINH_TAB ? (
               <Menu_Filter_LoTrinh />
-            ) : (
+            ) : 
+            (
               ""
-            )}
+            )} */}
             <div className="absolute top-7 transform   right-8 flex items-center">
               <button
                 className="w-16 text-color-title text-lg"

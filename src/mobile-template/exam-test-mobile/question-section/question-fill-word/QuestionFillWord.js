@@ -1,6 +1,7 @@
 import { Checkbox } from "antd";
 import environment from '../../../../environments/environment'
 import MuiEditor from "../../../common/editor/MuiEditor";
+import { useEffect } from "react";
 
 const replaceString = (str, charOld) => {
     let strNew = '';
@@ -22,26 +23,30 @@ const getTotalFill = (str, charOld) => {
     let count = 1;
     for (var i = 0; i < str.length; i++) {
         if (str[i] === charOld) {
-            arr.push('Nhập câu trả lời chỗ trống thứ ' + count);
+            arr.push({ value: '', label: 'Nhập câu trả lời chỗ trống thứ ' + count });
             count++;
         }
     }
     return arr;
 }
 
-function QuestionFillWord({ question }) {
+function QuestionFillWord({ question, handleDapAn }) {
 
-    const handleChange = () => {
-
-    }
+    useEffect(() => {
+        const options = getTotalFill(question.description, '♥');
+        handleDapAn(options, []);
+    }, []);
 
     const handleTextOption = (e, index) => {
-
+        const options = question.items.map((item, i) => {
+            if(i == index) 
+                return { ...item, value: e.target.value }
+            return item;
+        });
+        handleDapAn(options, options.map(item => item.value));
     }
 
     const description = question.description ? replaceString(question.description, '♥') : '';
-    const options = getTotalFill(question.description, '♥');
-
     return (
         <div className="mobile-question">
             <div className="mobile-question-text">
@@ -57,7 +62,6 @@ function QuestionFillWord({ question }) {
             <div className="mobile-question-desc">
                 <MuiEditor
                     html={description}
-                    onChange={handleChange}
                     tagName="div"
                     field="description"
                     barDisable={false}
@@ -68,19 +72,20 @@ function QuestionFillWord({ question }) {
             </div>
             <div className="mobile-question-option">
                 {
-                    options.map((item, index) => {
+                    question.items ? question.items.map((item, index) => {
                         return <div key={index} className="mobile-option-item">
                             <div className="mobile-option-item-checked">
                                 <span className="mobile-option-item-span">{`${index + 1}.`}</span>
                                 <div className="mobile-option-item-input">
                                     <input
                                         onChange={(e) => handleTextOption(e, index)}
-                                        placeholder={item}
+                                        placeholder={item.label}
+                                        value={item.value}
                                     />
                                 </div>
                             </div>
                         </div>
-                    })
+                    }) : null
                 }
             </div>
         </div>

@@ -31,8 +31,6 @@ function QuestionSection({ section, handleSetAnwers, itemIndex }) {
         handleSetAnwers(value, itemIndex)
     }
 
-    console.log(model.dapAn);
-
     const renderQuestion = () => {
         switch (section.questionType) {
             case questionTypes.MULTIPLE_CHOICE:
