@@ -5,7 +5,7 @@ import { findDOMNode } from 'react-dom'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import './FPTPlayer.css'
 import HLSSource from "./HLSSource";
-import { ControlBar, PlaybackRateMenuButton, Player } from "video-react";
+import { ControlBar, Player } from "video-react";
 export default class FPTPlayer extends Component {
 
     constructor(props) {
@@ -25,7 +25,13 @@ export default class FPTPlayer extends Component {
     }
 
     componentDidMount() {
-      // this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+      setTimeout(() => {
+        if(this.player){
+            this.player.subscribeToStateChange(this.handleStateChange.bind(this));
+            this.setState({ play: true });
+        }
+            
+      }, 1000)
     }
 
     handleStateChange(state, prevState) {
@@ -93,6 +99,7 @@ export default class FPTPlayer extends Component {
         };
     }
 
+    
     render() {
         return (
             <div className="FPTPlayer">
@@ -105,7 +112,7 @@ export default class FPTPlayer extends Component {
                             playsInline
                             fluid={false}
                             width={"100%"}
-
+                            autoPlay={true}
                         >
 
                             <HLSSource

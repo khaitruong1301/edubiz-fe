@@ -9,7 +9,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    display: none;
+    display: flex;
 }
 
 .FPTPlayerBar .FPTPlayerBarItem{
@@ -17,11 +17,6 @@
     justify-content: center;
     align-items: center;
     width: 2rem;
-}
-
-.FPTPlayer:focus .FPTPlayerBar,
-.FPTPlayer:hover .FPTPlayerBar{
-    display: flex;
 }
 
 
