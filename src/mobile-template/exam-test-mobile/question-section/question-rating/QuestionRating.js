@@ -5,7 +5,7 @@ import { useState } from "react";
 function QuestionRating({ question, handleDapAn }) {
 
     const handleChange = (value) => {
-        handleDapAn([], value)
+        handleDapAn([], [`${value}`])
     }
 
     const listRating = question.options.map(item => item.value);

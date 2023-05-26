@@ -40,7 +40,7 @@
     width: 100%;
     box-shadow: unset;
     outline: unset;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px dashed #ddd;
     margin-left: 0.5rem;
 }
 

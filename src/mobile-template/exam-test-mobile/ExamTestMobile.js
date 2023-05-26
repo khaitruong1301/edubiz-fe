@@ -8,10 +8,12 @@ import VideoSection from './video-section/VideoSection';
 import httpServ from '../../services/http.service';
 import QuestionSection from './question-section/QuestionSection';
 import { NavBar } from '../common';
+import { Button, Modal, Space } from 'antd';
 
 function ExamTestMobile(props) {
 
     const [model, setModel] = useState(null);
+    const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
         httpServ.getDeThiTheoId(6)
@@ -31,51 +33,20 @@ function ExamTestMobile(props) {
     }, []);
 
     const testGrading = (question) => {
-        console.log(question);
-        let answers = [];
-        let ok = true;
-        switch (question.questionType) {
-            case questionTypes.MULTIPLE_CHOICE:
-                answers = question.options.filter(x => x.checked);
-                console.log(answers);
-                console.log(question.answers);
-                if(question.answers[0] == answers[0].value)
-                    return 1;
-                return 0;
-            case questionTypes.CHECKBOXES:
-                answers = question.options.filter(x => x.checked);
-                if(answers.length != question.answers.length)
-                    return 0;
-                for (let i = 0; i < answers.length; i++) {
-                    if(answers[i] != question.answers[i].value){
-                        ok = false;
-                        break;
-                    }
-                }
-                return ok ? 1: 0;
-            case questionTypes.DRAGGABLE:
-                for (let i = 0; i < answers.length; i++) {
-                    if(answers[i] != question.answers[i]){
-                        ok = false;
-                        break;
-                    }
-                }
-                return ok ? 1: 0;
-            case questionTypes.FILL_WORD:
-                answers = question.content.answers.split(',');
-                answers = answers.map(str => str.trim());
-                for (let i = 0; i < answers.length; i++) {
-                    if(answers[i] != question.answers[i]){
-                        ok = false;
-                        break;
-                    }
-                }
-                return ok ? 1: 0;
-            case questionTypes.RATING:
-                return question.answers == question.content.answers ? 1 : 0;
-            default:
-                return 0;
+        if (!question.answers) return 0;
+
+        const answers = question.content.answers;
+        if (question.answers.length != answers.length)
+            return 0
+
+        let checked = true;
+        for (let i = 0; i < answers.length; i++) {
+            if (question.answers[i] != answers[i]) {
+                checked = false;
+                break;
+            }
         }
+        return checked ? 1 : 0;
     }
 
 
@@ -112,16 +83,30 @@ function ExamTestMobile(props) {
     const handleSubmit = () => {
         const listQuestionSection = model.examContent.filter(item => item.type == sectionTypes.QUESTION);
         let coin = 0;
+        let count = 0;
         listQuestionSection.forEach((item, i) => {
-            // console.log(`${i + 1}. `, item.content.question.content);
-            // console.log("Câu trả lời: ");
-            // console.log(item.answers);
-            // console.log("Đáp án: ");
-            // console.log(item.content.answers);
-            // console.log("=====================================");
-            coin = coin + testGrading(item);
+            if (item.questionType != questionTypes.PARAGRAPH ||
+                item.questionType != questionTypes.SHORT_ANSWER) {
+                coin = coin + testGrading(item);
+                count++;
+            }
         });
-        console.log(coin);
+        Modal.success({
+            title: 'Tổng điểm kết quả bài kiểm tra của bạn',
+            content: <div>
+                <div className='exam-result'>
+                    <b>Điểm</b>
+                    <div className='exam-result-coin'>
+                        <b>{Math.ceil((coin / count) * 100)}</b>
+                    </div>
+                    <b>Trả lời đúng {coin}/{count} câu hỏi</b>
+                </div>
+            </div>,
+            okText: 'Xác nhận',
+            onOk: () => {
+                setDisabled(true)
+            }
+        });
     }
 
     return (
@@ -135,7 +120,7 @@ function ExamTestMobile(props) {
                         }) : null
                     }
                 </div>
-                <div className='examtest-mobile-button' onClick={(handleSubmit)}>
+                <div className='examtest-mobile-button' style={{display: disabled ? 'none' : 'flex'}} onClick={(handleSubmit)}>
                     <span>Hoàn thành</span>
                 </div>
             </div>

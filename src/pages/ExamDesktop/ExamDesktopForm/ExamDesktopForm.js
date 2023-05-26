@@ -9,7 +9,7 @@ function ExamDesktopForm({ handleClose }) {
                 <div className="ExamDesktopFormHeader">
                     <div><CloseOutlined onClick={() => handleClose(false)}/></div>
                 </div>
-                <ExamTestMobile />
+                <ExamTestMobile closeModal={handleClose}/>
             </div>
         </div>
     )
