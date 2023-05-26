@@ -189,7 +189,9 @@ function DesktopTemlate() {
             path={"/detail-khoa-hoc/:idKhoaHoc"}
             isCurrentDetailPage={true}
           ></HomeTemplate>
-          {renderUserModule(userRoute)}
+          {
+            renderUserModule(userRoute)
+          }
           <Route path="/demo" component={LoginPageDemo} />
           {/* <Route path="/lucky" component={LuckyWhell} /> */}
           {/* <Route path="/blackfriday" component={BlackFriday} /> */}

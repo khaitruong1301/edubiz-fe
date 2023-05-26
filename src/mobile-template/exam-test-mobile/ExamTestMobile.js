@@ -135,9 +135,9 @@ function ExamTestMobile(props) {
                         }) : null
                     }
                 </div>
-                <button className='btn btn-success w-100 my-4' onClick={(handleSubmit)}>
-                    Hoàn thành
-                </button>
+                <div className='examtest-mobile-button' onClick={(handleSubmit)}>
+                    <span>Hoàn thành</span>
+                </div>
             </div>
         </>
     )

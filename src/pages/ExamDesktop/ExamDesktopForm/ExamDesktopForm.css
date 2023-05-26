@@ -1,0 +1,92 @@
+.ExamDesktopForm{
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.16);
+    z-index: 999;
+}
+.ExamDesktopFormContent{
+    width: 50% !important;
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 1px 4px;
+    background: #fff;
+    height: 100vh;
+    overflow-y: scroll;
+    padding-top: 2rem;
+}
+
+.ExamDesktopFormHeader{
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.ExamDesktopFormHeader > div{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem 0 0;
+    background: #fff;
+}
+
+.ExamDesktopFormHeader span{
+    cursor: pointer;
+}
+
+.ExamDesktopFormContent .navbar{
+    display: none;
+}
+
+.ExamDesktopForm .examtest-mobile{
+    width: 100% !important;
+    padding: 0.5rem 1.5rem;
+}
+
+.ExamDesktopForm .examtest-mobile-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.ExamDesktopForm .examtest-mobile-button span{
+    background:#1890ff;
+    color: #fff;
+    padding: 0.5rem 3rem;
+    cursor: pointer;
+}
+
+.ExamDesktopForm .mobile-question-text,
+.ExamDesktopForm .mobile-question-image,
+.ExamDesktopForm .mobile-question-desc{
+    margin-bottom: 1rem;
+}
+
+.ExamDesktopForm .mobile-question-text{
+    margin-top: 0.25rem;
+}
+
+.ExamDesktopForm .mobile-question .mobile-option-item{
+    margin-bottom: 1rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 1px;
+  }

@@ -14,6 +14,7 @@ import TestPage from "../pages/TestPage";
 import { checkDemoUser } from "../utils/HocDemoUtils";
 import ChungNhanItem from "../components/ChungNhanItem/ChungNhanItem";
 import SignUpPage from "../pages/SignUp/SignUpPage";
+import ExamDesktop from "../pages/ExamDesktop/ExamDesktop";
 
 export const sidebarRoute = [
   {
@@ -35,14 +36,6 @@ export const sidebarRoute = [
     icon: icons.loTrinh,
     path: "/lo-trinh",
   },
-  // {
-  //   title: "Luyện tập",
-  //   component: LuyenTapPage,
-  //   icon: icons.luyenTap,
-  //   path: "/luyen-tap",
-  //   disable: checkDemoUser(),
-  // },
-
   // {
   //   title: "Dự án",
   //   component: ProjectsPage,
@@ -73,6 +66,17 @@ export const sidebarRoute = [
     icon: icons.task,
     path: "/thongbao-task",
     disable: checkDemoUser(),
+  },
+  {
+    title: (
+      <>
+        {" "}
+        Kiểm tra <br />& Đánh giá
+      </>
+    ),
+    component: ExamDesktop,
+    icon: icons.luyenTap,
+    path: "/kiem-tra"
   },
   // {
   //   title: (
@@ -154,6 +158,12 @@ export const userRoute = [
     component: ChungNhanPage,
     icon: icons.chungNhan,
     path: "/chung-nhan",
+  },
+  {
+    title: "Kiểm tra",
+    component: ExamDesktop,
+    icon: icons.luyenTap,
+    path: "/kiem-tra"
   },
   // {
   //   title: "Tạo CV",

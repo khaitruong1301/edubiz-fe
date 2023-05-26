@@ -8,7 +8,7 @@ const replaceString = (str, charOld) => {
     let count = 1;
     for (var i = 0; i < str.length; i++) {
         if (str[i] === charOld) {
-            strNew += `<input class="fill-input" value="(${count})" />`;
+            strNew += `<input class="fill-input" readonly value="(${count})" />`;
             count++;
         }
         else
@@ -65,9 +65,11 @@ function QuestionFillWord({ question, handleDapAn }) {
                     tagName="div"
                     field="description"
                     barDisable={false}
+                    onChange={() => ({})}
+                    disabled
                 />
             </div>
-            <div className="my-2">
+            <div className="my-4">
                 <b>Đáp án:</b>
             </div>
             <div className="mobile-question-option">

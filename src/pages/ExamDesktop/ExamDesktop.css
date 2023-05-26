@@ -1,0 +1,44 @@
+.ExamDesktop{
+
+    padding: 1rem;
+}
+
+.ExamDesktop .ExamDesktopItem{
+    background: linear-gradient( 117.76deg, rgba(255, 255, 255, 0.3) -7.21%, rgba(255, 255, 255, 0.2) 118.08% ) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    backdrop-filter: blur(8px) !important;
+    border-radius: 8px;
+    border: 1px solid #ffffff !important;
+    -ms-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+    -o-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.02) !important;
+    padding: 1rem 2rem;
+}
+
+.ExamDesktop .ExamDesktopItem .ExamDesktopItem-Title{
+    font-size: 1.5rem;
+}
+
+.ExamDesktop .ExamDesktopItem-InfoTime span{
+    display: block;
+    margin: 0.5rem 0;
+}
+
+.ExamDesktop .ExamDesktopItem-Button{
+    margin-top: 1rem;
+}
+
+.ExamDesktop .ExamDesktopItem-Button button{
+    border: 1px solid #1890ff;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #1890ff;
+    padding: 0.5rem 1.5rem;
+}
+
+.ExamDesktop .ExamDesktopItem-Button button:hover,
+.ExamDesktop .ExamDesktopItem-Button button:focus{
+    border: 1px solid #fff;
+    background: #1890ff;
+    color: #fff;
+}
