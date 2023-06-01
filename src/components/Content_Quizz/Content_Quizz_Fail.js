@@ -61,8 +61,8 @@ export default function Content_Quizz_Failed({ data }) {
       });
   };
   return (
-    <div className="w-full h-full  flex flex-col items-center justify-center bg-dark-theme bg-opacity-20">
-      <div className="w-2/3 h-2/3  flex flex-col bg-white card_theme border-none items-center justify-center space-y-7">
+    <div className="w-full h-full  ContentQuizz flex flex-col items-center justify-center bg-dark-theme bg-opacity-20">
+      <div className="w-2/3 h-2/3  ContentQuizzWrrapper flex flex-col bg-white card_theme border-none items-center justify-center space-y-7">
         <img className="w-12 h-12 object-cover -mb-1" src={sadIcon} />
 
         <p className="text-xl ">

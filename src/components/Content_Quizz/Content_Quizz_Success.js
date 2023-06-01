@@ -39,7 +39,7 @@ export default function Content_Quizz_Success({ stateQuizz }) {
       });
   }
   return (
-    <div className="w-full h-full  flex flex-col items-center justify-center bg-dark-theme bg-opacity-20">
+    <div className="w-full h-full ContentQuizz  flex flex-col items-center justify-center bg-dark-theme bg-opacity-20">
       <Modal
         title="Làm lại bài trắc nghiệm "
         className="rounded-xl p-0 overflow-hidden felx flex-col items-center dialogItem"
@@ -67,12 +67,13 @@ export default function Content_Quizz_Success({ stateQuizz }) {
           </div>
         </div>
       </Modal>
-      <div className="w-2/3 h-1/2  flex flex-col bg-white card_theme border-none items-center justify-center space-y-7">
+      <div className="w-2/3 h-1/2 ContentQuizzWrrapper flex flex-col bg-white card_theme border-none items-center justify-center space-y-7">
         <div className="space-y-7 text-center">
           <p className="font-medium text-xl">
             <i className="fa  fa-check mr-2 text-green-theme text-xl"></i>{" "}
             {stateQuizz?.diem} điểm
           </p>
+          <span>Bạn đã hoàn thành bài tập này</span>
         </div>
         <div className="flex items-center space-x-5">
           <button

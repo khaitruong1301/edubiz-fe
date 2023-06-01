@@ -35,7 +35,7 @@ function TrueOrFalseQuestion({ question, handleUserAnswers, itemIndex }) {
                                     checked={item.checked}
                                 />
                                 <div className="mobile-option-item-text">
-                                    <span>{item.label}</span>
+                                    <span>{item.value}</span>
                                 </div>
                             </div>
                         </div>

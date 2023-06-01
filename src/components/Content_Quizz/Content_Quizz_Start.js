@@ -18,6 +18,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
 
   let dispatch = useDispatch();
 
+  const danhSachBaiDaHoc = useSelector((state) => state.khoaHoc.danhSachBaiDaHoc);
   let listQuestionState = useSelector((state) => state.baiHoc.listQuestion);
   let { currentLesson, isRedoQuizz } = useSelector((state) => state.baiHoc);
   let { khoaHocContent } = useSelector((state) => state.khoaHoc);
@@ -27,6 +28,19 @@ export default function ContentQuizz_Start({ stateQuizz }) {
   const [isOpenModal, setIsOpenModal] = useState(true);
   const [allQuestions, setAllQuestions] = useState([]);
   const [isDisableNextBtn, setIsDisableNextBtn] = useState(true);
+  const [showTime, setShowTime] = useState(false);
+
+  useEffect(() => {
+    handleStopCheckTime();
+    let indexCheck = danhSachBaiDaHoc.findIndex(item => item.baiHocId == currentLesson.id)
+    if (!indexCheck) {
+      setShowTime(false);
+    }
+    else {
+      setShowTime(true);
+      setIsOpenModal(true)
+    }
+  }, [currentLesson.id]);
 
   useEffect(() => {
     setAllQuestions(listQuestionState)
@@ -34,7 +48,6 @@ export default function ContentQuizz_Start({ stateQuizz }) {
 
   useEffect(() => {
     let listQuestionRaw = JSON.parse(currentLesson.noiDung);
-
     // let baseNumber = Math.floor(listQuestionRaw.length / 3)
     // let listQuestion = []
     // if (!isRedoQuizz) {
@@ -84,15 +97,18 @@ export default function ContentQuizz_Start({ stateQuizz }) {
   // ===============================================
   const handleStart = () => {
     setIsOpenModal(false);
+    handleStopCheckTime();
+
     checkTime = setInterval(function () {
       time++;
       let distance = currentLesson.thoiLuong * 60 - time;
       let seconds = Math.floor(distance % 60);
       let minute = Math.floor((distance % (60 * 1000)) / 60);
-      if (minute == 0)
-        document.getElementById('minute').innerText = `${seconds} giây`;
-      else
-        document.getElementById('minute').innerText = `${minute} phút ${seconds} giây`;
+      const minuteEle = document.getElementById('minute');
+      if (minuteEle != null && minute == 0)
+        minuteEle.innerText = `${seconds} giây`;
+      else if (minuteEle != null)
+        minuteEle.innerText = `${minute} phút ${seconds} giây`;
 
       if (distance <= 0) {
         clearInterval(checkTime);
@@ -218,9 +234,9 @@ export default function ContentQuizz_Start({ stateQuizz }) {
       )}
       <div className="w-full h-full  flex-grow flex flex-col  p-3 relative">
         <div className="w-full question-wrapper">
-          <div className="question-time">
+          <div className="question-time" style={{ display: showTime ? 'flex' : 'none' }}>
             <div>THỜI GIAN LÀM BÀI</div>
-            <span id="minute">{currentLesson.thoiLuong} phút 00 giây</span>
+            <span id="minute"></span>
           </div>
           {
             !isOpenModal && arrRenderQuestion[currentQuestionIndex]
@@ -231,7 +247,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
       <Portal>
         <div
           id="footerTracNghiem"
-          className="h-max-content   flex-shrink-0  bg-transparent fixed bottom-3 card_theme  border-none shadow-lg hover:shadow-xl transition duration-200 cursor-pointer left-0  border-0"
+          className="h-max-content  FooterTracNghiem flex-shrink-0  bg-transparent fixed bottom-3 card_theme  border-none shadow-lg hover:shadow-xl transition duration-200 cursor-pointer left-0  border-0"
         >
           <Navigate_Footer_Pratices
             current={currentQuestionIndex + 1}
