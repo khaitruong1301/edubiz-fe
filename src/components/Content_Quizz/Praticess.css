@@ -3,6 +3,10 @@
     position: relative;
   }
 
+  .mobile-question {
+    width: 100%;
+  }
+
   .question-wrapper {
     display: flex;
     align-items: center;
@@ -19,7 +23,7 @@
   .question-wrapper .question-time {
     position: absolute;
     left: 0;
-    bottom: 49px;
+    bottom: 5px;
     font-size: 0.9rem;
     color: #3a2aa5;
     padding: 0.25rem 1.5rem;
@@ -27,11 +31,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    z-index: 500;
   }
 }
 
 @media (max-width: 992px) {
-  .containerTracNhiem{
+  .containerTracNhiem {
     background: transparent;
   }
 
@@ -47,18 +52,18 @@
     align-items: center;
   }
 
-  .course-mobile .ContentQuizz{
+  .course-mobile .ContentQuizz {
     height: calc(100vh - 6rem) !important;
     border-radius: 0 !important;
     background: transparent;
   }
 
-  .course-mobile .ContentQuizzWrrapper{
+  .course-mobile .ContentQuizzWrrapper {
     width: 100% !important;
-    border-radius: 0 !important; 
+    border-radius: 0 !important;
   }
 
-  .FooterTracNghiem > div.px-16{
+  .FooterTracNghiem>div.px-16 {
     padding: 0 0.5rem !important;
   }
 }

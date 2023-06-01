@@ -166,3 +166,18 @@
     bottom: 3.5rem !important;
     border-radius: 0 !important;
 }
+
+@media only screen and (min-width: 992px) {
+  
+    #footerTracNghiem {
+        width: calc(100vw - 26.5rem) !important;
+        padding: 0 1.5rem;
+        padding-left: 13rem;
+        left: 0.75rem !important;
+        bottom: 12px !important;
+    }
+
+    #footerTracNghiem >  div{
+        padding: 0 !important;
+    }
+}
