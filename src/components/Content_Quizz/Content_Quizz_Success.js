@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentLesson, setIsRedoQuizz, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
 import httpServ from "../../services/http.service";
+
 export default function Content_Quizz_Success({ stateQuizz }) {
+
   const dispatch = useDispatch();
   const currentLesson = useSelector((state) => state.baiHoc.currentLesson);
   const { userInfor } = useSelector((state) => state.authUser);
@@ -81,14 +83,14 @@ export default function Content_Quizz_Success({ stateQuizz }) {
           >
             <span> Làm lại</span> <i className="fa fa-redo-alt"></i>
           </button>
-          <button
+          {/* <button
             onClick={() => {
               dispatch(setTrangThaiQuizz({ trangThai: 3 }))
             }}
             className=" cursor-pointer  btn-theme p-3 shadow-xl font-medium text-base text-white border-none rounded-lg flex space-x-1 items-center  "
           >
             Xem đáp án
-          </button>
+          </button> */}
           {currentLessonIndex + 1 !== tatCaBaiHoc.length && <button
             onClick={() => {
               handleNextLesson();

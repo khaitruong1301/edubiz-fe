@@ -7,6 +7,7 @@ import httpServ from "../../services/http.service";
 import Button_GiaHan from "../Button_GiaHan/Button_GiaHan";
 import { getUpdateUserInforAciton } from "../../redux/reducer/authReducer";
 export default function Content_Quizz_Failed({ data }) {
+  
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();

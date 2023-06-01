@@ -85,7 +85,7 @@ function ExamTestMobile(props) {
         let coin = 0;
         let count = 0;
         listQuestionSection.forEach((item, i) => {
-            if (item.questionType != questionTypes.PARAGRAPH ||
+            if (item.questionType != questionTypes.PARAGRAPH &&
                 item.questionType != questionTypes.SHORT_ANSWER) {
                 coin = coin + testGrading(item);
                 count++;

@@ -6,7 +6,8 @@ import Content_Quizz_Failed from "./Content_Quizz_Fail";
 import ContentQuizz_Start from "./Content_Quizz_Start";
 import Content_Quizz_Success from "./Content_Quizz_Success";
 import ContentQuizz_ViewAnsers from "./Content_Quizz_ViewAnswer";
-import "./Praticess.css";
+import './Praticess.css'
+import Content_Quizz_Out_Time from "./Content_Quizz_Out_Time";
 export default function Content_Quizz() {
   const dispatch = useDispatch();
   const baiHoc = useSelector((state) => state.baiHoc);
@@ -44,7 +45,8 @@ export default function Content_Quizz() {
       return <Content_Quizz_Failed data={stateQuizz} />;
     case 2:
       return <Content_Quizz_Success stateQuizz={stateQuizz} />;
-
+    case 4:
+      return <Content_Quizz_Out_Time stateQuizz={stateQuizz} />;
     default:
 
       break;

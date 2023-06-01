@@ -33,17 +33,13 @@ const alphabet = [
   "Z",
 ];
 
-export default function Answer_Practices_ChooseAnswer({
-  question,
-}) {
-  console.log("question", question);
-
+export default function Answer_Practices_ChooseAnswer({question}) {
+  
   const noiDung = entities.decodeHTML(question.noiDung.inPut);
 
   const answers = question.noiDung.dapAn.map((item, index) => {
     return new SingleChoice_Answer(index, item.cauTraLoi, item.luaChon);
   });
-
 
   return (
     <div
@@ -55,7 +51,7 @@ export default function Answer_Practices_ChooseAnswer({
     >
       <div className="relative w-full h-full p-3 flex-grow justify-center flex-col space-y-5 ">
         <div className="text-xl text-color-title font-medium ">
-          {question.noiDung.tieuDe}
+          {question.noiDung?.tieuDe}
         </div>
         <div className="w-full rounded-xl  overflow-hidden">
           <SyntaxHighlighter

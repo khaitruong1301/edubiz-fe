@@ -54,6 +54,7 @@ export default function Practices_ChooseAnswer({
   question,
   handle_CheckSingleChoice,
 }) {
+  console.log(question);
   const noiDung = entities.decodeHTML(question.noiDung.inPut);
   // console.log("question here", noiDung);
   // noiDung = JSON.parse(noiDung);

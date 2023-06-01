@@ -1,201 +1,162 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Navigate_Footer_Pratices from "../Navigate_Footer_Pratices/Navigate_Footer_Pratices";
-import Practices_ChooseAnswer from "../Pratices/Practices_ChooseAnser";
-import Practices_ChooseAnswerToFill from "../Pratices/Praticees_ChooseAnserToFill";
-import Practices_HTML_CSS from "../Pratices/Practices_HTML_CSS";
-import Practices_FillCodeToInput from "../Pratices/Practices_FillCodeToInput";
-import Practices_MultipleChoice from "../Pratices/Practices_MultipleChoice";
-import { setListQuestion } from "../../redux/reducer/baiHocContentReducer";
-import { initalAnwerUser } from "../../utils/ConvertLesson";
+import { setListQuestion, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
 import { Portal } from "react-portal";
 import { Modal } from "antd";
 import _ from "lodash";
+import SingleChooseQuestion from "../Pratices/SingleChooseQuestion";
+import MultipleChooseQuestion from "../Pratices/MultipleChooseQuestion";
+import TrueOrFalseQuestion from "../Pratices/TrueOrFalseQuestion";
+import FillWordQuestion from "../Pratices/FillWordQuestion";
+import SorttingQuestion from "../Pratices/SorttingQuestion";
+
+let checkTime = null;
+let time = 0;
 
 export default function ContentQuizz_Start({ stateQuizz }) {
-  let [currentQuestionIndex, setCurrentQuestsionIndex] = useState(0);
-  const [isOpenModal, setIsOpenModal] = useState(true)
 
+  let dispatch = useDispatch();
+
+  let listQuestionState = useSelector((state) => state.baiHoc.listQuestion);
   let { currentLesson, isRedoQuizz } = useSelector((state) => state.baiHoc);
   let { khoaHocContent } = useSelector((state) => state.khoaHoc);
-  let allQuestions = useSelector((state) => state.baiHoc.listQuestion);
   let { testMode } = useSelector((state) => state.baiHoc);
-  let dispatch = useDispatch();
+
+  let [currentQuestionIndex, setCurrentQuestsionIndex] = useState(0);
+  const [isOpenModal, setIsOpenModal] = useState(true);
+  const [allQuestions, setAllQuestions] = useState([]);
+  const [isDisableNextBtn, setIsDisableNextBtn] = useState(true);
+
   useEffect(() => {
-    let listQuestionRaw = JSON.parse(currentLesson.noiDung).map((item, index) => {
-      return {
-        id: index,
-        noiDung: item,
-        isCorrect: false,
-        userAnsers: [],
-      };
-    });
-    let baseNumber = Math.floor(listQuestionRaw.length / 3)
-    let listQuestion = []
-    if (!isRedoQuizz) {
-      listQuestion = listQuestionRaw.slice(baseNumber * 2).concat(listQuestionRaw.slice(0, baseNumber))
-    } else {
-      listQuestion = listQuestionRaw.slice(0, baseNumber * 2)
-    }
+    setAllQuestions(listQuestionState)
+  }, [listQuestionState]);
 
+  useEffect(() => {
+    let listQuestionRaw = JSON.parse(currentLesson.noiDung);
 
+    // let baseNumber = Math.floor(listQuestionRaw.length / 3)
+    // let listQuestion = []
+    // if (!isRedoQuizz) {
+    //   listQuestion = listQuestionRaw.slice(baseNumber * 2).concat(listQuestionRaw.slice(0, baseNumber))
+    // } else {
+    //   listQuestion = listQuestionRaw.slice(0, baseNumber * 2)
+    // }
 
-    dispatch(setListQuestion(_.shuffle(listQuestion)));
+    // dispatch(setListQuestion(_.shuffle(listQuestion)));
+    dispatch(setListQuestion(listQuestionRaw));
     setCurrentQuestsionIndex(0);
   }, [stateQuizz?.trangThai, currentLesson.id, isRedoQuizz]);
 
+  // ===============================================
+  const handleUserAnswers = (items, userAnswers, index) => {
+    const newAllQuestion = allQuestions.map((question, i) => {
+      if (i != index) return question;
+      return {
+        ...question,
+        userAnswers: userAnswers,
+        items: items,
+        isCorrect: checkCorrectAnswer(question.answers, userAnswers)
+      }
+    });
+    dispatch(setListQuestion(newAllQuestion));
+    setIsDisableNextBtn(userAnswers.length == 0);
+  }
+  // ===================================================
+  const checkCorrectAnswer = (answers, userAnswers) => {
+    let correct = true;
+    // Số đáp an ko bằng nhau => đáp án của user sai
+    if (answers.length != userAnswers.length) {
+      correct = false;
+    }
+    else {
+      for (let i = 0; i < answers.length; i++) {
+        // check từng đáp án
+        if (answers[i].toLocaleLowerCase() != userAnswers[i].toLocaleLowerCase()) {
+          correct = false;
+          break;
+        }
+      }
+    }
+
+    return correct;
+  }
+  // ===============================================
+  const handleStart = () => {
+    setIsOpenModal(false);
+    checkTime = setInterval(function () {
+      time++;
+      let distance = currentLesson.thoiLuong * 60 - time;
+      let seconds = Math.floor(distance % 60);
+      let minute = Math.floor((distance % (60 * 1000)) / 60);
+      if (minute == 0)
+        document.getElementById('minute').innerText = `${seconds} giây`;
+      else
+        document.getElementById('minute').innerText = `${minute} phút ${seconds} giây`;
+
+      if (distance <= 0) {
+        clearInterval(checkTime);
+        checkTime = null;
+        time = 0;
+        dispatch(setTrangThaiQuizz({ trangThai: 4 }))
+      }
+    }, 1000);
+  }
+
+  const handleStopCheckTime = () => {
+    if (checkTime == null) return;
+    clearInterval(checkTime);
+    checkTime = null;
+    time = 0;
+  }
+  // ===============================================
   let handleClickNextQuestion = () => {
     setCurrentQuestsionIndex(currentQuestionIndex + 1);
-
   };
 
-
-  let handle_CheckSingleChoice = (id, value, userAnsers) => {
-    let currentQuestionIndex = allQuestions.findIndex((item) => {
-      return item.id === id;
-    });
-    let newCurrentQuestion = { ...allQuestions[currentQuestionIndex] };
-    if (value) {
-      newCurrentQuestion.isCorrect = true;
-    } else {
-      newCurrentQuestion.isCorrect = false;
-    }
-
-    newCurrentQuestion.userAnsers = userAnsers;
-    let newAllQuestion = [...allQuestions];
-
-    newAllQuestion[currentQuestionIndex] = newCurrentQuestion;
-
-    dispatch(setListQuestion(newAllQuestion));
-  };
-  let handle_CheckMultipleChoice = (id, userAnsers) => {
-    let currentQuestionIndex = allQuestions.findIndex((item) => {
-      return item.id === id;
-    });
-    let newCurrentQuestion = { ...allQuestions[currentQuestionIndex] };
-    let arrDapAn = [...newCurrentQuestion.noiDung.dapAn];
-    if (arrDapAn.sort().toString() == userAnsers.sort().toString()) {
-      newCurrentQuestion.isCorrect = true;
-    } else {
-      newCurrentQuestion.isCorrect = false;
-    }
-    let newAllQuestion = [...allQuestions];
-    newCurrentQuestion.userAnsers = userAnsers;
-
-    newAllQuestion[currentQuestionIndex] = newCurrentQuestion;
-
-    dispatch(setListQuestion(newAllQuestion));
-  };
-  let handle_CheckFinll_IN_Blank = (id, userAnsers) => {
-    let currentQuestionIndex = allQuestions.findIndex((item) => {
-      return item.id === id;
-    });
-    let newCurrentQuestion = { ...allQuestions[currentQuestionIndex] };
-    if (
-      newCurrentQuestion.noiDung.dapAn.length === userAnsers.length &&
-      newCurrentQuestion.noiDung.dapAn.every(function (value, index) {
-        return value == userAnsers[index];
-      })
-    ) {
-      newCurrentQuestion.isCorrect = true;
-    } else {
-      newCurrentQuestion.isCorrect = false;
-    }
-    let newAllQuestion = [...allQuestions];
-
-    newCurrentQuestion.userAnsers = userAnsers;
-
-    newAllQuestion[currentQuestionIndex] = newCurrentQuestion;
-
-    dispatch(setListQuestion(newAllQuestion));
-  };
-  let handle_CheckFillInput = (id, userAnsers = []) => {
-    let currentQuestionIndex = allQuestions.findIndex((item) => {
-      return item.id === id;
-    });
-    let newCurrentQuestion = { ...allQuestions[currentQuestionIndex] };
-
-    let arrDapAn = [...newCurrentQuestion.noiDung.dapAn];
-    if (arrDapAn.sort().toString() == userAnsers.sort().toString()) {
-      newCurrentQuestion.isCorrect = true;
-    } else {
-      newCurrentQuestion.isCorrect = false;
-    }
-
-    let newAllQuestion = [...allQuestions];
-
-    newCurrentQuestion.userAnsers = userAnsers;
-
-    newAllQuestion[currentQuestionIndex] = newCurrentQuestion;
-    newAllQuestion[currentQuestionIndex] = newCurrentQuestion;
-
-    dispatch(setListQuestion(newAllQuestion));
-  };
-  let handle_CheckFinll_IN_Blank_CSS = (id, userAnsers) => {
-    let currentQuestionIndex = allQuestions.findIndex((item) => {
-      return item.id === id;
-    });
-    let newCurrentQuestion = { ...allQuestions[currentQuestionIndex] };
-    if (
-      newCurrentQuestion.noiDung.dapAn.length === userAnsers.length &&
-      newCurrentQuestion.noiDung.dapAn.every(function (value, index) {
-        return value == userAnsers[index];
-      })
-    ) {
-      newCurrentQuestion.isCorrect = true;
-    } else {
-      newCurrentQuestion.isCorrect = false;
-    }
-    newCurrentQuestion.userAnsers = userAnsers;
-    let newAllQuestion = [...allQuestions];
-    newAllQuestion.userAnsers = userAnsers;
-
-    newAllQuestion[currentQuestionIndex] = newCurrentQuestion;
-
-    dispatch(setListQuestion(newAllQuestion));
-  };
+  // ================================================
   let arrRenderQuestion = [];
+
   arrRenderQuestion = allQuestions.map((question, index) => {
-    let keyIndex = index + currentLesson?.id;
-    switch (question?.noiDung.maLoaiBaiTap) {
+    switch (question.type) {
       case "SINGLE":
         return (
-          <Practices_ChooseAnswer
-            key={keyIndex}
+          <SingleChooseQuestion
+            itemIndex={index}
             question={question}
-            handle_CheckSingleChoice={handle_CheckSingleChoice}
+            handleUserAnswers={handleUserAnswers}
           />
         );
-      case "multiple_choice":
+      case "MULTIPLE":
         return (
-          <Practices_MultipleChoice
-            key={keyIndex}
-            handle_CheckMultipleChoice={handle_CheckMultipleChoice}
+          <MultipleChooseQuestion
+            itemIndex={index}
             question={question}
+            handleUserAnswers={handleUserAnswers}
           />
         );
-      case "fill_inblank_css":
+      case "FILLWORD":
         return (
-          <Practices_HTML_CSS
-            key={keyIndex}
-            handle_CheckFinll_IN_Blank_CSS={handle_CheckFinll_IN_Blank_CSS}
+          <FillWordQuestion
+            itemIndex={index}
             question={question}
+            handleUserAnswers={handleUserAnswers}
           />
         );
-      case "fill_inblank":
+      case "TRUEORFALSE":
         return (
-          <Practices_ChooseAnswerToFill
-            key={keyIndex}
-            handle_CheckFinll_IN_Blank={handle_CheckFinll_IN_Blank}
+          <TrueOrFalseQuestion
+            itemIndex={index}
             question={question}
+            handleUserAnswers={handleUserAnswers}
           />
         );
-      case "fill_input":
+      case "SORTING":
         return (
-          <Practices_FillCodeToInput
-            key={keyIndex}
-            question={allQuestions[currentQuestionIndex]}
-            handle_CheckFillInput={handle_CheckFillInput}
+          <SorttingQuestion
+            itemIndex={index}
+            question={question}
+            handleUserAnswers={handleUserAnswers}
           />
         );
 
@@ -203,19 +164,6 @@ export default function ContentQuizz_Start({ stateQuizz }) {
         break;
     }
   });
-
-  let isDisableNextBtn;
-  let typeQuestion = allQuestions[currentQuestionIndex]?.noiDung.maLoaiBaiTap;
-  if (
-    typeQuestion === "SINGLE" ||
-    typeQuestion === "multiple_choice"
-  ) {
-    isDisableNextBtn =
-      allQuestions[currentQuestionIndex]?.userAnsers?.length === 0;
-  }
-  if (typeQuestion === "fill_inblank_css" || typeQuestion === "fill_inblank") {
-    isDisableNextBtn = !allQuestions[currentQuestionIndex].userAnsers[0];
-  }
 
   let containerTracNhiem = document.getElementById("containerTracNhiem");
   setTimeout(() => {
@@ -229,6 +177,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
       }
     }
   }, 300);
+
   return (
     <div
       id="containerTracNhiem"
@@ -248,9 +197,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
           <div className="flex space-x-3 justify-end">
 
             <button
-              onClick={() => {
-                setIsOpenModal(false)
-              }}
+              onClick={(handleStart)}
               className="rounded-lg px-3 btn-theme text-white py-1 shadow-lg hover:shadow-lg transition duration-150">Bắt đầu</button>
 
           </div>
@@ -270,8 +217,14 @@ export default function ContentQuizz_Start({ stateQuizz }) {
         ""
       )}
       <div className="w-full h-full  flex-grow flex flex-col  p-3 relative">
-        <div className="w-full  ">
-          {!isOpenModal && arrRenderQuestion[currentQuestionIndex]}
+        <div className="w-full question-wrapper">
+          <div className="question-time">
+            <div>THỜI GIAN LÀM BÀI</div>
+            <span id="minute">{currentLesson.thoiLuong} phút 00 giây</span>
+          </div>
+          {
+            !isOpenModal && arrRenderQuestion[currentQuestionIndex]
+          }
         </div>
         <div className="h-22 w-full"></div>
       </div>
@@ -285,6 +238,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
             total={allQuestions.length}
             handleClickNextQuestion={handleClickNextQuestion}
             isDisableBtn={isDisableNextBtn}
+            handleStopCheckTime={handleStopCheckTime}
           />
         </div>
       </Portal>

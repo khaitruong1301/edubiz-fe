@@ -10,6 +10,7 @@ export default function Navigate_Footer_Pratices({
   total,
   handleClickNextQuestion,
   isDisableBtn,
+  handleStopCheckTime
 }) {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
@@ -19,16 +20,23 @@ export default function Navigate_Footer_Pratices({
   const listQuestion = baiHoc.listQuestion;
   const userInfor = useSelector((state) => state.authUser.userInfor);
   let questionFail = [];
+
   useEffect(() => {
     questionFail = [];
   }, [baiHoc.currentLesson.id]);
+
   const handle_PostKetQua = () => {
+
+    handleStopCheckTime();
+
     let countCorrected = 0;
+
     for (let index = 0; index < listQuestion.length; index++) {
       const question = listQuestion[index];
       question.isCorrect && countCorrected++;
       !question.isCorrect && questionFail.push(question.id);
     }
+
     let diemQuizz = countCorrected / total;
     let inforQuizz = {
       loTrinhId: khoaHocContent.maLoTrinh,
@@ -45,20 +53,18 @@ export default function Navigate_Footer_Pratices({
         );
       inforQuizz.diem = 0;
       setloading(true);
+
       httpServ
         .postKetQuaQuizz(inforQuizz)
         .then((res) => {
           setloading(false);
           dispatch(setTrangThaiQuizz(res.data.content));
-
-          // console.log(res);
         })
         .catch((err) => {
           setloading(false);
-
-          // console.log(err);
         });
-    } else {
+    }
+    else {
       inforQuizz.diem = diemQuizz * 100;
       inforQuizz.diem = Math.floor(inforQuizz.diem);
       setloading(true);
@@ -67,8 +73,6 @@ export default function Navigate_Footer_Pratices({
         .then((res) => {
           setloading(false);
           dispatch(setTrangThaiQuizz(res.data.content));
-
-          // console.log(" res yes");
         })
         .catch((err) => {
           setloading(false);
@@ -91,12 +95,15 @@ export default function Navigate_Footer_Pratices({
         });
     }
   };
+
   if (baiHoc.testMode) {
     isDisableBtn = false;
   }
+
   const handleClickNext = () => {
     return !isDisableBtn ? handleClickNextQuestion() : null;
   };
+
   const percent = Math.floor((current / total) * 100);
   const nextBtnCss = isDisableBtn
     ? " text-gray-600 bg-gray-300 cursor-not-allowed"
@@ -107,16 +114,13 @@ export default function Navigate_Footer_Pratices({
         <Progress
           step={total}
           percent={percent}
-          // size="small"
           className="w-full"
           showInfo={false}
           strokeWidth={15}
-          // rgb(139, 29, 234) 1.36%, rgb(74, 0, 224) 100%)
           strokeColor={{
             "0%": "#4A00E0",
             "100%": "#8E2DE2",
           }}
-          // trailColor="rgba(34, 34, 96,0,1)"
           trailColor={"rgba(68, 66, 178, 0.1)"}
         />
         <span className="font-bold flex-shrink-0 text-color-title">
