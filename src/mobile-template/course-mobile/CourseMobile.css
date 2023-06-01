@@ -111,7 +111,7 @@
 }
 
 .course-mobile_menu{
-    position: fixed;
+    /* position: fixed; */
     top: 2.5rem;
     right: 0;
     left: 0;
@@ -119,15 +119,15 @@
     z-index: 999;
     background: transparent;
     transition: all 0.5s ease-in-out;
-    transform: translateX(100%);
+    /* transform: translateX(100%); */
     display: flex;
 }
 
 .course-mobile_menucontent{
     background: #ddd;
     width: 100%;
-    height: calc(100vh - 6rem);
-    overflow-y: scroll;
+    /* height: calc(100vh - 6rem); */
+    /* overflow-y: scroll; */
 }
 
 .course-mobile_menu.show{
@@ -165,6 +165,23 @@
     right: 0 !important;
     bottom: 3.5rem !important;
     border-radius: 0 !important;
+    z-index: 600;
+}
+
+@media only screen and (max-width: 992px) {
+  
+    #footerTracNghiem{
+        z-index: 600;
+    }
+
+    #containerTracNhiem{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 550;
+    }
 }
 
 @media only screen and (min-width: 992px) {

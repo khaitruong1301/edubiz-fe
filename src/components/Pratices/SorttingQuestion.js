@@ -8,6 +8,10 @@ function SorttingQuestion({ question, handleUserAnswers, itemIndex }) {
         handleUserAnswers(question.options.map((item, i) => {return {...item, index: i + 1}}), [], itemIndex);
     }, []);
 
+    useEffect(() => {
+        handleUserAnswers(question.options.map((item, i) => {return {...item, index: i + 1}}), [], itemIndex);
+    }, [question.options]);
+
     const onDragEnd = (items) => {
         handleUserAnswers(items, items.map((item) => `${item.index}`), itemIndex);
     };
