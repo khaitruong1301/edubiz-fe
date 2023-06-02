@@ -35,13 +35,14 @@ export default function LoTrinhPage() {
   useEffect(() => {
     isDemoUser && dispatch(setCurrentTabLoTrinh(TAT_CA_LO_TRINH_TAB));
     return () => {
-      !isDemoUser && dispatch(setCurrentTabLoTrinh(""));
+      !isDemoUser && dispatch(setCurrentTabLoTrinh(LO_TRINH_CUA_BAN_TAB));
     };
   }, []);
 
   useEffect(() => {
     !isDemoUser && dispatch(getLoTrinhDaDangKiAciton(userInfor?.id));
     dispatch(getTatCaLoTrinhAciton(userInfor?.id));
+    
     httpServ.getAllTypeLoTrinh().then((res) => {
       dispatch(setTypeFiltersLoTrinh(res.data.content));
     });

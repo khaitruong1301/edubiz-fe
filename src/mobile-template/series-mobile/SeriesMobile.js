@@ -11,8 +11,8 @@ import './SeriesMobile.css';
 
 
 const tabs = [
-    { title: 'Đang học', component: <ListSeries /> },
-    { title: 'Tất cả lộ trình', component: <AllSeries /> },
+    { title: 'Đang thực hiện', component: <ListSeries /> },
+    { title: 'Chưa ghi danh', component: <AllSeries /> },
     { title: 'Đã hoàn thành', component: <ListSeriesSuccess /> }
 ];
 

@@ -1,6 +1,5 @@
 import { List } from "antd";
 import React from "react";
-import { useSelector } from "react-redux";
 import ItemThongBaoPage from "../ItemThongBao/ItemThongBaoPage";
 import "./listSuKien.css";
 

@@ -31,6 +31,7 @@ export default function Dashboard() {
     !checkDemoUser() &&
       httpServ.getLoTrinhDaDangKI(userInfor?.id).then((res) => {
         const resLoTrinh = res.data.content;
+        
         if (resLoTrinh && resLoTrinh.length) {
           const dsLoTrinhDangHoc = resLoTrinh.filter(item => item.choDuyet && !item.daHetHan);
           const dsLoTrinhDaHoanThanh = resLoTrinh.filter(item => item.choDuyet && item.daHetHan);

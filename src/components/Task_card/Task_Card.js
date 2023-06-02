@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Task_Card({ data, color }) {
+  
   return (
     <div
       style={{ backgroundColor: color.bg }}

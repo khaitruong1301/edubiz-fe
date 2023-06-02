@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAllThongBao } from "../../redux/reducer/thongBaoReducer";
 import httpServ from "../../services/http.service";
 import { getIconThongBao } from "../../utils/GetIconSuKien";
-
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { useHistory } from "react-router";
 import { disableSetLoading } from "../../constants/httpServContant";
+import { Link } from "react-router-dom";
 export default function DropdowThongBao() {
   const dispatch = useDispatch();
   const { allThongBao } = useSelector((state) => state.thongBao);
@@ -20,7 +20,7 @@ export default function DropdowThongBao() {
     httpServ
       .getAllThongBao(userInfor.id, disableSetLoading)
       .then((res) => {
-        dispatch(setAllThongBao(res.data.content));
+        dispatch(setAllThongBao(res.data.content)); 
       })
       .catch((err) => {
         // console.log(err);
@@ -41,6 +41,13 @@ export default function DropdowThongBao() {
   useEffect(() => {
     handleFetch();
   }, []);
+
+  const renderThongBao = (noiDung) => {
+    const objNoiDung = JSON.parse(noiDung);
+    if (objNoiDung.SuKien == 'TIENTRINH') {
+      return <Link to="/lo-trinh">Bạn đã được ghi danh vào lộ trình {objNoiDung.NoiDung}</Link>
+    }
+  }
 
   return (
     <Menu as="div" className="relative inline-block text-left" on>
@@ -112,8 +119,10 @@ export default function DropdowThongBao() {
                           cssText
                         }
                       >
-                        <p className={"   m-0 px-1  leading-5 "}>
-                          {thongBao.noiDung}
+                        <p className="m-0 px-1  leading-5">
+                          { 
+                            thongBao.loaiThongBao == 'HOCTAP' ? renderThongBao(thongBao.noiDung) : thongBao.noiDung
+                          }
                         </p>
                         <p className={"   m-0 px-1  leading-5 "}>
                           {thongBao.ngayThang}

@@ -4,7 +4,9 @@ import CardLoTrinh_Gridview from "../components/CardLoTrinh/CardLoTrinh_Gridview
 import { useSelector } from "react-redux";
 export default function LoTrinhPageCuaBan({ isGridView }) {
   const refs = useRef([]);
-  const loTrinhDaDangKi = useSelector((state) => state.loTrinh.loTrinhDaDangKi);
+  let loTrinhDaDangKi = useSelector((state) => state.loTrinh.loTrinhDaDangKi);
+  loTrinhDaDangKi = loTrinhDaDangKi.filter(x => x.choDuyet);
+
   return (
     <>
       {isGridView ? (

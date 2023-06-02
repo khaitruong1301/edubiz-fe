@@ -55,7 +55,7 @@ export default function MenuLoTrinh({ setIsAllLoTrinh }) {
             }}
             className="w-full text-base font-medium  px-2 lg:px-3 py-2 text-center"
           >
-            Tất cả lộ trình
+            Chưa ghi danh
           </button>
         </div>
 

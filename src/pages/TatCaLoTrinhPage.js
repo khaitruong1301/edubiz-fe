@@ -25,6 +25,8 @@ export default function TatCaLoTrinhPage({ isGridView }) {
         return loTrinh.loaiLoTrinh ? loTrinh.loaiLoTrinh.includes(currentActiveTypeFilter) : [];
       });
 
+  listLoTrinh = listLoTrinh.filter(x => !x.daDangKy && !x.choDuyet);
+
 
   return (
     <>
