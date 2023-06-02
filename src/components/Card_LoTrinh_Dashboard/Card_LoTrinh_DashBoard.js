@@ -14,7 +14,6 @@ const Card_LoTrinh_DashBoard = () => {
 
   let extraCss = listLoTrinh.length > 2 ? "list_khoaHoc" : "";
 
-  console.log(listLoTrinhCuaBan);
   return (
     <div className={"w-full space-y-3  h-full " + extraCss}>
       {

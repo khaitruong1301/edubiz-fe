@@ -15,6 +15,7 @@ import { setUserTour } from "../redux/reducer/tourReducer";
 import {
   setTatCaLoTrinh,
   setLoTrinhDaDangKi,
+  setLoTrinhDaHoanThanh,
 } from "../redux/reducer/loTrinhReducer";
 import httpServ from "../services/http.service";
 
@@ -30,18 +31,20 @@ export default function Dashboard() {
     !checkDemoUser() &&
       httpServ.getLoTrinhDaDangKI(userInfor?.id).then((res) => {
         const resLoTrinh = res.data.content;
-
-        dispatch(setLoTrinhDaDangKi(resLoTrinh));
+        if (resLoTrinh && resLoTrinh.length) {
+          const dsLoTrinhDangHoc = resLoTrinh.filter(item => item.choDuyet && !item.daHetHan);
+          const dsLoTrinhDaHoanThanh = resLoTrinh.filter(item => item.choDuyet && item.daHetHan);
+          dispatch(setLoTrinhDaDangKi(dsLoTrinhDangHoc));
+          dispatch(setLoTrinhDaHoanThanh(dsLoTrinhDaHoanThanh));
+        }
       });
     !checkDemoUser() &&
       httpServ.getTatCaLoTrinh(userInfor?.id).then((res) => {
-        const resLoTrinh = res.data.content.filter((item) => {
-          return !item.daDangKy;
-        });
-
+        const resLoTrinh = res.data.content.filter((item) => !item.daDangKy);
         dispatch(setTatCaLoTrinh(resLoTrinh));
       });
   }, []);
+
   let userTour = useSelector((state) => state.tour.userTour);
 
   return (
@@ -62,7 +65,7 @@ export default function Dashboard() {
         className="rounded-lg p-8"
         rounded={5}
         accentColor={"#222260"}
-        beforeClose={() => {}}
+        beforeClose={() => { }}
       />
       <div className="w-full flex h-full p-3 lg:p-5 space-x-5 ">
         <div className="flex-grow h-max-content w-full space-y-3  lg:space-y-5 ">

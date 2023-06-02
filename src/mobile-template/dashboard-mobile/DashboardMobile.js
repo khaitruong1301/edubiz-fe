@@ -5,41 +5,54 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setTatCaLoTrinh,
   setLoTrinhDaDangKi,
+  setLoTrinhDaHoanThanh,
 } from "../../redux/reducer/loTrinhReducer";
 import httpServ from "../../services/http.service";
 import { checkDemoUser } from "../../utils/HocDemoUtils";
 import './DashboardMobile.css'
 import { log } from "@craco/craco/lib/logger";
 
-function DashboardMobile(props) {
-    const tabs = [
-        { title: 'Tất cả', component: <DashboardContent /> },
-        { title: 'Top chuyên cần', component: <TopIndustrious /> }
-    ]
+const tabs = [
+    { title: 'Tất cả', component: <DashboardContent /> },
+    { title: 'Top chuyên cần', component: <TopIndustrious /> }
+]
 
+function DashboardMobile(props) {
+    
     const dispatch = useDispatch();
     let userInfor = useSelector((state) => state.authUser.userInfor);
 
     useEffect(() => {
+        getSeries();
+    }, []);
+
+    useEffect(() => {
+        getSeries();
+    }, [window.location.pathname]);
+
+    const getSeries = () => {
         !checkDemoUser() &&
             httpServ.getLoTrinhDaDangKI(userInfor?.id).then((res) => {
-                let resLoTrinh = [];
-                if(res.data.content && res.data.content.length){
-                    
-                    resLoTrinh = res.data.content.filter(item => item.choDuyet);
+                let resLoTrinhDangHoc = [];
+                let resLoTrinhDaHoanThanh = [];
+                if (res.data.content && res.data.content.length) {
+                    resLoTrinhDangHoc = res.data.content.filter(item => item.choDuyet && !item.daHetHan);
+                    resLoTrinhDaHoanThanh = res.data.content.filter(item => item.choDuyet && item.daHetHan);
+                    dispatch(setLoTrinhDaDangKi(resLoTrinhDangHoc));
+                    dispatch(setLoTrinhDaHoanThanh(resLoTrinhDaHoanThanh));
                 }
-                dispatch(setLoTrinhDaDangKi(resLoTrinh));
             });
         !checkDemoUser() &&
             httpServ.getTatCaLoTrinh(userInfor?.id).then((res) => {
                 let resLoTrinh = [];
-                if(res.data.content && res.data.content.length){
+                if (res.data.content && res.data.content.length) {
                     resLoTrinh = res.data.content.filter(item => !item.daDangKy);
                 }
                 dispatch(setTatCaLoTrinh(resLoTrinh));
             });
-    }, [window.location.pathname]);
-    // let userTour = useSelector((state) => state.tour.userTour);
+    }
+    
+
     return (
         <>
             <NavBar title={props.title} isPrev={false} />

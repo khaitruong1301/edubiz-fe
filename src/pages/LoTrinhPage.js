@@ -21,21 +21,24 @@ import {
 } from "../tourConfig/tourConfig";
 import { setUserTour } from "../redux/reducer/tourReducer";
 import CarouselLoTrinh from "../components/CarouselLoTrinh/CarouselLoTrinh";
-import { TAT_CA_LO_TRINH_TAB } from "../utils/Constant";
+import { TAT_CA_LO_TRINH_TAB, LO_TRINH_DA_HOAN_THANH_TAB, LO_TRINH_CUA_BAN_TAB } from "../utils/Constant";
 import { setCurrentTabLoTrinh } from "../redux/reducer/layoutReducer";
+import LoTrinhDaHoanThanhPage from "./LoTrinhDaHoanThanhPage";
 export default function LoTrinhPage() {
   const [isGridView, setIsGridView] = useState(false);
   let userInfor = useSelector((state) => state.authUser.userInfor);
   let { currentTabLoTrinh } = useSelector((state) => state.layout);
   let userTour = useSelector((state) => state.tour.userTour);
   let isDemoUser = useMemo(() => checkDemoUser(), [])
+  const dispatch = useDispatch();
+
   useEffect(() => {
     isDemoUser && dispatch(setCurrentTabLoTrinh(TAT_CA_LO_TRINH_TAB));
     return () => {
       !isDemoUser && dispatch(setCurrentTabLoTrinh(""));
     };
   }, []);
-  const dispatch = useDispatch();
+
   useEffect(() => {
     !isDemoUser && dispatch(getLoTrinhDaDangKiAciton(userInfor?.id));
     dispatch(getTatCaLoTrinhAciton(userInfor?.id));
@@ -43,8 +46,23 @@ export default function LoTrinhPage() {
       dispatch(setTypeFiltersLoTrinh(res.data.content));
     });
   }, []);
+
+
   const renderContent = () => {
-    // console.log('render')
+    let componentTab = null;
+    switch (currentTabLoTrinh) {
+      case TAT_CA_LO_TRINH_TAB:
+        componentTab = <TatCaLoTrinhPage isGridView={isGridView} />
+        break;
+      case LO_TRINH_CUA_BAN_TAB:
+        componentTab = <LoTrinhPageCuaBan isGridView={isGridView} />
+        break;
+      case LO_TRINH_DA_HOAN_THANH_TAB:
+        componentTab = <LoTrinhDaHoanThanhPage isGridView={isGridView} />
+        break;
+      default:
+        break;
+    }
 
     return (
       <div className="w-full p-3 transform translate-y-2 lg:p-5  2xl:container">
@@ -70,11 +88,9 @@ export default function LoTrinhPage() {
           </div>
         </div>
         <div className="w-full mt-14  ">
-          {currentTabLoTrinh === TAT_CA_LO_TRINH_TAB ? (
-            <TatCaLoTrinhPage isGridView={isGridView} />
-          ) : (
-            <LoTrinhPageCuaBan isGridView={isGridView} />
-          )}
+          {
+            componentTab
+          }
         </div>
       </div>
     );

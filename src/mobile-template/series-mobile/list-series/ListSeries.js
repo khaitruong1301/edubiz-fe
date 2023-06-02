@@ -7,11 +7,12 @@ export default function ListSeries() {
     return (
         <div className="list-series">
             {
-                loTrinhDaDangKi?.map((item, index) => {
+                loTrinhDaDangKi && loTrinhDaDangKi.length ?
+                loTrinhDaDangKi.map((item, index) => {
                     return (
-                        <ListSeriesItem key={index} loTrinh={item} />
+                        <ListSeriesItem key={index} loTrinh={item} /> 
                     );
-                })
+                }) : <div className="text-center mt-3">Chưa có lộ trình đang học</div>
             }
         </div>
     )

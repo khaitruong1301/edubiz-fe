@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.tabmobile .tabmobile-content{
+    width: 100%;
+}
+
 .tabmobile .tabmobile-head{
     display: inline-flex;
     align-items: center;

@@ -49,7 +49,7 @@ const BtnTitleVideo = React.memo(
                 className={
                   isLearned
                     ? "fa fa-check mr-3 text-sm flex-shrink-0 text-green-600"
-                    : "fa fa-check mr-3 text-sm flex-shrink-0 text-transparent"
+                    : "fa fa-lock mr-3 flex-shrink-0"
                 }
               ></i>{" "}
             </div>

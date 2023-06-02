@@ -4,6 +4,7 @@ import Navigate_Footer_Pratices from "../Navigate_Footer_Pratices/Navigate_Foote
 import { setListQuestion, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
 import { Portal } from "react-portal";
 import { Modal } from "antd";
+import { CloseOutlined } from '@ant-design/icons'
 import _ from "lodash";
 import SingleChooseQuestion from "../Pratices/SingleChooseQuestion";
 import MultipleChooseQuestion from "../Pratices/MultipleChooseQuestion";
@@ -219,6 +220,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
           </div>
         </div>
       </Modal>
+
       {testMode ? (
         <div className="pt-3 pl-2 text-gray-500 space-y-1">
           <p>
@@ -232,8 +234,13 @@ export default function ContentQuizz_Start({ stateQuizz }) {
       ) : (
         ""
       )}
+
       <div className="w-full h-full  flex-grow flex flex-col  p-3 relative">
         <div className="w-full question-wrapper">
+          <div className="quizz-close" style={{display: 'none'}}>
+            <div><CloseOutlined /></div>
+          </div>
+
           <div className="question-time" style={{ display: showTime ? 'flex' : 'none' }}>
             <div>THỜI GIAN LÀM BÀI</div>
             <span id="minute"></span>

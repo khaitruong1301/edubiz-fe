@@ -27,12 +27,12 @@ export default function CourseHeader({ title, toggleLession, onToggleLession, on
                 {title}
             </div>
             <div className="courseheader-item courseheader-icon">
-                <div className="courseheader-icon_course">
+                {/* <div className="courseheader-icon_course">
                     <i className="fa fa-book" aria-hidden="true"></i>
                 </div>
                 <div className="courseheader-icon_lession" onClick={(onToggleLession)}>
                     <i className={`fa ${toggleLession ? 'fa-times' : 'fa-bars'}`} aria-hidden="true"></i>
-                </div>
+                </div> */}
             </div>
         </div>
     )

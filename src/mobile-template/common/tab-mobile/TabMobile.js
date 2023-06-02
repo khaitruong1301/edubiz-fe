@@ -24,7 +24,7 @@ export default function TabMobile(props) {
                 </div>
                 <div className="tabmobile-content">
                     {
-                        tabs.length && tabs[tabIndex] ? tabs[tabIndex].component : ""
+                        tabs.length && tabs[tabIndex] ? tabs[tabIndex].component : null
                     }
                 </div>
             </div>

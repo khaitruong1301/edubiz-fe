@@ -1,16 +1,16 @@
-.course-mobile{
+.course-mobile {
     position: relative;
 }
 
-.course-mobile .water-mark-wrapper{
+.course-mobile .water-mark-wrapper {
     height: unset !important;
 }
 
-.course-mobile .article_content p{
+.course-mobile .article_content p {
     font-size: 0.75rem;
 }
 
-.course-mobile_menucontent .chapter-menu-item{
+.course-mobile_menucontent .chapter-menu-item {
     min-height: unset !important;
     padding: 0.5rem !important;
     font-size: 0.9rem !important;
@@ -18,19 +18,19 @@
     align-items: center !important;
 }
 
-.course-mobile_menucontent .lession-menu-item{
+.course-mobile_menucontent .lession-menu-item {
     min-height: unset !important;
     font-size: 0.8rem !important;
     background: #fff;
 }
 
-.course-mobile_menucontent .lession-menu-item button{
+.course-mobile_menucontent .lession-menu-item button {
     min-height: unset !important;
     font-size: 0.8rem !important;
     padding: 0.5rem 0 !important;
 }
 
-.course-mobile_menucontent .lession-menu-item a button{
+.course-mobile_menucontent .lession-menu-item a button {
     padding: 0.15rem 0.5rem !important;
 }
 
@@ -39,78 +39,78 @@
     margin-left: 3px;
 }
 
-.course-mobile_menucontent .text-color-titlebtn-highlight-baihoc{
+.course-mobile_menucontent .text-color-titlebtn-highlight-baihoc {
     color: #fff !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile {
     padding: 0 !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-tab{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-tab {
     padding: 0.25rem 0.5rem !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-tab span{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-tab span {
     font-size: 0.9rem !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item {
     font-size: 0.85rem !important;
     padding: 0.25rem 0.5rem !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item .text-lg{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item .text-lg {
     font-size: 0.9rem !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item p{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .ant-tabs-content .card_theme_item p {
     font-size: 0.85rem !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A {
     padding: 0 !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item {
     margin: 0 !important;
     padding: 0.25rem !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item .ant-collapse{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item .ant-collapse {
     padding: 0 !important;
     border-radius: 0 !important;
 }
 
-.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item .ant-collapse-header{
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item .ant-collapse-header {
     padding: 0.5rem !important;
 }
 
-.course-mobile .ant-layout-content > div.card_theme .ant-collapse-header{
+.course-mobile .ant-layout-content>div.card_theme .ant-collapse-header {
     padding: 0 !important;
 }
 
-.course-mobile .ant-layout-content > div.card_theme > .w-full.flex.items-start.justify-between{
+.course-mobile .ant-layout-content>div.card_theme>.w-full.flex.items-start.justify-between {
     position: relative;
     padding: 0.25rem !important;
 }
 
-.course-mobile .ant-layout-content > div.card_theme > .w-full.flex.items-start.justify-between .ant-collapse-icon-position-left{
+.course-mobile .ant-layout-content>div.card_theme>.w-full.flex.items-start.justify-between .ant-collapse-icon-position-left {
     border-radius: 0 !important;
 }
 
-.course-mobile .ant-layout-content > div.card_theme  .ant-collapse-content-active > .ant-collapse-content-box{
+.course-mobile .ant-layout-content>div.card_theme .ant-collapse-content-active>.ant-collapse-content-box {
     position: absolute;
     top: 37px;
     left: 0.5rem;
     right: 0.5rem;
-    display: flex; 
+    display: flex;
     z-index: 800;
     background: #fff;
     box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
 }
 
-.course-mobile_menu{
+.course-mobile_menu {
     /* position: fixed; */
     top: 2.5rem;
     right: 0;
@@ -123,41 +123,41 @@
     display: flex;
 }
 
-.course-mobile_menucontent{
+.course-mobile_menucontent {
     background: #ddd;
     width: 100%;
     /* height: calc(100vh - 6rem); */
     /* overflow-y: scroll; */
 }
 
-.course-mobile_menu.show{
+.course-mobile_menu.show {
     transform: translateX(0);
 }
 
-.course-mobile #containerTracNhiem div.w-full.flex-col.flex-grow{
+.course-mobile #containerTracNhiem div.w-full.flex-col.flex-grow {
     padding: 0.25rem !important;
 }
 
-.course-mobile #containerTracNhiem #editor{
+.course-mobile #containerTracNhiem #editor {
     margin-top: 0 !important;
 }
 
-.course-mobile #containerTracNhiem .text-color-title.font-medium{
+.course-mobile #containerTracNhiem .text-color-title.font-medium {
     font-size: 1rem !important;
 }
 
-.course-mobile #containerTracNhiem div.w-full.h-max-content.grid.auto-rows-auto.grid-auto-rows{
+.course-mobile #containerTracNhiem div.w-full.h-max-content.grid.auto-rows-auto.grid-auto-rows {
     display: flex !important;
     flex-direction: column;
     margin: 0 !important;
 }
 
-.course-mobile #containerTracNhiem div.w-full.h-max-content.grid.auto-rows-auto.grid-auto-rows > .card_theme_item{
+.course-mobile #containerTracNhiem div.w-full.h-max-content.grid.auto-rows-auto.grid-auto-rows>.card_theme_item {
     padding: 0.5rem !important;
     margin-bottom: -0.8rem;
 }
 
-#footerTracNghiem{
+#footerTracNghiem {
     width: unset !important;
     margin-left: unset !important;
     position: fixed !important;
@@ -168,24 +168,16 @@
     z-index: 600;
 }
 
-@media only screen and (max-width: 992px) {
-  
-    #footerTracNghiem{
-        z-index: 600;
-    }
+@media (max-width: 992px) {
 
-    #containerTracNhiem{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 550;
+    #footerTracNghiem {
+        background-color: #ddd !important;
+        bottom: 0 !important;
     }
 }
 
 @media only screen and (min-width: 992px) {
-  
+
     #footerTracNghiem {
         width: calc(100vw - 26.5rem) !important;
         padding: 0 1.5rem;
@@ -194,7 +186,7 @@
         bottom: 12px !important;
     }
 
-    #footerTracNghiem >  div{
+    #footerTracNghiem>div {
         padding: 0 !important;
     }
 }

@@ -4,6 +4,7 @@ import httpServ from "../../services/http.service";
 // localStorageServ
 const initialState = {
   loTrinhDaDangKi: [],
+  loTrinhDaHoanThanh: [],
   tatCaLoTrinh: [],
   typeFilters: [],
   currentActiveTypeFilter: "all",
@@ -30,6 +31,9 @@ export const loTrinhSlice = createSlice({
   reducers: {
     setLoTrinhDaDangKi: (state, action) => {
       state.loTrinhDaDangKi = action.payload;
+    },
+    setLoTrinhDaHoanThanh: (state, action) => {
+      state.loTrinhDaHoanThanh = action.payload;
     },
     setTatCaLoTrinh: (state, action) => {
       state.tatCaLoTrinh = action.payload;
@@ -66,6 +70,7 @@ export const {
   setTypeFiltersLoTrinh,
   setLoTrinhDaDangKi,
   setTatCaLoTrinh,
-  setCapNhatDanhSachLoTrinh
+  setCapNhatDanhSachLoTrinh,
+  setLoTrinhDaHoanThanh
 } = loTrinhSlice.actions;
 export default loTrinhSlice.reducer;

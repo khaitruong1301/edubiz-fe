@@ -22,7 +22,8 @@ export default function AllSeries() {
     return (
         <div className="all-series">
             {
-                listLoTrinh?.map((item, index) => {
+                listLoTrinh && listLoTrinh.length ?
+                listLoTrinh.map((item, index) => {
                     return (
                         <AllSeriesItem 
                             key={index} 
@@ -31,7 +32,7 @@ export default function AllSeries() {
                             userInfo={userInfor}
                         />
                     );
-                })
+                }) : <div className="text-center mt-3">Không có lộ trình chưa đăng ký</div>
             }
         </div>
     )

@@ -8,7 +8,9 @@ import Content_Quizz_Success from "./Content_Quizz_Success";
 import ContentQuizz_ViewAnsers from "./Content_Quizz_ViewAnswer";
 import './Praticess.css'
 import Content_Quizz_Out_Time from "./Content_Quizz_Out_Time";
+
 export default function Content_Quizz() {
+  
   const dispatch = useDispatch();
   const baiHoc = useSelector((state) => state.baiHoc);
   const userInfor = useSelector((state) => state.authUser.userInfor);
