@@ -101,7 +101,7 @@ const BtnTitleVideo = React.memo(
                   ) : (
                     <a
                       onClick={() => {
-                        window.open(`https://backend.edubiz.vn/${lesson.moTa}`, '_blank').focus();
+                        window.open(`https://backend.edubiz.vn${lesson.moTa}`, '_blank').focus();
                       }}
                       // href={`https://backend.cyberlearn.vn/${lesson.moTa}`}
                       target="_blank"
