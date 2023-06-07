@@ -8,6 +8,11 @@ function TrueOrFalseQuestion({ question, handleUserAnswers, itemIndex }) {
         handleUserAnswers(items, [], itemIndex);
     }, []);
 
+    useEffect(() => {
+        const items = question.options.map(item => { return {...item, checked: false }})
+        handleUserAnswers(items, [], itemIndex);
+    }, [question.options]);
+
     const handleChecked = (e, index) => {
         const arrChecked = question.items.map((item, i) => {
             if(i == index) return { ...item, checked: true }

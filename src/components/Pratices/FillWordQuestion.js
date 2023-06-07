@@ -36,6 +36,10 @@ function FillWordQuestion({ question, handleUserAnswers, itemIndex }) {
         setOptions(getFillItem(question.description, '♥'));
     }, []);
 
+    useEffect(() => {
+        setOptions(getFillItem(question.description, '♥'));
+    }, [question.description]);
+
     const handleTextOption = (e, index) => {
         const arr = options.map((item, i) => {
             if(i == index) 

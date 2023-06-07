@@ -58,11 +58,14 @@ export default function ContentArticle_DetailKhoaHoc() {
   };
   let index_lesson = baiDaHoc.findIndex((item) => item === currentLesson.id);
   let isDaHoc = index_lesson !== -1 ? true : false;
+
+  
   return (
     <div className="w-full h-full flex-grow flex flex-col space-y-3   ">
       <div className="w-full   card_theme flex-grow">
-        <div className="w-full card_theme p-5 text-lg  article_content">
-          {ReactHtmlParser(noiDungArticle)}
+        <div className="w-full card_theme p-5 text-lg  article_content" >
+          {/* {console.log(noiDungArticle)} */}
+          <div className="article-table" dangerouslySetInnerHTML={{ __html: noiDungArticle }}></div>
           <div className="w-full  text-sm flex-shrink-0 flex items-center justify-end">
             {isDaHoc ? (
               <p className="font-medium text-blue-theme">

@@ -4,6 +4,7 @@ import ContentArticle_DetailKhoaHoc from "./ContentArticle_DetailKhoaHoc";
 import ContentQuizzWrite_DetailKhoaHoc from "./ContentQuizzWrite_DetailKhoaHoc";
 import ContentQuizz_DetailKhoaHoc from "./ContentQuizz_DetailKhoaHoc";
 import ContentVideo_DetailKhoaHoc from "./ContentVideo_DetailKhoaHoc";
+import './Content_DetailKhoaHoc.css'
 
 export default function Content_DetailKhoaHoc() {
   const typeContentDisplay = useSelector(

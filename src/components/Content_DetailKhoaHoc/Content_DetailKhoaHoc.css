@@ -1,0 +1,15 @@
+.article-table th,
+.article-table td{
+    border: 1px solid #ddd;
+    font-size: 0.9rem !important;
+    padding: 0.25rem;
+}
+
+.article-table br
+{  
+    line-height: normal !important;
+}
+
+.article-table{
+    overflow-y: scroll;
+}
