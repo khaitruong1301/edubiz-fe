@@ -1,15 +1,18 @@
 import { useMemo } from 'react';
 import './CertificateSeriesItem.css'
-import { Progress } from 'antd';
+import { Progress, message } from 'antd';
 import { useState, useEffect } from 'react';
 import CertificateReport from './certificate-report/CertificateReport';
 import { setCertificateReportKeyIndex } from '../../../../redux/reducer/certificateReducer';
+import { } from "../../../../";
 import { useDispatch, useSelector } from 'react-redux';
+import CertificateMobilePDF from '../../certificate-mobile-pdf/CertificateMobilePDF';
 
 export default function CertificateSeriesItem({ loTrinh, onToggle, isShow = false, keyIndex }) {
     const dispatch = useDispatch();
     const certificateItemReportKey = useSelector(state => state.certificate.certificateReportKeyIndex);
     const [toggleReport, setToggleReport] = useState(false);
+    const [visiblePDF, setVisiblePDF] = useState(false);
 
     let isDisable = false;
     let percent = Math.floor(
@@ -45,10 +48,20 @@ export default function CertificateSeriesItem({ loTrinh, onToggle, isShow = fals
     }
 
     useEffect(() => {
-        if(certificateItemReportKey.certificateReportKeyIndex != keyIndex){
+        if (certificateItemReportKey.certificateReportKeyIndex != keyIndex) {
             setToggleReport(false);
         }
     }, [certificateItemReportKey.certificateReportKeyIndex])
+
+    const handleDownloadChungNhan = () => {
+        if (!loTrinh.daHoanThanh)
+            return message.warning('Bạn chưa được cấp chứng nhận do chưa hoàn thành tất cả khóa học!');
+
+        if (diemTrungBinh < 7)
+            return message.warning('Bạn chưa được cấp chứng nhận do điểm trung bình chưa đạt 7.0 !');
+
+        setVisiblePDF(true)
+    }
 
 
     return (
@@ -76,8 +89,20 @@ export default function CertificateSeriesItem({ loTrinh, onToggle, isShow = fals
             </div>
             <div className='certificateseries-item_right'>
                 <i className="fa fa-bars" aria-hidden="true" onClick={(handleToggleReport)}></i>
-                <CertificateReport toggle={toggleReport}/>
+                <CertificateReport
+                    toggle={toggleReport}
+                    handleDownloadChungNhan={handleDownloadChungNhan}
+                />
             </div>
+            {
+                visiblePDF ?
+                    <CertificateMobilePDF
+                        chungNhan={loTrinh.chungNhan}
+                        handleClose={setVisiblePDF}
+                        loTrinh={loTrinh}
+                    />
+                    : null
+            }
         </div>
     )
 }

@@ -46,15 +46,15 @@ let HeaderPanel = ({ loTrinh }) => {
 
   let percent = Math.floor(
     (loTrinh.soLuongHoanThanh / loTrinh.soLuongBaiTap) * 100
-  );
+  ); 
 
   const handleDownloadChungNhan = (e) => {
     e.stopPropagation();
-    // if (!loTrinh.daHoanThanh)
-    //   return message.warning('Bạn chưa được cấp chứng nhận do chưa hoàn thành tất cả khóa học!');
+    if (!loTrinh.daHoanThanh)
+      return message.warning('Bạn chưa được cấp chứng nhận do chưa hoàn thành tất cả khóa học!');
 
-    // if (diemTrungBinh < 7)
-    //   return message.warning('Bạn chưa được cấp chứng nhận do điểm trung bình chưa đạt 7.0 !');
+    if (diemTrungBinh < 7)
+      return message.warning('Bạn chưa được cấp chứng nhận do điểm trung bình chưa đạt 7.0 !');
 
     setVisiblePDF(true)
   }

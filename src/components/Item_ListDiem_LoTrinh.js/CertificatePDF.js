@@ -6,7 +6,7 @@ import { jsPDF } from "jspdf";
 import './CertificatePDF.css'
 
 function CertificatePDF(props) {
-    const { chungNhan, loTrinh, userInfo } = props;
+    const { chungNhan, loTrinh, userInfo } = props; 
 
     const [image, setImage] = useState(null);
     const [noiDung, setNoiDung] = useState([]);
@@ -15,9 +15,8 @@ function CertificatePDF(props) {
 
     useEffect(() => {
         const img = new window.Image();
+        img.setAttribute('crossOrigin', 'anonymous');
         img.src = environment.baseUrl + chungNhan.hinhChungNhan;
-        // img.src = process.env.PUBLIC_URL + 'img/cybersoft.jpg'
-        // img.setAttribute('crossOrigin', 'anonymous');
         img.onload = () => {
             setImage(img);
         };

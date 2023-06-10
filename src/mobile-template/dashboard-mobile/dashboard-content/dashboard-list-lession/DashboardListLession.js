@@ -20,11 +20,12 @@ export default function DashboardListLession() {
                     dispatch(getLoTrinhDaDangKiAciton(userInfor.id))
                         .then((res) => {
                             let loTrinh = res?.payload[0];
-                            httpServ
-                                .getDetailKhoaHoc(loTrinh.danhSachKhoaHoc[0].id)
+                            if(loTrinh.danhSachKhoaHoc.length > 0){
+                                const khoaHocLast = loTrinh.danhSachKhoaHoc[0];
+                                httpServ
+                                .getDetailKhoaHoc(khoaHocLast.id)
                                 .then((res) => {
                                     let khoaHoc = res.data.content;
-                                    // console.log(khoaHoc.danhSachChuongHoc[0]);
                                     let chuongHoc = khoaHoc.danhSachChuongHoc[0];
                                     let data = {
                                         loTrinhId: khoaHoc.maLoTrinh,
@@ -40,6 +41,8 @@ export default function DashboardListLession() {
                                 .catch((err) => {
                                     // console.log("err", err);
                                 });
+                            }
+                            
                         })
                         .catch((err) => {
                             console.log(err);

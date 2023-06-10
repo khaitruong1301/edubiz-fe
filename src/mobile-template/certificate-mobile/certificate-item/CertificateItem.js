@@ -31,7 +31,13 @@ export default function CertificateItem({ loTrinh, userInfo, keyIndex }) {
     return (
         <div className="certificateitem">
             <div className="certificateitem-series">
-                <CertificateSeriesItem keyIndex={keyIndex} loTrinh={loTrinh} userInfo={userInfo} isShow={isShow} onToggle={onToggle}/>
+                <CertificateSeriesItem 
+                    keyIndex={keyIndex} 
+                    loTrinh={loTrinh} 
+                    userInfo={userInfo} 
+                    isShow={isShow} 
+                    onToggle={onToggle}
+                />
             </div>
             <div className={`certificateitem-courses ${isShow ? 'show' : 'hide'}`}>
                 {
