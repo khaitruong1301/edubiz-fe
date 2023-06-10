@@ -4,6 +4,9 @@ import logo from "../../assets/logo_opcacity.png";
 import "./table.css";
 let diemTB = 0;
 
+const TITLE = "HỆ THỐNG ĐÀO TẠO TRỰC TUYẾN EDUBIZ";
+const WEBSITE = 'https://edubiz.vn/'
+
 export default class LayOutInBangDiem extends Component {
   xuatBaiNop = () => {
     const { loTrinh } = this.props;
@@ -80,11 +83,12 @@ export default class LayOutInBangDiem extends Component {
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            background: `url(${logo}) center center / 80% no-repeat`,
+            // background: `url(${logo}) center center / 80% no-repeat`,
           }}
         >
-          <b style={{ fontSize: "18px", textAlign: "center", width: "100%" }}>
-            CyberSoft - Đào tạo chuyên gia lập trình
+          <b style={{ fontSize: "18px", textAlign: "center", width: "100%", margin: '1rem 0' }}>
+            { TITLE }
+            <br />
             <br />
             BẢNG ĐIỂM
           </b>
@@ -169,7 +173,7 @@ export default class LayOutInBangDiem extends Component {
                 <td style={{ fontSize: "18px" }} className="">
                   Ngày {dNow.getDate()} tháng {dNow.getMonth() + 1} năm{" "}
                   {dNow.getFullYear()}
-                  <br />
+                  {/* <br />
                   <br />
                   <b style={{ fontSize: "20px", padding: "0 18px" }}>
                     GIÁM ĐỐC
@@ -182,7 +186,7 @@ export default class LayOutInBangDiem extends Component {
                     className="m-0 inline-block p-0 "
                   />
                   <br />
-                  <b style={{ fontSize: "20px" }}> Lê Quang Song</b>
+                  <b style={{ fontSize: "20px" }}> Lê Quang Song</b> */}
                 </td>
               </tr>
             </tbody>
@@ -195,8 +199,8 @@ export default class LayOutInBangDiem extends Component {
             justifyContent: "space-around",
           }}
         >
-          <span>https://cybersoft.edu.vn/</span>
-          <span>https://cyberlearn.vn/</span>
+          <span>{WEBSITE}</span>
+          <span>{WEBSITE}</span>
         </div>
       </div>
     );

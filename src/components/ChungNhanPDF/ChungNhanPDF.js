@@ -3,6 +3,10 @@ import "./ChungNhan.css";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import ContentChungNhan from "./ContentChungNhan";
 export default function ChungNhanPDF({ chungNhan, userInfor }) {
+
+  
+
+
   return (
     <div>
       <PDFDownloadLink

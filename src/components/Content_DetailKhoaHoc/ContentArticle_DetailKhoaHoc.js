@@ -20,6 +20,7 @@ export default function ContentArticle_DetailKhoaHoc() {
     (state) => state.baiHoc.currentLesson.noiDung
   );
   const { danhSachBaiDaHoc } = useSelector((state) => state.khoaHoc);
+  
   const handleNextLesson = () => {
     let currentLessonIndex = tatCaBaiHoc.findIndex((item) => {
       return item.id === currentLesson.id;

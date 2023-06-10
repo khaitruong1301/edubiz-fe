@@ -22,12 +22,12 @@ export default function ChungNhanPage() {
       .getAllDiemBaiTapUser(userInfor.id)
       .then((res) => {
         dispatch(setDanhSachLoTrinh(res.data.content));
-        // console.log("res chung nhan page ", res);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+  
   return (
     <div className="w-full h-full flex flex-grow  p-3  flex-col ">
       <div className="w-full   card_theme flex-grow   space-y-7 p-3 ">
@@ -36,10 +36,10 @@ export default function ChungNhanPage() {
             <p className=" font-medium">
               Điều kiện in chứng nhận và bảng điểm:
             </p>
-            <p>- Hãy hoàn thành tất cả các bài tập của lộ trình.</p>
-            <p>- Điểm trung bình lộ trình trên 7 (đối với chứng nhận).</p>
+            <p>- Hãy hoàn thành tất cả các bài tập của khóa học.</p>
+            <p>- Điểm trung bình khóa học trên 7 (đối với chứng nhận).</p>
 
-            <p>- Mỗi lộ trình bạn sẽ được in chứng nhận và bảng điểm riêng.</p>
+            <p>- Mỗi khóa học bạn sẽ được in chứng nhận và bảng điểm riêng.</p>
           </div>
           <div className=" h-60 lg:h-80 w-60 lg:w-80 transform scale-150 ">
             <Lottie
