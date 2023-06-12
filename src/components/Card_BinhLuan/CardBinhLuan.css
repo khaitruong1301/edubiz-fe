@@ -1,0 +1,79 @@
+.CardBinhLuanItem {
+    border-bottom: 1px solid #bbb;
+    margin-bottom: 1rem;
+}
+
+.CardBinhLuanItem:last-child {
+    border-bottom: 0;
+}
+
+.CardBinhLuan_Input {
+    display: flex;
+    align-items: center;
+}
+
+.CardBinhLuan_Input input {
+    width: 100%;
+    margin-right: 1rem;
+}
+
+.CardBinhLuanItem_Icon {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.CardBinhLuanItem_Icon span {
+    margin-right: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+.CardBinhLuanItem__Text {
+    font-size: 1rem;
+    font-weight: unset;
+    margin-left: 1.5rem;
+    line-height: 1.35rem;
+}
+
+.CardBinhLuanItem_Reply {
+    margin-left: 1.5rem;
+}
+
+.CardBinhLuanItem_ReplyInput {
+    margin-bottom: 1rem;
+}
+
+.CardBinhLuanItem_ReplyIcon {
+    margin: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+}
+
+.CardBinhLuanItem_Children {
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.CardBinhLuanItem_Children .CardBinhLuanItem__Text {
+    border-bottom: 0;
+    margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 992px) {
+    .CardBinhLuanItem__Text {
+        font-size: 0.85rem;
+    }
+
+    .CardBinhLuanItem_Icon {
+        font-size: 0.85rem;
+    }
+}

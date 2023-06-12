@@ -52,6 +52,28 @@ class HttpRequestService {
     const uri = `lichsuhoctap/danhsachdahocnew/${idKhoacHoc}/${idNguoiDung}`;
     return AxiosServ.getMethod(uri, setLoading);
   };
+ 
+  // ======== BÌNH LUẬN KHÓA HỌC ===============
+  getBinhLuan_KhoacHoc = (maKhoaHoc, setLoading = true) => {
+    const uri = `binhluan/by-khoa-hoc/${maKhoaHoc}`;
+    return AxiosServ.getMethod(uri, setLoading);
+  };
+
+  postBinhLuan_KhoaHoc = (model, setLoading = true) => {
+    const uri = `binhluan`;
+    return AxiosServ.postMethod(uri, model, setLoading);
+  };
+
+  putBinhLuan_KhoaHoc = (id, model, setLoading = true) => {
+    const uri = `binhluan/${id}`;
+    return AxiosServ.putMethod(uri, model, setLoading);
+  };
+
+  // ======== Q & A ===============
+  postQandA_KhoacHoc = (model, setLoading = true) => {
+    const uri = `cauhoithaoluan`;
+    return AxiosServ.postMethod(uri, model, setLoading);
+  };
   getQandA_KhoacHoc = (idLoTrinh, setLoading = true) => {
     const uri = `cauhoithaoluan/lay-theo-lo-trinh/${idLoTrinh}`;
     return AxiosServ.getMethod(uri, setLoading);

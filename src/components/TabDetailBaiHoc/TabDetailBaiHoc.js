@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactHtmlParser from "react-html-parser";
 import StaticBaiTapKhoaHoc from "../BaiTap/StaticBaiTapKhoaHoc";
 import CardThaoLuanQ_A from "../CardThaoLuanQ_A/CardThaoLuanQ_A";
+import CardBinhLuan from "../Card_BinhLuan/CardBinhLuan";
 const { TabPane } = Tabs;
 function TabDetailBaiHoc() {
   const { khoaHocContent, allLessons } = useSelector((state) => state.khoaHoc);
@@ -23,6 +24,7 @@ function TabDetailBaiHoc() {
       totalBaiTap = totalBaiTap + lesson.thoiLuong;
     }
   }
+
   return (
     <div
       className="coursemobile-lessioninfo bg-transparent w-full h-max-content  "
@@ -82,6 +84,13 @@ function TabDetailBaiHoc() {
             className="w-full"
           >
             <CardThaoLuanQ_A idLoTrinh={khoaHoc.khoaHocContent.maLoTrinh}></CardThaoLuanQ_A>
+          </TabPane>
+          <TabPane
+            tab={<span className="text-lg">Thảo luận</span>}
+            key="4"
+            className="w-full"
+          >
+            <CardBinhLuan maKhoaHoc={khoaHoc.khoaHocContent.id}/>
           </TabPane>
         </Tabs>
       </div>

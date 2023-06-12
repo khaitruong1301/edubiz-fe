@@ -72,6 +72,10 @@
     padding: 0 !important;
 }
 
+.course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardBinhLuan {
+    padding: 0.25rem 0.25rem 1rem 0.25rem !important;
+}
+
 .course-mobile .coursemobile-lessioninfo .ant-tabs-mobile .CardThaoLuanQ_A .card_theme_item {
     margin: 0 !important;
     padding: 0.25rem !important;
