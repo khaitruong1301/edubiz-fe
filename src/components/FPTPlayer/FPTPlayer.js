@@ -26,6 +26,7 @@ export default class FPTPlayer extends Component {
     }
 
     componentDidMount() {
+        this.props.setIsDisableHoanThanh(true)
         setTimeout(() => {
             if (this.player) {
                 this.player.subscribeToStateChange(this.handleStateChange.bind(this));

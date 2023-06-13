@@ -91,9 +91,6 @@ export default function DetailKhoaHoc({ match }) {
                 khoaHoc.allLessons = allLessons
               }
 
-              console.log(Q_A);
-              console.log(DiemBaiTAp);
-
               let results = async function () {
                 results = await Promise.all([Q_A, DiemBaiTAp])
                 khoaHoc.QandA = results[0]

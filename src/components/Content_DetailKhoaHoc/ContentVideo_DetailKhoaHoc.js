@@ -55,8 +55,10 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
         .catch((err) => {
           console.log(err);
         });
+
+    seIsDisableHoanThanh(true)
   }, [currentLesson.id]);
-  
+
   const baiDaHoc = useSelector((state) => state.khoaHoc.danhSachBaiDaHoc);
   const khoaHocContent = useSelector((state) => state.khoaHoc.khoaHocContent);
   const tatCaBaiHoc = useSelector((state) => state.khoaHoc.allLessons);
@@ -65,12 +67,14 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
     let currentLessonIndex = tatCaBaiHoc.findIndex((item) => {
       return item.id === currentLesson.id;
     });
+
     const data = {
       loTrinhId: khoaHocContent.maLoTrinh,
       baiHocId: currentLesson.id,
       khoaHocId: khoaHocContent.id,
       nguoiDungId: userInfor?.id,
     };
+
     !checkDemoUser() &&
       httpServ
         .postCompletedBaiHoc(data)
@@ -119,9 +123,11 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
     !checkDemoUser() &&
       dispatch(setCurrentLesson(tatCaBaiHoc[nextLessonIndex]));
   };
+
   let index_lesson = baiDaHoc.findIndex(
     (item) => item.baiHocId === currentLesson.id
   );
+
   let isDaHoc = index_lesson !== -1 ? true : false;
   if (checkDemoUser()) {
     userInfor.nuocNgoai = localStorageServ.nuocngoaiDemo.get() * 1;
@@ -180,38 +186,40 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
           </div>
 
           <div className="w-max uppercase transform lg:scale-150 -translate-x-3 lg:-translate-x-7 flex-shrink-0 flex items-center my-2">
-            {isDaHoc ? (
-              <p className="font-medium text-color-blue-white">
-                <i className="fa fa-check mr-2 text-sm flex-shrink-0 text-green-600"></i>{" "}
-                Đã hoàn thành
-              </p>
-            ) : isDisableHoanThanh ? (
-              <Tooltip
-                placement="topLeft"
-                title="Bạn cần xem tiếp để hoàn thành"
-                arrowPointAtCenter
-                defaultVisible={false}
-              >
-                <Checkbox
-                  disabled={isDisableHoanThanh}
-                  checked={false}
-                  className="font-medium text-color-blue-white "
-                >
-                  {" "}
-                  Hoàn thành
-                </Checkbox>
-              </Tooltip>
-            ) : (
-              <Checkbox
-                disabled={isDisableHoanThanh}
-                checked={false}
-                className="font-medium text-color-blue-white"
-                onChange={handleNextLesson}
-              >
-                {" "}
-                Hoàn thành
-              </Checkbox>
-            )}
+            {
+              isDaHoc ? (
+                <p className="font-medium text-color-blue-white">
+                  <i className="fa fa-check mr-2 text-sm flex-shrink-0 text-green-600"></i>{" "}
+                  Đã hoàn thành
+                </p>
+              )
+                : isDisableHoanThanh ? (
+                  <Tooltip
+                    placement="topLeft"
+                    title="Bạn cần xem tiếp để hoàn thành"
+                    arrowPointAtCenter
+                    defaultVisible={false}
+                  >
+                    <Checkbox
+                      disabled={isDisableHoanThanh}
+                      checked={false}
+                      className="font-medium text-color-blue-white "
+                    >
+                      {" "}
+                      Hoàn thành
+                    </Checkbox>
+                  </Tooltip>
+                ) : (
+                  <Checkbox
+                    disabled={isDisableHoanThanh}
+                    checked={false}
+                    className="font-medium text-color-blue-white"
+                    onChange={handleNextLesson}
+                  >
+                    {" "}
+                    Hoàn thành
+                  </Checkbox>
+                )}
           </div>
         </div>
       </div>

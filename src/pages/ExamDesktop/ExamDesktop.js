@@ -33,11 +33,11 @@ function ExamDesktop(props) {
         httpServ.getDeThiTheoNguoiDung(userInfo.id)
             .then(res => {
                 const data = res.data.content.map(item => {
-                    
+
                     return {
                         ...item,
                         // ngayKichHoat: new Date(item.ngayKichHoat).toLocaleDateString("en-IN"),
-                        kichHoat: item.daNopBai ? true : checkDate(item.ngayKichHoat)
+                        kichHoat: checkDate(item.ngayKichHoat)
                         // kichHoat: true
                     }
                 })
@@ -49,7 +49,6 @@ function ExamDesktop(props) {
     }, [])
 
     const handleDoWork = (deThi) => {
-        if (deThi.daNopBai) return message.error('Bài kiểm tra đã hoàn thành và đã nộp!');
         if (!deThi.kichHoat) return message.error('Bài kiểm tra chưa kích hoạt do chưa đến thời gian thực hiện!');
 
         setVisibled(true);
@@ -70,15 +69,20 @@ function ExamDesktop(props) {
                                 <span>Thời gian làm bài: 45 phút</span>
                             </div>
                             <div className='ExamDesktopItem-Button'>
-                                <button className={item.kichHoat ? 'btn-info' : ''} onClick={() => handleDoWork(item)}>Làm bài</button>
+                                {
+                                    item.daNopBai ? <button className={item.kichHoat ? 'btn-info' : ''} onClick={() => handleDoWork(item)}>
+                                        { item.kichHoat ? 'Làm bài' : 'Đang khóa' }
+                                    </button> :
+                                    <button> Đã nộp bài </button>
+                                }
                             </div>
                         </div>
                     </div>
                 })
             }
             {
-                visibled ? <ExamDesktopForm 
-                    baiKiemTra={baiKiemTra} 
+                visibled ? <ExamDesktopForm
+                    baiKiemTra={baiKiemTra}
                     handleClose={setVisibled}
                 /> : null
             }

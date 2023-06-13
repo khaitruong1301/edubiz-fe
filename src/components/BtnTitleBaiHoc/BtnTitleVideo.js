@@ -1,19 +1,23 @@
-import { Tooltip } from "antd";
+import { Tooltip, message } from "antd";
 
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setCurrentLesson } from "../../redux/reducer/baiHocContentReducer";
 import httpServ from "../../services/http.service";
 const BtnTitleVideo = React.memo(
-  ({ lesson, isLearned, hightLightcss, isCancelUserClick, isDemoUser,  onToggle }) => {
+  ({ lesson, isLearned, hightLightcss, isCancelUserClick, isDemoUser, onToggle }) => {
+
     const dispatch = useDispatch();
+
     const getUrlVideo = (noiDung) => {
+      if (!isCancelUserClick) return message.error('Bạn chưa hoàn thành bài đang học!');
       httpServ.getUrlVideo_FPT(noiDung).then((res) => {
         dispatch(setCurrentLesson(lesson));
-        if(onToggle) 
+        if (onToggle)
           onToggle();
       });
     };
+
     let disableXemdemo = isDemoUser && !lesson.xemDemo;
 
     let color = isCancelUserClick ? "text-color-title" : "text-color-content";
@@ -21,6 +25,10 @@ const BtnTitleVideo = React.memo(
     if (disableXemdemo) {
       color = "text-color-content";
     }
+
+
+    
+
     const renderButton = () => {
       return (
         <div
@@ -47,7 +55,7 @@ const BtnTitleVideo = React.memo(
             <div className="   break-words text-center px-1 font-normal text-sm lg:text-lg  text-blue-theme flex items-center space-y-1  justify-start w-6 h-6 left-6  flex-shrink-0 rounded-full bg-gray-300 mr-2">
               <i
                 className={
-                  isLearned
+                  isLearned || hightLightcss
                     ? "fa fa-check mr-3 text-sm flex-shrink-0 text-green-600"
                     : "fa fa-lock mr-3 flex-shrink-0"
                 }
@@ -89,8 +97,7 @@ const BtnTitleVideo = React.memo(
                     >
                       <span>
                         <button
-                          className="flex items-center space-x-1 h-max-content rounded p-1 border-gray-600 w-max flex-shrink-0 border-1 text-color-content cursor-pointer hover:text-gray-900  px-2 transform duration-300 hover:border-gray-500
-            "
+                          className="flex items-center space-x-1 h-max-content rounded p-1 border-gray-600 w-max flex-shrink-0 border-1 text-color-content cursor-pointer hover:text-gray-900  px-2 transform duration-300 hover:border-gray-500"
                         >
                           <i className="fa fa-folder-open"></i>
                           <span>Tài nguyên</span>

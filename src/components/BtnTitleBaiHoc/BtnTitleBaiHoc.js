@@ -14,12 +14,15 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
   const { lastVideoCanWatchIndex, testMode } = useSelector(
     (state) => state.baiHoc
   );
+
   let idBaiHoc = lesson.id;
   let isLearned = false;
   let indexCheck = danhSachBaiDaHoc.findIndex((item) => { return item.baiHocId == idBaiHoc })
+
   if (indexCheck !== -1) {
     isLearned = true;
   }
+
   let isCancelUserClick = () => {
     if (isDemoUser || testMode) {
       return true;
@@ -49,7 +52,8 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
   const hightLightcss =
     currentLesson?.id === lesson.id
       ? "btn-highlight-baihoc bg-opacity-30  text-color-title font-medium hover "
-      : "  ";
+      : "";
+      
   switch (lesson.maLoaiBaiHoc) {
     case "VIDEO_FPT":
       return (
