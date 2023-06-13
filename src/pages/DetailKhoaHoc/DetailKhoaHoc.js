@@ -70,81 +70,89 @@ export default function DetailKhoaHoc({ match }) {
 
 
   useEffect(() => {
-    !isDemoUser &&
-      httpServ.getDanhSachBaiDaHoc(idKhoaHoc, userInfor?.id).then((res) => {
-        let danhSachBaiDaHocRespon = res.data.content.baiDaHoc
+    try {
+      !isDemoUser &&
+        httpServ.getDanhSachBaiDaHoc(idKhoaHoc, userInfor?.id).then((res) => {
+          let danhSachBaiDaHocRespon = res.data.content.baiDaHoc
 
-        khoaHoc.danhSachBaiDaHoc = res.data.content.baiDaHoc
+          khoaHoc.danhSachBaiDaHoc = res.data.content.baiDaHoc
 
-        httpServ
-          .getDetailKhoaHoc(idKhoaHoc)
-          .then((res) => {
-            let khoaHocContent = res.data.content;
-            khoaHoc.khoaHocContent = khoaHocContent
-            let Q_A = fetchQ_A(khoaHocContent.maLoTrinh, userInfor?.id)
-            let DiemBaiTAp = fetchDiemAndBaiTap(khoaHocContent.maLoTrinh, userInfor?.id)
-            let allLessons = [];
-            for (let i = 0; i < khoaHocContent.danhSachChuongHoc.length; i++) {
-              let course = khoaHocContent.danhSachChuongHoc[i].danhSachBaiHoc;
-              allLessons = [...allLessons, ...course];
-              khoaHoc.allLessons = allLessons
-            }
-            let results = async function () {
-              results = await Promise.all([Q_A, DiemBaiTAp])
-              khoaHoc.QandA = results[0]
-              khoaHoc.diemAndBaiTap = results[1]
-              dispatch(setAllKeyKhoaHocReducer(khoaHoc))
-            }()
-
-
-            let lessonConvered = {}
-            if (isDemoUser && danhSachBaiDaHocRespon.length === 0) {
-              let index = allLessons.findIndex((lesson) => {
-                return lesson.xemDemo;
-              });
-              lessonConvered = { ...allLessons[index] };
-            }
-            if (danhSachBaiDaHocRespon.length === 0) {
-              lessonConvered = { ...allLessons[0] };
-            } else {
-              if (isDemoUser) {
-                return;
+          httpServ
+            .getDetailKhoaHoc(idKhoaHoc)
+            .then((res) => {
+              let khoaHocContent = res.data.content;
+              khoaHoc.khoaHocContent = khoaHocContent
+              let Q_A = fetchQ_A(khoaHocContent.maLoTrinh, userInfor?.id)
+              let DiemBaiTAp = fetchDiemAndBaiTap(khoaHocContent.maLoTrinh, userInfor?.id)
+              let allLessons = [];
+              for (let i = 0; i < khoaHocContent.danhSachChuongHoc.length; i++) {
+                let course = khoaHocContent.danhSachChuongHoc[i].danhSachBaiHoc ?? [];
+                allLessons = [...allLessons, ...course];
+                khoaHoc.allLessons = allLessons
               }
-              if (idBaiDangHocDashboard) {
-                let currentLessonIndex = allLessons.findIndex((item) => {
-                  return item.id * 1 === idBaiDangHocDashboard * 1;
+
+              console.log(Q_A);
+              console.log(DiemBaiTAp);
+
+              let results = async function () {
+                results = await Promise.all([Q_A, DiemBaiTAp])
+                khoaHoc.QandA = results[0]
+                khoaHoc.diemAndBaiTap = results[1]
+                dispatch(setAllKeyKhoaHocReducer(khoaHoc))
+              }()
+
+
+              let lessonConvered = {}
+              if (isDemoUser && danhSachBaiDaHocRespon.length === 0) {
+                let index = allLessons.findIndex((lesson) => {
+                  return lesson.xemDemo;
                 });
-                lessonConvered = { ...allLessons[currentLessonIndex] };
-              } else {
-                let lastLessonIndex = GetLastVideoCanWatch(khoaHoc.danhSachBaiDaHoc, khoaHoc.allLessons)
-                if (lastLessonIndex === allLessons.length - 1) {
-                  lessonConvered = {
-                    ...allLessons[lastLessonIndex],
-                  };
-                } else {
-                  lessonConvered = {
-                    ...allLessons[lastLessonIndex + 1],
-                  };
-                }
+                lessonConvered = { ...allLessons[index] };
               }
-              let lastVideoCanWatchIndex = GetLastVideoCanWatch(khoaHoc.danhSachBaiDaHoc, khoaHoc.allLessons)
-              baiHoc.lastVideoCanWatchIndex = lastVideoCanWatchIndex
-            }
-            baiHoc.currentLesson = lessonConvered
+              if (danhSachBaiDaHocRespon.length === 0) {
+                lessonConvered = { ...allLessons[0] };
+              } else {
+                if (isDemoUser) {
+                  return;
+                }
+                if (idBaiDangHocDashboard) {
+                  let currentLessonIndex = allLessons.findIndex((item) => {
+                    return item.id * 1 === idBaiDangHocDashboard * 1;
+                  });
+                  lessonConvered = { ...allLessons[currentLessonIndex] };
+                } else {
+                  let lastLessonIndex = GetLastVideoCanWatch(khoaHoc.danhSachBaiDaHoc, khoaHoc.allLessons)
+                  if (lastLessonIndex === allLessons.length - 1) {
+                    lessonConvered = {
+                      ...allLessons[lastLessonIndex],
+                    };
+                  } else {
+                    lessonConvered = {
+                      ...allLessons[lastLessonIndex + 1],
+                    };
+                  }
+                }
+                let lastVideoCanWatchIndex = GetLastVideoCanWatch(khoaHoc.danhSachBaiDaHoc, khoaHoc.allLessons)
+                baiHoc.lastVideoCanWatchIndex = lastVideoCanWatchIndex
+              }
+              baiHoc.currentLesson = lessonConvered
 
-            dispatch(setAllKeyBaiHocReducer(baiHoc))
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      });
-    return () => {
-      let newBaiHoc = CloneObjectByJSON(baiHoc)
-      newBaiHoc.currentLesson = null;
-      newBaiHoc.idBaiDangHocDashboard = null
-      dispatch(setAllKeyBaiHocReducer(newBaiHoc))
-      dispatch(setKhoaHocContent([]))
-    };
+              dispatch(setAllKeyBaiHocReducer(baiHoc))
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        });
+      return () => {
+        let newBaiHoc = CloneObjectByJSON(baiHoc)
+        newBaiHoc.currentLesson = null;
+        newBaiHoc.idBaiDangHocDashboard = null
+        dispatch(setAllKeyBaiHocReducer(newBaiHoc))
+        dispatch(setKhoaHocContent([]))
+      };
+    } catch (error) {
+
+    }
   }, [idKhoaHoc]);
   useEffect(() => {
     isDemoUser &&

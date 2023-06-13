@@ -269,6 +269,16 @@ class HttpRequestService {
     const uri = `/nganhangdethi/${id}`;
     return AxiosServ.getMethod(uri, setLoading);
   };
+
+  getDeThiTheoNguoiDung = (maNguoiDung, setLoading = true) => {
+    const uri = `/dethinguoidung/by-nguoi-dung/${maNguoiDung}`;
+    return AxiosServ.getMethod(uri, setLoading);
+  };
+
+  putDeThiNguoiDung = (id, data, setLoading = true) => {
+    const uri = `/dethinguoidung/${id}`;
+    return AxiosServ.putMethod(uri, data, setLoading);
+  };
 }
 
 const httpServ = new HttpRequestService();

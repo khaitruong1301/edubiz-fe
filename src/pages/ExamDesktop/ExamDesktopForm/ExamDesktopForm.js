@@ -1,7 +1,7 @@
 import { ExamTestMobile } from "../../../mobile-template";
 import { CloseOutlined } from '@ant-design/icons'
-import './ExamDesktopForm.css'
-function ExamDesktopForm({ handleClose }) {
+import './ExamDesktopForm.css';
+function ExamDesktopForm({ handleClose, baiKiemTra }) {
 
     return (
         <div className="ExamDesktopForm">
@@ -9,7 +9,7 @@ function ExamDesktopForm({ handleClose }) {
                 <div className="ExamDesktopFormHeader">
                     <div><CloseOutlined onClick={() => handleClose(false)}/></div>
                 </div>
-                <ExamTestMobile closeModal={handleClose}/>
+                <ExamTestMobile baiKiemTra={baiKiemTra} closeModal={handleClose}/>
             </div>
         </div>
     )

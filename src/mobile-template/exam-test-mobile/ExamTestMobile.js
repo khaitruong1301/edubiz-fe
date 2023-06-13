@@ -8,15 +8,16 @@ import VideoSection from './video-section/VideoSection';
 import httpServ from '../../services/http.service';
 import QuestionSection from './question-section/QuestionSection';
 import { NavBar } from '../common';
-import { Button, Modal, Space } from 'antd';
+import { Button, Modal, Space, message } from 'antd';
 
 function ExamTestMobile(props) {
 
+    const { baiKiemTra } = props;
     const [model, setModel] = useState(null);
     const [disabled, setDisabled] = useState(false);
 
     useEffect(() => {
-        httpServ.getDeThiTheoId(6)
+        httpServ.getDeThiTheoId(baiKiemTra.maDeThi)
             .then(res => {
                 let examModel = res.data.content;
                 const listSection = JSON.parse(examModel.examContent);
@@ -28,8 +29,9 @@ function ExamTestMobile(props) {
                     }
                 });
                 setModel(examModel);
+                setDisabled(baiKiemTra.daNopBai);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }, []);
 
     const testGrading = (question) => {
@@ -48,7 +50,6 @@ function ExamTestMobile(props) {
         }
         return checked ? 1 : 0;
     }
-
 
     const handleSetAnwers = (answer, index) => {
         setModel({
@@ -80,33 +81,63 @@ function ExamTestMobile(props) {
         }
     }
 
+    const handleNopBaiKiemTra = (baiNop) => {
+        baiNop.baiDaNop = JSON.stringify(baiNop.baiDaNop);
+        httpServ.putDeThiNguoiDung(baiNop.id, baiNop)
+            .then(res => {
+                message.success('Nộp bài thành công!')
+                setDisabled(true);
+            })
+            .catch(error => {
+                message.error('Nộp bài thất bại!')
+                console.log(error.err.response.data)
+            });
+    }
+
     const handleSubmit = () => {
-        const listQuestionSection = model.examContent.filter(item => item.type == sectionTypes.QUESTION);
-        let coin = 0;
-        let count = 0;
-        listQuestionSection.forEach((item, i) => {
-            if (item.questionType != questionTypes.PARAGRAPH &&
-                item.questionType != questionTypes.SHORT_ANSWER) {
-                coin = coin + testGrading(item);
-                count++;
-            }
-        });
-        Modal.success({
-            title: 'Tổng điểm kết quả bài kiểm tra của bạn',
-            content: <div>
-                <div className='exam-result'>
-                    <b>Điểm</b>
-                    <div className='exam-result-coin'>
-                        <b>{Math.ceil((coin / count) * 100)}</b>
+        if (!model.autoMark) {
+            const listQuestionSection = model.examContent.filter(item => item.type == sectionTypes.QUESTION);
+            let coin = 0;
+            let count = 0;
+            listQuestionSection.forEach((item, i) => {
+                if (item.questionType != questionTypes.PARAGRAPH &&
+                    item.questionType != questionTypes.SHORT_ANSWER) {
+                    coin = coin + testGrading(item);
+                    count++;
+                }
+            });
+
+            Modal.success({
+                title: 'Tổng điểm kết quả bài kiểm tra của bạn',
+                content: <div>
+                    <div className='exam-result'>
+                        <b>Điểm</b>
+                        <div className='exam-result-coin'>
+                            <b>{Math.ceil((coin / count) * 100)}</b>
+                        </div>
+                        <b>Trả lời đúng {coin}/{count} câu hỏi</b>
                     </div>
-                    <b>Trả lời đúng {coin}/{count} câu hỏi</b>
-                </div>
-            </div>,
-            okText: 'Xác nhận',
-            onOk: () => {
-                setDisabled(true)
-            }
-        });
+                </div>,
+                okText: 'Xác nhận',
+                onOk: () => {
+                    const baiNop = {
+                        ...baiKiemTra,
+                        baiDaNop: model.examContent.filter(x => x.type == sectionTypes.QUESTION),
+                        daNopBai: true,
+                        tongDiem: Math.ceil((coin / count) * 100)
+                    };
+                    handleNopBaiKiemTra(baiNop);
+                }
+            });
+        }
+        else{
+            const baiNop = {
+                ...baiKiemTra,
+                baiDaNop: model.examContent.filter(x => x.type == sectionTypes.QUESTION),
+                daNopBai: true
+            };
+            handleNopBaiKiemTra(baiNop);
+        }
     }
 
     return (
@@ -120,7 +151,7 @@ function ExamTestMobile(props) {
                         }) : null
                     }
                 </div>
-                <div className='examtest-mobile-button' style={{display: disabled ? 'none' : 'flex'}} onClick={(handleSubmit)}>
+                <div className='examtest-mobile-button' style={{ display: disabled ? 'none' : 'flex' }} onClick={(handleSubmit)}>
                     <span>Hoàn thành</span>
                 </div>
             </div>
