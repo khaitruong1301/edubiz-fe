@@ -35,11 +35,11 @@ function ToolTipHuyHieu({ userInfor }) {
         </div>
       }
     >
-      <img
+     {/* <img
         src={`${environment.baseUrl}/${userInfor?.huyHieu}`}
         className={`w-12  lg:w-16 h-12 lg:h-16 m-0 hover cursor-pointer`}
         alt=""
-      />
+      />  */}
     </Tooltip>
   );
 }

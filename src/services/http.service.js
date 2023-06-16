@@ -87,6 +87,16 @@ class HttpRequestService {
     return AxiosServ.getMethod(uri, setLoading);
   };
 
+  putChangePassword = (model, setLoading = true) => {
+    const uri = `nguoidung/change-password`;
+    return AxiosServ.putMethod(uri, model, setLoading);
+  };
+
+  putChangeAvatar = (model, setLoading = true) => {
+    const uri = `nguoidung/change-avatar`;
+    return AxiosServ.putMethod(uri, model, setLoading);
+  };
+
   postCompletedBaiHoc = (data, setLoading = true) => {
     const uri = `lichsuhoctap/hoanthanhbaihocnew`;
     return AxiosServ.postMethod(uri, data, setLoading);

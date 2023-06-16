@@ -16,6 +16,7 @@ const URL_PAGE = {
     PROFILE: "/profile",
     EVENT: "/event",
     COURSE: "/course",
+    EXAM_TEST: "/exam-test",
     LOGIN: "/lms",
 }
 

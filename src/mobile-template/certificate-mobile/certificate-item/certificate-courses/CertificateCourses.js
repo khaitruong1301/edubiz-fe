@@ -12,16 +12,16 @@ export default function CertificateCourses({ khoaHoc, keyIndex }) {
     const [toggle, setToggle] = useState(false);
 
     useEffect(() => {
-        if(certificateItemCourseKey.certificateCourseKeyIndex != keyIndex){
+        if (certificateItemCourseKey.certificateCourseKeyIndex != keyIndex) {
             setToggle(false);
         }
     }, [certificateItemCourseKey.certificateCourseKeyIndex])
 
 
-    const onToggle = () => {
-        setToggle(!toggle);
-        dispatch(setCertificateCourseKeyIndex(keyIndex));
-    }
+    // const onToggle = () => {
+    //     setToggle(!toggle);
+    //     dispatch(setCertificateCourseKeyIndex(keyIndex));
+    // }
 
     const renderStatus = (status) => {
         switch (status) {
@@ -38,39 +38,34 @@ export default function CertificateCourses({ khoaHoc, keyIndex }) {
 
     return (
         <div className="certificatecourses-item">
-            <div className="certificatecourses-title" onClick={(onToggle)}>
+            <div className="certificatecourses-title">
                 <span>{khoaHoc.tenKhoaHoc}</span>
-                <span><i className={`fa ${toggle ? 'fa-angle-up' : 'fa-angle-down'}`} aria-hidden="true"></i></span>
+                {/* <span><i className={`fa ${toggle ? 'fa-angle-up' : 'fa-angle-down'}`} aria-hidden="true"></i></span> */}
             </div>
-            <div className={`certificatecourses-info ${toggle ? 'show' : 'hide'}`}>
+            <div className='certificatecourses-info show'>
                 {
                     khoaHoc.danhSachBaiTap.map((baiTap, index) => {
-                       
+
                         return <div key={index} className="certificatecourses-info_item">
                             <div className="certificatecourses-info_row">
-                                <span>Tên bài tập: </span>
-                                <span>{baiTap.tenBaiTap}</span>
+                                <b>{baiTap.tenBaiTap}</b>
                             </div>
                             <div className="certificatecourses-info_row">
-                                <span>Loại bài tập: </span>
+                                <span className="info_row-title">Loại bài tập: </span>
                                 <span>{baiTap.loaiBaiTap === QUIZ ? "Trắc nghiệm" : "Nộp"}</span>
                             </div>
-                            <div className="certificatecourses-info_row">
-                                <span>Trạng thái: </span>
+                            {/* <div className="certificatecourses-info_row">
+                                <span className="info_row-title">Trạng thái: </span>
                                 {renderStatus(baiTap.trangThai)}
+                            </div> */}
+                            <div className="certificatecourses-info_row">
+                                <span className="info_row-title">Điểm: </span>
+                                <b style={{ color: 'red' }}>{baiTap.diem}</b>
                             </div>
-                            {
-                                baiTap.trangThai == 1 ? <>
-                                    <div className="certificatecourses-info_row">
-                                        <span>Điểm: </span>
-                                        <span>{baiTap.diem}</span>
-                                    </div>
-                                    <div className="certificatecourses-info_row">
-                                        <span>Nhận xét: </span>
-                                        <span>{baiTap.nhanXet}</span>
-                                    </div>
-                                </>:<></>
-                            }
+                            {/* <div className="certificatecourses-info_row">
+                                <span className="info_row-title">Nhận xét: </span>
+                                <span>{baiTap.nhanXet}</span>
+                            </div> */}
                         </div>
                     })
                 }

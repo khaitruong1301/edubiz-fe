@@ -107,7 +107,8 @@ function ExamTestMobile(props) {
                 }
             });
 
-            Modal.success({
+            Modal.confirm({
+                type: 'success',
                 title: 'Tổng điểm kết quả bài kiểm tra của bạn',
                 content: <div>
                     <div className='exam-result'>
@@ -118,6 +119,7 @@ function ExamTestMobile(props) {
                         <b>Trả lời đúng {coin}/{count} câu hỏi</b>
                     </div>
                 </div>,
+                cancelText: 'Đóng',
                 okText: 'Xác nhận',
                 onOk: () => {
                     const baiNop = {
@@ -151,8 +153,8 @@ function ExamTestMobile(props) {
                         }) : null
                     }
                 </div>
-                <div className='examtest-mobile-button' style={{ display: disabled ? 'none' : 'flex' }} onClick={(handleSubmit)}>
-                    <span>Hoàn thành</span>
+                <div className={`examtest-mobile-button ${disabled ? 'button-disabled' : ''}`} >
+                    <button onClick={(handleSubmit)} disabled={disabled}>Hoàn thành</button>
                 </div>
             </div>
         </>

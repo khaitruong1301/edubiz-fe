@@ -38,7 +38,12 @@
     display: inline-block;
 }
 
-.certificatecourses-info_row span:first-child{
+.certificatecourses-info_row b{
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.info_row-title{
     color: #413f3f;
     margin-right: 0.5rem;
     width: 5rem;

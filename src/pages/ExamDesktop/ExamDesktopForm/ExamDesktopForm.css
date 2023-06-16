@@ -1,4 +1,4 @@
-.ExamDesktopForm{
+.ExamDesktopForm {
     display: flex;
     justify-content: center;
     position: fixed;
@@ -11,7 +11,8 @@
     background: rgba(0, 0, 0, 0.16);
     z-index: 999;
 }
-.ExamDesktopFormContent{
+
+.ExamDesktopFormContent {
     width: 50% !important;
     box-shadow: rgba(0, 0, 0, 0.20) 0px 1px 4px;
     background: #fff;
@@ -20,7 +21,7 @@
     padding-top: 2rem;
 }
 
-.ExamDesktopFormHeader{
+.ExamDesktopFormHeader {
     width: 100vw;
     position: fixed;
     top: 0;
@@ -34,7 +35,7 @@
     background: transparent;
 }
 
-.ExamDesktopFormHeader > div{
+.ExamDesktopFormHeader>div {
     width: 50%;
     height: 100%;
     display: flex;
@@ -44,20 +45,20 @@
     background: #fff;
 }
 
-.ExamDesktopFormHeader span{
+.ExamDesktopFormHeader span {
     cursor: pointer;
 }
 
-.ExamDesktopFormContent .navbar{
+.ExamDesktopFormContent .navbar {
     display: none;
 }
 
-.ExamDesktopForm .examtest-mobile{
+.ExamDesktopForm .examtest-mobile {
     width: 100% !important;
     padding: 0.5rem 1.5rem;
 }
 
-.ExamDesktopForm .examtest-mobile-button{
+.ExamDesktopForm .examtest-mobile-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,8 +66,8 @@
     margin-bottom: 1rem;
 }
 
-.ExamDesktopForm .examtest-mobile-button span{
-    background:#1890ff;
+.ExamDesktopForm .examtest-mobile-button button {
+    background: #1890ff;
     color: #fff;
     padding: 0.5rem 3rem;
     cursor: pointer;
@@ -74,19 +75,50 @@
 
 .ExamDesktopForm .mobile-question-text,
 .ExamDesktopForm .mobile-question-image,
-.ExamDesktopForm .mobile-question-desc{
+.ExamDesktopForm .mobile-question-desc {
     margin-bottom: 1rem;
 }
 
-.ExamDesktopForm .mobile-question-text{
+.ExamDesktopForm .mobile-question-text {
     margin-top: 0.25rem;
 }
 
-.ExamDesktopForm .mobile-question .mobile-option-item{
+.ExamDesktopForm .mobile-question .mobile-option-item {
     margin-bottom: 1rem;
 }
 
 /* width */
 ::-webkit-scrollbar {
     width: 1px;
-  }
+}
+
+
+@media screen and (max-width: 992px) {
+    .ExamDesktopFormHeader>div {
+        width: 100%;
+    }
+
+    .ExamDesktopForm .examtest-mobile {
+        width: 100vw !important;
+        padding: 0 0.25rem !important;
+    }
+
+    .ExamDesktopFormContent {
+        width: 100% !important;
+    }
+
+    .examtest-mobile-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .examtest-mobile-button.button-disabled button{
+        background: #ddd;
+        color: rgba(0,0,0,0.5);
+    }
+
+    .exam-result{
+        padding-right: 4rem;
+    }
+}

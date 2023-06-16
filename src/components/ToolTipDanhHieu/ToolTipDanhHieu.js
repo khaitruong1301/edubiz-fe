@@ -28,11 +28,11 @@ function ToolTipDanhHieu({ userInfor }) {
     >
       <div className="text-lg text-color-title transform   w-full text-center font-medium flex justify-center items-center space-x-2 cursor-pointer">
         <span>{userInfor?.danhHieu}</span>{" "}
-        <img
+        {/* <img
           src={`${environment.baseUrl}/${userInfor?.danhHieuHinh}`}
           alt=""
           className="w-8 h-8  m-0 "
-        />
+        /> */}
       </div>
     </Tooltip>
   );

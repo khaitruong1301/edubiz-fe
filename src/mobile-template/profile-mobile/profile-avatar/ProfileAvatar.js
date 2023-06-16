@@ -1,6 +1,7 @@
 import React from "react";
 import { Progress } from "antd";
 import './ProfileAvatar.css'
+import environment from "../../../environments/environment";
 
 function ProfileAvatar({ userInfo }) {
 
@@ -10,11 +11,20 @@ function ProfileAvatar({ userInfo }) {
     return (
         <div className="profile-avatar">
             <div className="profile-avatar_left">
-                <img
-                    src={userInfo?.avatar}
-                    className="profile-image"
-                    alt=""
-                />
+                {
+                    userInfo && userInfo.avatar ?
+                        <img
+                            src={`${environment.baseUrl}/${userInfo?.avatar}`}
+                            className="profile-image"
+                            alt=""
+                        /> :
+                        <img
+                            src="https://www.emmegi.co.uk/wp-content/uploads/2019/01/User-Icon.jpg"
+                            className="profile-image"
+                            alt=""
+                        />
+                }
+
                 <Progress
                     type="circle"
                     strokeWidth={7}

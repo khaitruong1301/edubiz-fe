@@ -15,17 +15,28 @@ let User_Avatar_Badge = ({ width_Badge = "8", positon_Bot_Badge = "4" }) => {
   const positon_Bottom_Badge = positon_Bot_Badge * 4;
   return (
     <div className="relative w-full h-full max-w-max-avatar-user max-h-max-avatar-user  rounded-full custom_circl_ant">
-      <img
-        src={userInfor?.avatar}
-        className="w-full h-full  block rounded-full m-0  object-cover "
-        alt=""
-      />
-      <img
+      <div className="avatar-image">
+        {
+          userInfor && userInfor.avatar ?
+            <img
+              src={`${environment.baseUrl}/${userInfor.avatar}`}
+              className="w-full h-full  block rounded-full m-0  object-cover "
+              alt=""
+            />
+            :
+            <img
+              src={process.env.PUBLIC_URL + '/img/User-Icon.jpg'}
+              className="w-full h-full  block rounded-full m-0  object-cover "
+              alt=""
+            />
+        }
+      </div>
+      {/* <img
         style={{ bottom: `-${positon_Bottom_Badge}px` }}
         src={`${environment.baseUrl}/${userInfor?.huyHieu}`}
         className={`${widthBadge} ${heigthBadge} m-0  absolute left-1/2 transform -translate-x-1/2  z-10`}
         alt=""
-      />
+      /> */}
       <Progress
         type="circle"
         strokeColor={{

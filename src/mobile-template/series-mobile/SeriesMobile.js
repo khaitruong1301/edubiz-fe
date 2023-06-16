@@ -42,6 +42,7 @@ function SeriesMobile(props) {
             });
         !checkDemoUser() &&
             httpServ.getTatCaLoTrinh(userInfor?.id).then((res) => {
+                console.log(res.data.content);
                 let resLoTrinh = [];
                 if (res.data.content && res.data.content.length) {
                     resLoTrinh = res.data.content.filter(item => !item.daDangKy);

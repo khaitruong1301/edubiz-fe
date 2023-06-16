@@ -67,8 +67,6 @@ export default function DetailKhoaHoc({ match }) {
       });
   }
 
-
-
   useEffect(() => {
     try {
       !isDemoUser &&

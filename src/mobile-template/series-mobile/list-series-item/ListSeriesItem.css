@@ -26,6 +26,7 @@
 .listseriesitem-courses{
     display: flex;
     flex-wrap: wrap;
+    width: 100vw;
 }
 
 .listseriesitem-courses > a{

@@ -28,13 +28,13 @@ const User_Top_Ranking = React.memo(({ user, index }) => {
           <p className="ml-2 text-color-content">{arrName.join(" ")}</p>
           <div className="flex space-x-1 items-center text-color-content">
             <p className="ml-2">{user.danhHieu}</p>{" "}
-            <LazyLoad once={true} >
+            {/* <LazyLoad once={true} >
               <img
                 src={getHinhAnh(user.danhHieuHinh)}
                 alt=""
                 className="m-0 p-0 inline-block w-4 h-4"
               />
-            </LazyLoad>
+            </LazyLoad> */}
 
           </div>
         </div>

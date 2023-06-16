@@ -2,19 +2,21 @@
     
 } */
 
-.profile-mobile_item{
+.profile-mobile_item {
     display: flex;
     align-items: center;
-    background: linear-gradient(117.76deg,hsla(0,0%,100%,.6) -7.21%,hsla(0,0%,100%,.3) 118.08%);
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(117.76deg, hsla(0, 0%, 100%, .6) -7.21%, hsla(0, 0%, 100%, .3) 118.08%);
     border: 1px solid #fff;
-    -ms-box-shadow: 0 10px 20px 0 rgba(0,0,0,.02);
-    -o-box-shadow: 0 10px 20px 0 rgba(0,0,0,.02);
-    box-shadow: 0 10px 20px 0 rgba(0,0,0,.02)!important;
+    -ms-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .02);
+    -o-box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .02);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .02) !important;
     padding-bottom: 1rem;
     margin-bottom: 0.25rem;
 }
 
-.profile-mobile .card_theme_mobile{
+.profile-mobile .card_theme_mobile {
     background: transparent !important;
     border: 0 !important;
     -ms-box-shadow: none !important;
@@ -23,22 +25,83 @@
     font-size: 0.8rem;
 }
 
-.profile-mobile .CarouselYourtemsMobile{
+.profile-mobile .CarouselYourtemsMobile {
     padding-top: 0 !important;
     font-size: 0.8rem !important;
 }
 
-.profile-mobile .DeadlineMobile{
+.profile-mobile .DeadlineMobile {
     width: 100vw !important;
 }
 
-.profile-mobile_button{
+.profile-mobile_button {
     display: flex;
-    justify-content: center;
-    align-items: stretch;
+    align-items: center;
 }
 
-.profile-mobile_button{
-    padding: 0.25rem 1rem;
-    border: 1px solid;
+.profile-mobile_button button {
+    padding: 0.15rem 1rem;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+    margin-top: 1rem;
+    font-size: small;
+    display: flex;
+    align-items: center;
+}
+
+.change-password {
+    padding: 2rem 0.5rem 0.5rem 0.5rem;
+}
+
+.change-password-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.change-password-input {
+    margin-top: 1rem;
+}
+
+.change-password-input label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+}
+
+.change-password-input input {
+    height: 2rem;
+    border: 1px solid #ddd;
+    display: flex;
+    width: 100%;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    padding: 0 0.5rem;
+}
+
+.change-password-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.change-password-button button {
+    background: #4078f2;
+    color: #fff;
+    padding: 0.3rem 1rem;
+    border-radius: 5px;
+}
+
+.change-password-message{
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    text-align: center;
+    color: red;
+}
+
+.change-password .ant-upload-picture-card-wrapper{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
 }

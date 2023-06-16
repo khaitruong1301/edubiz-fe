@@ -8,13 +8,14 @@ import { removeDemoUser } from "../../utils/HocDemoUtils";
 import { getCurrentDay } from "../../utils/LogOut";
 import { triggerTour } from "../../utils/TriggerTourUtils";
 import { URL_PAGE } from "../common";
+import { message } from "antd";
 import './LoginMobile.css';
 
 function LoginMobile() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [message, setMessge] = useState("");
+    // const [message, setMessge] = useState("");
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -37,30 +38,31 @@ function LoginMobile() {
         e.preventDefault();
         if (email.length <= 0 || password.length <= 0) return;
         httpServ.signIn({ email: email, matKhau: password })
-        .then((res) => {
-            if (res.data.content) {
-              switch (res.data.content) {
-                case 0:
-                  setMessge(res.data.message);
-                  break;
-                case 1:
-                  setMessge(res.data.message);
-                  break;
-                default:
-                  localStorageServ.userInfor.set(res.data.content);
-                  localStorageServ.timeLogin.set(getCurrentDay());
-                  removeDemoUser();
-                  triggerTour();
-                  dispatch(setUserInfor(res.data.content));
-                  history.push(URL_PAGE.DASHBOARD);
-                  break;
-              }
-            } else {
-              setMessge(res.data.message)
-            }
-          })
+            .then((res) => {
+                if (res.data.content) {
+                    switch (res.data.content) {
+                        case 0:
+                            message.error(res.data.message)
+                            break;
+                        case 1:
+                            message.error(res.data.message)
+                            break;
+                        default:
+                            localStorageServ.userInfor.set(res.data.content);
+                            localStorageServ.timeLogin.set(getCurrentDay());
+                            removeDemoUser();
+                            triggerTour();
+                            dispatch(setUserInfor(res.data.content));
+                            history.push(URL_PAGE.DASHBOARD);
+                            break;
+                    }
+                } else {
+                    message.error(res.data.message)
+                }
+            })
             .catch(error => {
-                console.log(error.err.response.data)
+                console.log(error)
+                message.error(error.err.response.data.message)
             })
     }
 
@@ -68,7 +70,7 @@ function LoginMobile() {
         <div className="login-mobile-container">
             <div className="login-mobile-wrapper">
                 <h2>ĐĂNG NHẬP</h2>
-                <p>{message}</p>
+                {/* <p>{message}</p> */}
                 <form onSubmit={(onSubmit)}>
                     <div className="mobile-input-group">
                         <label>Email</label>

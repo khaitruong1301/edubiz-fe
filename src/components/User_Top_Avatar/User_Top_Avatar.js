@@ -2,27 +2,38 @@ import React from "react";
 import { Progress } from "antd";
 import environment from "../../environments/environment";
 import { getHinhAnh } from "../../utils/GetHinhanh";
+import { useSelector } from "react-redux";
 export default function User_Top_Avatar({
   user,
   width_Badge = "8",
   positon_Bot_Badge = "4",
 }) {
+  const { userInfor } = useSelector((state) => state.authUser);
   const widthBadge = "w-" + width_Badge;
   const heigthBadge = "h-" + width_Badge;
   const positon_Bottom_Badge = positon_Bot_Badge * 4;
   return (
     <div className="relative w-full h-full max-w-max-avatar-user max-h-max-avatar-user  rounded-full custom_circl_ant">
-      <img
-        src={user.avatar}
-        className="w-full h-full  block rounded-full m-0 object-cover "
-        alt=""
-      />
-      <img
+      {
+        user.avatar ?
+          <img
+            src={`${environment.baseUrl}/${user.avatar}`}
+            className="w-full h-full  block rounded-full m-0  object-cover "
+            alt=""
+          />
+          :
+          <img
+            src={process.env.PUBLIC_URL + '/img/User-Icon.jpg'}
+            className="w-full h-full  block rounded-full m-0  object-cover "
+            alt=""
+          />
+      }
+      {/* <img
         style={{ bottom: `-${positon_Bottom_Badge}px` }}
         src={`${environment.baseUrl}/${user.huyHieu}`}
         className={`${widthBadge} ${heigthBadge} m-0  absolute left-1/2 transform -translate-x-1/2  z-10`}
         alt=""
-      />
+      /> */}
 
       <Progress
         type="circle"
