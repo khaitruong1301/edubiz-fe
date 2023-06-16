@@ -13,6 +13,7 @@ export default function Content_Quizz_Failed({ data }) {
   const dispatch = useDispatch();
   const baiHoc = useSelector((state) => state.baiHoc);
   const userInfor = useSelector((state) => state.authUser.userInfor);
+
   const rendererTimer = ({ hours, minutes, seconds }) => {
     if (hours == 0 && minutes == 0 && seconds == 0) {
       httpServ
@@ -24,16 +25,18 @@ export default function Content_Quizz_Failed({ data }) {
     }
     return (
       <span className="font-medium text-lg">
-        {hours} giờ {minutes} phút {seconds} giây
+        {minutes} phút {seconds} giây
       </span>
     );
   };
+
   let hms = data.timeLamLai; // your input string
 
   let a = hms.split(":"); // split it at the colons
+  console.log(a);
 
   // minutes are worth 60 seconds. Hours are worth 60 minutes.
-  let seconds = +a[0] * 60 * 60 + +a[1] * 60 + +a[2];
+  let seconds = +a[0] * 60 + +a[1];
 
   const handleGiaHan = () => {
     httpServ
@@ -60,12 +63,15 @@ export default function Content_Quizz_Failed({ data }) {
         console.log(err);
       });
   };
+
+console.log(seconds);
+
   return (
     <div className="w-full h-full  ContentQuizz flex flex-col items-center justify-center bg-dark-theme bg-opacity-20">
       <div className="w-2/3 h-2/3  ContentQuizzWrrapper flex flex-col bg-white card_theme border-none items-center justify-center space-y-7">
         <img className="w-12 h-12 object-cover -mb-1" src={sadIcon} />
 
-        <p className="text-xl ">
+        <p className="text-xl " style={{paddingRight: 10, paddingLeft: 10}}>
           Bạn đã không vượt qua bài kiểm tra, vui lòng thử lại sau:
         </p>
         <Countdown
@@ -75,10 +81,10 @@ export default function Content_Quizz_Failed({ data }) {
           // date={Date.now() + 10 * 1000}
           renderer={rendererTimer}
         />
-        <Button_GiaHan
+        {/* <Button_GiaHan
           text="Giảm thời gian chờ (60 phút)"
           handleClick={handleGiaHan}
-        />
+        /> */}
         {message ? <p className="my-1 text-red-500">{message}</p> : ""}
       </div>
     </div>

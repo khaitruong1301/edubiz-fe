@@ -12,7 +12,8 @@ const initialState = {
   idBaiDangHocDashboard: null,
   testMode: false,
   lastVideoCanWatchIndex: 1,
-  isRedoQuizz: false
+  isRedoQuizz: false,
+  totalRedoQuizz: 0
 };
 
 export const baiHocContentSlice = createSlice({
@@ -46,6 +47,9 @@ export const baiHocContentSlice = createSlice({
     setIsRedoQuizz: (state, action) => {
       state.isRedoQuizz = action.payload;
     },
+    setIsTotalRedoQuizz: (state, action) => {
+      state.totalRedoQuizz = action.payload;
+    },
 
     setAllKeyBaiHocReducer: (state, { payload }) => {
       return payload
@@ -63,7 +67,8 @@ export const {
   setlastVideoCanWatchIndex,
   setAllKeyBaiHocReducer,
   setIsShowDapAnTracNghiem,
-  setIsRedoQuizz
+  setIsRedoQuizz,
+  setIsTotalRedoQuizz
 
 } = baiHocContentSlice.actions;
 export default baiHocContentSlice.reducer;

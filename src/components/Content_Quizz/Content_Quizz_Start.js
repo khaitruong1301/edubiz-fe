@@ -224,7 +224,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
       {testMode ? (
         <div className="pt-3 pl-2 text-gray-500 space-y-1">
           <p>
-            Trong trường hợp lỗi, anh/chị hãy báo lại bằng thông tin id của kháo
+            Trong trường hợp lỗi, anh/chị hãy báo lại bằng thông tin id của khóa
             học và lộ trình nha
           </p>
           <p>

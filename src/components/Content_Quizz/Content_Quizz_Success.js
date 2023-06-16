@@ -50,7 +50,7 @@ export default function Content_Quizz_Success({ stateQuizz }) {
         footer={null}
       > <div className="w-full items-center justify-center  space-y-3 px-5">
           <p className="text-base">Nếu bạn chọn làm lại thì điểm số cũ sẽ bị reset hoặc mất. </p>
-          <p className="text-base">Lưu ý trong trường hợp làm sai bạn sẽ phải chờ 3 giờ để tiếp tục làm lại</p>
+          <p className="text-base">Lưu ý trong trường hợp làm sai bạn sẽ phải chờ 30 phút để tiếp tục làm lại</p>
 
           <div className="flex space-x-3 justify-end">
 

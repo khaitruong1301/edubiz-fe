@@ -17,7 +17,7 @@ export default function User_Top_Avatar({
       {
         user.avatar ?
           <img
-            src={`${environment.baseUrl}/${user.avatar}`}
+            src={`${environment.baseUrl}${user.avatar}`}
             className="w-full h-full  block rounded-full m-0  object-cover "
             alt=""
           />

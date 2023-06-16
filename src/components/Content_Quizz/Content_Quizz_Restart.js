@@ -1,20 +1,17 @@
 import { Modal } from "antd";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentLesson, setIsRedoQuizz, setIsTotalRedoQuizz, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
+import { setIsRedoQuizz, setIsTotalRedoQuizz, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
 import httpServ from "../../services/http.service";
-import { setdanhSachBaiDaHoc } from "../../redux/reducer/khoaHocReducer";
 
-export default function Content_Quizz_Out_Time({ stateQuizz }) {
+export default function Content_Quizz_Restart({ stateQuizz }) {
 
     const dispatch = useDispatch();
     const currentLesson = useSelector((state) => state.baiHoc.currentLesson);
     let totalRedoQuizz = useSelector((state) => state.baiHoc.totalRedoQuizz);
     const { userInfor } = useSelector((state) => state.authUser);
-    const { khoaHocContent } = useSelector((state) => state.khoaHoc);
     const baiHoc = useSelector((state) => state.baiHoc);
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const [loading, setloading] = useState(false);
 
     let questionFail = [];
 
@@ -28,46 +25,6 @@ export default function Content_Quizz_Out_Time({ stateQuizz }) {
     }
 
     let diemQuizz = countCorrected / total;
-
-    const handleNopBai = () => {
-        let inforQuizz = {
-            loTrinhId: khoaHocContent.maLoTrinh,
-            khoaHocId: khoaHocContent.id,
-            baiHocId: baiHoc.currentLesson.id,
-            nguoiDungId: userInfor?.id,
-            soCauDung: countCorrected,
-        };
-
-        inforQuizz.diem = Math.floor(diemQuizz * 100);
-        setloading(true);
-        httpServ
-            .postKetQuaQuizz(inforQuizz)
-            .then((res) => {
-                setloading(false);
-                dispatch(setTrangThaiQuizz(res.data.content));
-                dispatch(setIsTotalRedoQuizz(0));
-            })
-            .catch((err) => {
-                setloading(false);
-
-                console.log("no", err);
-            });
-
-        httpServ
-            .postCompletedBaiHoc({
-                loTrinhId: khoaHocContent.maLoTrinh,
-                khoaHocId: khoaHocContent.id,
-                baiHocId: baiHoc.currentLesson.id,
-                nguoiDungId: userInfor?.id,
-            })
-            .then((res) => {
-                dispatch(setdanhSachBaiDaHoc(res.data.content.baiDaHoc));
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
 
     const handleConfirmRedoQuizz = () => {
         httpServ.getLamLaiTracNghiem(userInfor.id, currentLesson.id).then((res) => {
@@ -97,11 +54,8 @@ export default function Content_Quizz_Out_Time({ stateQuizz }) {
                 }}
                 footer={null}
             > <div className="w-full items-center justify-center  space-y-3 px-5">
-                    <p className="text-base">Nếu bạn chọn làm lại thì điểm số cũ sẽ bị reset hoặc mất. </p>
-                    <p className="text-base">Lưu ý trong trường hợp bạn không đạt từ 70 điểm trở lên sẽ được tính là không qua bài!</p>
-
+                    <p className="text-base">Lưu ý trong trường hợp làm sai quá 3 lần bạn sẽ phải chờ 30 phút để tiếp tục làm lại</p>
                     <div className="flex space-x-3 justify-end">
-
                         <button
                             onClick={() => {
                                 handleConfirmRedoQuizz()
@@ -122,8 +76,8 @@ export default function Content_Quizz_Out_Time({ stateQuizz }) {
                         <i className="fa  fa-check mr-2 text-green-theme text-xl"></i>{" "}
                         {diemQuizz ? Math.floor(diemQuizz * 100) : 0}/100 điểm
                     </p>
-                    <p className="text-base">Bạn đã hết thời gian làm bài</p>
-                    <p className="text-base">Lựa chọn <b>NỘP BÀI</b> để học bài mới hoặc chọn <b>LÀM LẠI</b> để cải thiện điểm</p>
+                    <p className="text-base">Bạn cần ít nhất 70 điểm để qua bài kiểm tra!</p>
+                    <p className="text-base">Lựa chọn <b>LÀM LẠI</b> để cải thiện điểm!</p>
                 </div>
                 <div className="flex items-center space-x-5">
                     <button
@@ -133,14 +87,6 @@ export default function Content_Quizz_Out_Time({ stateQuizz }) {
                         className=" cursor-pointer card_theme p-3 font-medium text-base text-color-blue-white border-none shadow-design_code space-x-2"
                     >
                         <span> Làm lại</span> <i className="fa fa-redo-alt"></i>
-                    </button>
-                    <button
-                        onClick={() => {
-                            handleNopBai();
-                        }}
-                        className=" cursor-pointer card_theme p-3 font-medium text-base text-color-blue-white border-none shadow-design_code space-x-2"
-                    >
-                        Nộp bài
                     </button>
                 </div>
             </div>

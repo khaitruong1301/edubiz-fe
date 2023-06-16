@@ -19,7 +19,7 @@ let User_Avatar_Badge = ({ width_Badge = "8", positon_Bot_Badge = "4" }) => {
         {
           userInfor && userInfor.avatar ?
             <img
-              src={`${environment.baseUrl}/${userInfor.avatar}`}
+              src={`${environment.baseUrl}${userInfor.avatar}`}
               className="w-full h-full  block rounded-full m-0  object-cover "
               alt=""
             />

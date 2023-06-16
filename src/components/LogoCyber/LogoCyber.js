@@ -5,19 +5,14 @@ import logoDark from "../../assets/img/logoCyberDarkTheme.png";
 
 import { DARK_MODE } from "../../constants/theme";
 
-const styles = {
-    width: '560px',
-    height: '200px !important'
-}
-
-export default function LogoCyber() {
+export default function LogoCyber({ styles}) {
     const { theme } = useSelector((state) => state.theme);
 
     return (
         <img
             src={theme == DARK_MODE ? logoDark : logoLight}
             alt=""
-            style={styles}
+            style={styles ?? {}}
             className="object-contain  inline-block p-2 rounded m-0 login-logo"
         />
     )

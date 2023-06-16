@@ -14,7 +14,7 @@ function ProfileAvatar({ userInfo }) {
                 {
                     userInfo && userInfo.avatar ?
                         <img
-                            src={`${environment.baseUrl}/${userInfo?.avatar}`}
+                            src={`${environment.baseUrl}${userInfo?.avatar}`}
                             className="profile-image"
                             alt=""
                         /> :

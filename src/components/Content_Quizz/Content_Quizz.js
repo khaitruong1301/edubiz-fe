@@ -8,9 +8,10 @@ import Content_Quizz_Success from "./Content_Quizz_Success";
 import ContentQuizz_ViewAnsers from "./Content_Quizz_ViewAnswer";
 import './Praticess.css'
 import Content_Quizz_Out_Time from "./Content_Quizz_Out_Time";
+import Content_Quizz_Restart from "./Content_Quizz_Restart";
 
 export default function Content_Quizz() {
-  
+
   const dispatch = useDispatch();
   const baiHoc = useSelector((state) => state.baiHoc);
   const userInfor = useSelector((state) => state.authUser.userInfor);
@@ -39,16 +40,18 @@ export default function Content_Quizz() {
 
 
   switch (stateQuizz?.trangThai) {
-    case 3:
+    case 3: // XEM CÂU TRẢ LỜI
       return <ContentQuizz_ViewAnsers stateQuizz={stateQuizz} />;
-    case 0:
+    case 0: // BẮT ĐẦU LÀM
       return <ContentQuizz_Start stateQuizz={stateQuizz} />;
-    case 1:
+    case 1: // KHÔNG QUA BÀI TEST
       return <Content_Quizz_Failed data={stateQuizz} />;
-    case 2:
+    case 2: // QUA BÀI TEST
       return <Content_Quizz_Success stateQuizz={stateQuizz} />;
-    case 4:
+    case 4: // HẾT ThỜI GIAN LÀM BÀI
       return <Content_Quizz_Out_Time stateQuizz={stateQuizz} />;
+    case 5: // LÀM SAI CHƯA TỚI 3 LẦN => CHO LÀM LẠI
+      return <Content_Quizz_Restart stateQuizz={stateQuizz} />;
     default:
 
       break;

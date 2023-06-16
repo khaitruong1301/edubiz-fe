@@ -58,7 +58,7 @@ export default function Navbar_template({ toggleSidebar }) {
           </svg>
         </button>
         <NavLink to="/dashboard">
-          <LogoCyber />
+          <LogoCyber styles={{ width: 100}} />
         </NavLink>
       </div>
 

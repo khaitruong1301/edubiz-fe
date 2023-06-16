@@ -1,7 +1,7 @@
 import { Button, Progress } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
+import { setIsTotalRedoQuizz, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
 import { setdanhSachBaiDaHoc } from "../../redux/reducer/khoaHocReducer";
 import httpServ from "../../services/http.service";
 
@@ -15,6 +15,7 @@ export default function Navigate_Footer_Pratices({
   const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
   const baiHoc = useSelector((state) => state.baiHoc);
+  let totalRedoQuizz = useSelector((state) => state.baiHoc.totalRedoQuizz);
   const { khoaHocContent } = useSelector((state) => state.khoaHoc);
 
   const listQuestion = baiHoc.listQuestion;
@@ -45,29 +46,37 @@ export default function Navigate_Footer_Pratices({
       nguoiDungId: userInfor?.id,
       soCauDung: countCorrected,
     };
-    if (diemQuizz < 0.7) {
-      inforQuizz.diem = diemQuizz * 100;
-      setloading(true);
 
-      httpServ
-        .postKetQuaQuizz(inforQuizz)
-        .then((res) => {
-          setloading(false);
-          dispatch(setTrangThaiQuizz(res.data.content));
-        })
-        .catch((err) => {
-          setloading(false);
-        });
+    if (diemQuizz < 0.7) {
+      if (totalRedoQuizz >= 3) {
+        inforQuizz.diem = Math.floor(diemQuizz * 100);
+        setloading(true);
+
+        httpServ
+          .postKetQuaQuizz(inforQuizz)
+          .then((res) => {
+            setloading(false);
+            dispatch(setTrangThaiQuizz(res.data.content));
+            dispatch(setIsTotalRedoQuizz(0));
+          })
+          .catch((err) => {
+            setloading(false);
+          });
+      }
+      else {
+        dispatch(setTrangThaiQuizz({ trangThai: 5 }));
+        dispatch(setIsTotalRedoQuizz(totalRedoQuizz ? totalRedoQuizz + 1 : 1));
+      }
     }
     else {
-      inforQuizz.diem = diemQuizz * 100;
-      inforQuizz.diem = Math.floor(inforQuizz.diem);
+      inforQuizz.diem = Math.floor(diemQuizz * 100);
       setloading(true);
       httpServ
         .postKetQuaQuizz(inforQuizz)
         .then((res) => {
           setloading(false);
           dispatch(setTrangThaiQuizz(res.data.content));
+          dispatch(setIsTotalRedoQuizz(0));
         })
         .catch((err) => {
           setloading(false);
@@ -103,6 +112,7 @@ export default function Navigate_Footer_Pratices({
   const nextBtnCss = isDisableBtn
     ? " text-gray-600 bg-gray-300 cursor-not-allowed"
     : "  btn-theme text-white ";
+
   return (
     <div className="  flex items-center h-16 w-full justify-center space-x-10 px-16 border-none rounded-2xl">
       <div className="flex items-cente space-x-5 justify-center max-w-screen-md w-full">
