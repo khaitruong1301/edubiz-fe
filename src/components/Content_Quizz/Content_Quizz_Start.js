@@ -209,8 +209,8 @@ export default function ContentQuizz_Start({ stateQuizz }) {
         }}
         footer={null}
       > <div className="w-full items-center justify-center  space-y-3 px-5">
-          <p className="text-base">Bạn cần trả lời đúng ít nhất 50% số lượng câu hỏi để vượt qua bài kiểm tra này </p>
-          <p className="text-base">Lưu ý: trong trường hợp làm sai bạn sẽ phải chờ 3 giờ để tiếp tục làm lại</p>
+          <p className="text-base">Bạn cần trả lời đúng ít nhất 70% số lượng câu hỏi để vượt qua bài kiểm tra này </p>
+          <p className="text-base">Lưu ý: trong trường hợp làm sai bạn sẽ được làm lại 3 lần nếu vẫn không vượt qua phải chờ 30 phút để tiếp tục làm lại</p>
           <div className="flex space-x-3 justify-end">
 
             <button

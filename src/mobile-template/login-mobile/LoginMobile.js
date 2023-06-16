@@ -39,30 +39,16 @@ function LoginMobile() {
         if (email.length <= 0 || password.length <= 0) return;
         httpServ.signIn({ email: email, matKhau: password })
             .then((res) => {
-                if (res.data.content) {
-                    switch (res.data.content) {
-                        case 0:
-                            message.error(res.data.message)
-                            break;
-                        case 1:
-                            message.error(res.data.message)
-                            break;
-                        default:
-                            localStorageServ.userInfor.set(res.data.content);
-                            localStorageServ.timeLogin.set(getCurrentDay());
-                            removeDemoUser();
-                            triggerTour();
-                            dispatch(setUserInfor(res.data.content));
-                            history.push(URL_PAGE.DASHBOARD);
-                            break;
-                    }
-                } else {
-                    message.error(res.data.message)
-                }
+                localStorageServ.userInfor.set(res.data.content);
+                localStorageServ.timeLogin.set(getCurrentDay());
+                removeDemoUser();
+                triggerTour();
+                dispatch(setUserInfor(res.data.content));
+                history.push(URL_PAGE.DASHBOARD);
             })
             .catch(error => {
                 console.log(error)
-                message.error(error.err.response.data.message)
+                message.error('Sai email hoặc mật khẩu!')
             })
     }
 

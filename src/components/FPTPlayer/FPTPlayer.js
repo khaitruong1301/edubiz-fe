@@ -5,8 +5,6 @@ import HLSSource from "./HLSSource";
 import { ControlBar, Player } from "video-react";
 import { useMediaQuery } from "react-responsive";
 
-
-
 export default class FPTPlayer extends Component {
 
     constructor(props) {
@@ -38,16 +36,11 @@ export default class FPTPlayer extends Component {
     handleStateChange(state, prevState) {
         const progress = Math.ceil((state.currentTime / state.duration) * 100);
         this.setState({ progress: progress });
-        if (progress == 40 && !this.state.isShowQuestion) {
+        // CHẠY ĐƯỢC 50% VIDEO THÌ SHOW OPOUP XÁC NHẬN
+        if (progress == 50 && !this.state.isShowQuestion) {
             this.showMessage(40);
         }
-        else if (progress == 50) {
-            this.setState({ isShowQuestion: false });
-        }
-        else if (progress == 70 && !this.state.isShowQuestion) {
-            this.showMessage(70);
-        }
-        else if (progress == 80) {
+        else if (progress == 60) {
             this.setState({ isShowQuestion: false });
         }
         else if (progress == 90)

@@ -45,13 +45,8 @@ export default function Navigate_Footer_Pratices({
       nguoiDungId: userInfor?.id,
       soCauDung: countCorrected,
     };
-    if (diemQuizz < 0.5) {
-      baiHoc.testMode &&
-        alert(
-          "Thông báo này chỉ hiện thị ở trang test, Các câu sai là" +
-          JSON.stringify(questionFail)
-        );
-      inforQuizz.diem = 0;
+    if (diemQuizz < 0.7) {
+      inforQuizz.diem = diemQuizz * 100;
       setloading(true);
 
       httpServ

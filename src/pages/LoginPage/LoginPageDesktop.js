@@ -17,13 +17,6 @@ export default function LoginPageDeskTop() {
       <div className="card_theme_item w-full flex-grow flex flex-col relative overflow-hidden">
         <div className="w-full flex flex-grow  relative">
           <div className="absolute bottom-3 space-x-3 left-1/2 transform -translate-x-1/2 z-20">
-            <a href="https://cybersoft.edu.vn/" target="_blank" className="text-color-content border-b-1 border-gray-700">
-              CyberSoft
-            </a>
-            <a href="https://cyberlearn.vn/" target="_blank" className="text-color-content border-b-1 border-gray-700">
-              CyberLearn
-            </a>
-
             <NavLink to={"/baomat"}  target="_blank" className="text-color-content border-b-1 border-gray-700">
               Privacy Policy
             </NavLink>
@@ -31,7 +24,7 @@ export default function LoginPageDeskTop() {
           <div className="h-full w-3/5 flex-shrink-0 border-none p-5 flex flex-col items-start ">
             <LogoCyber />
             <div className="  flex-grow  w-full flex flex-col justify-center space-y-7  ml-10 pb-24 relative z-10">
-              <p className="title_login ">Hệ thống học tập Edubiz</p>
+              <p className="title_login " style={{fontSize: '38px'}}>Hệ thống đào tạo Di Động Việt</p>
               {/* <BtnLoginFacebook /> */}
               <LoginForm />
             </div>

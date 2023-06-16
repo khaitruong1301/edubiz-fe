@@ -13,3 +13,8 @@
 .dark .title_login {
   color: #fff !important;
 }
+
+.login-logo{
+  height: 200px !important;
+  width: 560px;
+}
