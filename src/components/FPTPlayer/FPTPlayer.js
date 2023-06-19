@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Progress, Modal, Slider } from 'antd';
 import HLSSource from "./HLSSource";
 import { ControlBar, PlayToggle, Player, VolumeMenuButton, ProgressControl, CurrentTimeDisplay, DurationDisplay } from "video-react";
-import { useMediaQuery } from "react-responsive";
 import './video-react.css'
 import './FPTPlayer.css';
 
@@ -13,12 +12,10 @@ export default class FPTPlayer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            muted: true,
             progress: 0,
             maxTime: 0,
             videoState: null
         };
-        this.handleToggleMuted = this.handleToggleMuted.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.setLocalStorageTimeVideo = this.setLocalStorageTimeVideo.bind(this);
         this.getLocalStorageTimeVideo = this.getLocalStorageTimeVideo.bind(this);
@@ -30,8 +27,6 @@ export default class FPTPlayer extends Component {
         setTimeout(() => {
             if (this.player) {
                 this.player.subscribeToStateChange(this.handleStateChange.bind(this));
-                this.player.muted = true;
-                this.setState({ muted: true });
                 isPaused = false;
             }
         }, 500)
@@ -68,14 +63,6 @@ export default class FPTPlayer extends Component {
                 this.player.play();
             }
         });
-    }
-
-    handleToggleMuted = () => {
-        const muted = this.state.muted;
-        this.setState({ muted: !muted })
-        return () => {
-            this.player.muted = !muted;
-        };
     }
 
     handleTimeChange = (value) => {
@@ -166,7 +153,7 @@ export default class FPTPlayer extends Component {
     }
 
     render() {
-        const { muted, progress } = this.state;
+        const { progress } = this.state;
         return (
             <div className="FPTPlayer">
                 {
@@ -181,6 +168,7 @@ export default class FPTPlayer extends Component {
                             width={"100%"}
                             autoPlay={true}
                             className='fpt-player'
+                            muted={false}
                         >
                             <HLSSource
                                 isVideoChild
@@ -189,13 +177,9 @@ export default class FPTPlayer extends Component {
 
                             <ControlBar className="ControlBarCustom">
                                 <PlayToggle />
-                                <VolumeMenuButton disabled />
                                 <CurrentTimeDisplay disabled />
                                 <DurationDisplay disabled />
                                 <ProgressControl disabled />
-                                <div className="ControlBarCustomVolumn" onClick={(this.handleToggleMuted)}>
-                                    <i className={muted ? "fa fa-volume-up" : "fa fa-volume-off"} aria-hidden="true"></i>
-                                </div>
                                 <div className="ControlBarCustomProgress">
                                     <Slider
                                         value={progress}
