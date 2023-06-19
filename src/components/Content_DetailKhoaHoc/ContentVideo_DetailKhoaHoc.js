@@ -35,6 +35,7 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
       infor = localStorageServ.codeDemo.get();
       userInfor.nuocNgoai = localStorageServ.nuocngoaiDemo.get() * 1;
     }
+    window.scrollTo(0, 0)
   }, [urlVideo]);
 
 
@@ -43,18 +44,19 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
       httpServ.getUrlVideo_FPT(currentLesson.noiDung).then((res) => {
         setUrlVideo(res.data);
       });
-    userInfor.nuocNgoai &&
-      currentLesson.video == "0" &&
-      axios({
-        url: `https://apicrm.cybersoft.edu.vn/api/file/ftp-video-digital/${currentLesson.noiDung}`,
-        method: "GET",
-      })
-        .then((res) => {
-          setUrlVideo(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+
+    // userInfor.nuocNgoai &&
+    //   currentLesson.video == "0" &&
+    //   axios({
+    //     url: `https://apicrm.cybersoft.edu.vn/api/file/ftp-video-digital/${currentLesson.noiDung}`,
+    //     method: "GET",
+    //   })
+    //     .then((res) => {
+    //       setUrlVideo(res.data);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
 
     seIsDisableHoanThanh(true)
   }, [currentLesson.id]);
@@ -83,40 +85,40 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
         })
         .catch((err) => { });
 
-    if (checkDemoUser()) {
-      let newInfor = { ...userInfor };
-      newInfor.coin++;
-      newInfor.tichCuc += 100;
-      newInfor.kinhNghiem += 10;
-      dispatch(setUserInfor(newInfor));
-      let stt = tatCaBaiHoc.findIndex((lesson) => {
-        return lesson.id == currentLesson.id;
-      });
-      let newDs = [
-        ...danhSachBaiDaHoc,
-        {
-          baiHocId: currentLesson.id,
-          stt,
-        },
-      ];
-      dispatch(setdanhSachBaiDaHoc(newDs));
+    // if (checkDemoUser()) {
+    //   let newInfor = { ...userInfor };
+    //   newInfor.coin++;
+    //   newInfor.tichCuc += 100;
+    //   newInfor.kinhNghiem += 10;
+    //   dispatch(setUserInfor(newInfor));
+    //   let stt = tatCaBaiHoc.findIndex((lesson) => {
+    //     return lesson.id == currentLesson.id;
+    //   });
+    //   let newDs = [
+    //     ...danhSachBaiDaHoc,
+    //     {
+    //       baiHocId: currentLesson.id,
+    //       stt,
+    //     },
+    //   ];
+    //   dispatch(setdanhSachBaiDaHoc(newDs));
 
-      for (
-        let index = currentLessonIndex;
-        index < tatCaBaiHoc.length;
-        index++
-      ) {
-        const lesson = tatCaBaiHoc[index];
-        if (
-          lesson.maLoaiBaiHoc === "VIDEO_FPT" &&
-          lesson.xemDemo &&
-          lesson.id !== currentLesson.id
-        ) {
-          dispatch(setCurrentLesson(tatCaBaiHoc[index]));
-          return;
-        }
-      }
-    }
+    //   for (
+    //     let index = currentLessonIndex;
+    //     index < tatCaBaiHoc.length;
+    //     index++
+    //   ) {
+    //     const lesson = tatCaBaiHoc[index];
+    //     if (
+    //       lesson.maLoaiBaiHoc === "VIDEO_FPT" &&
+    //       lesson.xemDemo &&
+    //       lesson.id !== currentLesson.id
+    //     ) {
+    //       dispatch(setCurrentLesson(tatCaBaiHoc[index]));
+    //       return;
+    //     }
+    //   }
+    // }
 
     let nextLessonIndex = currentLessonIndex + 1;
 
@@ -137,6 +139,7 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
     if (!userInfor.nuocNgoai) {
       return (
         <FPTPlayer
+          currentLesson={currentLesson}
           source={urlVideo}
           setIsDisableHoanThanh={seIsDisableHoanThanh}
         />
@@ -145,19 +148,13 @@ const ContentVideo_DetailKhoaHoc = React.memo(() => {
       if (currentLesson.video * 1 == 0) {
         return (
           <FPTPlayer
+            currentLesson={currentLesson}
             source={urlVideo}
             setIsDisableHoanThanh={seIsDisableHoanThanh}
           />
         );
       } else {
         return (
-          // <ReactPlayer
-          //   playbackRate={1}
-          //   width="100%"
-          //   height="100%"
-          //   controls={true}
-          //   url={`https://vimeo.com/${currentLesson.video}`}
-          // />
           <FPTPlayer
             source={`https://vimeo.com/${currentLesson.video}`}
             setIsDisableHoanThanh={seIsDisableHoanThanh}

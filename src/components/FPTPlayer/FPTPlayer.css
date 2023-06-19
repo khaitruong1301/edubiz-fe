@@ -1,3 +1,33 @@
+.ControlBarCustom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ControlBarCustom .video-react-time-control{
+    display: none;
+}
+
+.ControlBarCustomVolumn{
+    margin-right: 0.5rem;
+}
+
+.ControlBarCustomProgress{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.ControlBarCustom .ant-slider{
+    width: 100% !important;
+}
+
+.ControlBarCustomProgress > span{
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+}
+
+
 .FPTPlayer {
     position: relative;
 }
@@ -31,10 +61,7 @@
 
 .course-mobile .video-react-controls-enabled {
     height: auto !important;
-}
-
-.course-mobile .video-react-button {
-    display: none;
+    min-height: 56.25vw !important;
 }
 
 @media only screen and (min-width: 992px) {
@@ -45,6 +72,11 @@
 
     .fpt-player {
         width: 100% !important;
+    }
+
+    .video-react-controls-enabled {
+        height: auto !important;
+        min-height: 43.45vw !important;
     }
 
     .water-mark-wrapper {

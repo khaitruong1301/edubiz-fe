@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ContentArticle_DetailKhoaHoc from "./ContentArticle_DetailKhoaHoc";
 import ContentQuizzWrite_DetailKhoaHoc from "./ContentQuizzWrite_DetailKhoaHoc";
@@ -10,6 +10,7 @@ export default function Content_DetailKhoaHoc() {
   const typeContentDisplay = useSelector(
     (state) => state.baiHoc?.currentLesson?.maLoaiBaiHoc
   );
+
   switch (typeContentDisplay) {
     case "VIDEO_FPT":
       return <ContentVideo_DetailKhoaHoc />;
