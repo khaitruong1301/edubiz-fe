@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 export default function LoTrinhPageCuaBan({ isGridView }) {
   const refs = useRef([]);
   let loTrinhDaDangKi = useSelector((state) => state.loTrinh.loTrinhDaDangKi);
+  loTrinhDaDangKi = loTrinhDaDangKi.filter(x => !x.daHoanThanh);
   loTrinhDaDangKi = loTrinhDaDangKi.filter(x => x.choDuyet);
+  
   return (
     <>
       {isGridView ? (

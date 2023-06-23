@@ -142,6 +142,12 @@ class HttpRequestService {
     const uri = `nopbai/noptracnghiem`;
     return AxiosServ.postMethod(uri, data, setLoading);
   };
+
+  postBaiTapTuLuanQuizz = (data, setLoading = true) => {
+    const uri = `nopbai/noptuluan`;
+    return AxiosServ.postMethod(uri, data, setLoading);
+  };
+
   getStatisChartDashboard = (
     idNguoiDung,
     thoiGian,

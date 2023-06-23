@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import { setCurrentLesson } from "../../redux/reducer/baiHocContentReducer";
 import { checkDemoUser } from "../../utils/HocDemoUtils";
 
-function BtnTitleArticle({ isCancelUserClick, lesson, hightLightcss, isLearned, onToggle}) {
+function BtnTitleArticle({ isCancelUserClick, lesson, hightLightcss, isLearned, onToggle, isCanWatch, isLock }) {
   const dispatch = useDispatch();
   const getContent = () => {
     dispatch(setCurrentLesson(lesson));
-    if(onToggle) 
-          onToggle();
+    if (onToggle)
+      onToggle();
   };
   let disableXemdemo = checkDemoUser() && !lesson.xemDemo;
 
@@ -18,6 +18,19 @@ function BtnTitleArticle({ isCancelUserClick, lesson, hightLightcss, isLearned, 
   if (disableXemdemo) {
     color = "text-color-content";
   }
+
+  const renderIcon = () => {
+    if (hightLightcss)
+      return <i className="fa fa-play mr-3 flex-shrink-0" style={{ color: 'rgb(16 185 129)' }}></i>
+    else if (isLearned) {
+      return <i className="fa fa-check mr-3 text-sm flex-shrink-0 text-green-600"></i>
+    }
+    else if (isCanWatch)
+      return <i className="mr-3 flex-shrink-0"></i>
+    else
+      return <i className="fa fa-lock mr-3 flex-shrink-0"></i>
+  }
+
   const renderButton = () => {
     return (
       <div
@@ -26,17 +39,11 @@ function BtnTitleArticle({ isCancelUserClick, lesson, hightLightcss, isLearned, 
           hightLightcss
         }
         key={lesson.id + "menuItem"}
-        onClick={getContent}
+        onClick={ () => !isLock && getContent() }
       >
         <button className="   flex  px-2  justify-center items-baseline  p-0 h-max-content   transform duration-300  rounded-lg w-full ">
-          <div className="   break-words text-center px-1 font-normal text-base lg:text-lg  text-blue-theme flex items-center space-y-1  justify-start w-6 h-6 left-6  flex-shrink-0 rounded-full bg-gray-300 mr-2">
-            <i
-              className={
-                isLearned
-                  ? "fa fa-check mr-3 text-sm flex-shrink-0 text-green-600"
-                  : "fa fa-check mr-3 text-sm flex-shrink-0 text-transparent"
-              }
-            ></i>{" "}
+          <div className="btn-icon break-words text-center px-1 font-normal text-base lg:text-lg  text-blue-theme flex items-center space-y-1  justify-start w-6 h-6 left-6  flex-shrink-0 rounded-full bg-gray-300 mr-2">
+            {renderIcon()}
           </div>
           <div
             className={
@@ -52,59 +59,57 @@ function BtnTitleArticle({ isCancelUserClick, lesson, hightLightcss, isLearned, 
               {lesson.tenBaiHoc}
             </span>
           </div>
+          {
+            lesson.moTa ? <a
+              onClick={() => {
+                window.open(`https://backend.edubiz.vn${lesson.moTa}`, '_blank').focus();
+              }}
+              // href={`https://backend.cyberlearn.vn/${lesson.moTa}`}
+              target="_blank"
+            >
+              <button className="flex items-center space-x-1 h-max-content rounded p-1 
+                border-gray-600 w-max flex-shrink-0 border-1 text-color-content 
+                cursor-pointer hover:text-gray-900  px-2 transform duration-300 hover:border-gray-500"
+              >
+                <i className="fa fa-folder-open"></i>
+                <span>Tài nguyên</span>
+                <i className="fa fa-download"></i>
+              </button>
+            </a> : null
+          }
         </button>
       </div>
     );
   };
-  return !disableXemdemo ? (
-    isCancelUserClick ? (
-      renderButton()
-    ) : (
-      <Tooltip
-        // placement={this.state.placement}
-        className="p-0"
-        mouseEnterDelay={0.1}
-        mouseLeaveDelay={0.3}
-        trigger={["click"]}
-        placement="top"
-        animation="zoom"
-        // overlayClassName="trans"
-        // overlayStyle={{ padding: 0 }}
-        overlayClassName="  "
-        color="white"
-        title={
-          <p className="text-blue-theme  p-1  text-center">
-            Bạn hãy hoàn thành các bài học trước để có thể học bài này!
-          </p>
-        }
-        // overlayClassName="bg-red-500"
-        onVisibleChange={(visible) => {
-          // console.log(visible);
-        }}
-      // visible={isShowToolTip}ƒ
-      // trigger={Object.keys(this.state.trigger)}
-      >
-        {renderButton()}
-      </Tooltip>
-    )
+  return !isLock ? (
+    renderButton()
   ) : (
     <Tooltip
       // placement={this.state.placement}
-      mouseEnterDelay={0}
+      className="p-0"
+      mouseEnterDelay={0.1}
       mouseLeaveDelay={0.3}
-      trigger={["click", "hover"]}
-      placement="right"
+      trigger={["click"]}
+      placement="top"
       animation="zoom"
+      // overlayClassName="trans"
+      // overlayStyle={{ padding: 0 }}
       overlayClassName="  "
       color="white"
       title={
         <p className="text-blue-theme  p-1  text-center">
-          Bạn cần đăng kí lộ trình để xem được video này
+          Bạn hãy hoàn thành các bài học trước để có thể học bài này!
         </p>
       }
+      // overlayClassName="bg-red-500"
+      onVisibleChange={(visible) => {
+        // console.log(visible);
+      }}
+    // visible={isShowToolTip}ƒ
+    // trigger={Object.keys(this.state.trigger)}
     >
       {renderButton()}
     </Tooltip>
-  );
+  )
 }
 export default BtnTitleArticle = React.memo(BtnTitleArticle);

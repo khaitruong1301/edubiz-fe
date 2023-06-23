@@ -5,7 +5,7 @@ import BtnTitleQuizz_Write from "./BtnTitleQuizz_Write";
 import BtnTitleVideo from "./BtnTitleVideo";
 import { useSelector } from "react-redux";
 
-export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
+export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle, itemIndex }) {
   const danhSachBaiDaHoc = useSelector(
     (state) => state.khoaHoc.danhSachBaiDaHoc
   );
@@ -48,12 +48,26 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
     return false;
   };
 
+  let isCanWatch = false;
+  const lessonCanWatch = allLessons.find((item, i) => i == (lastVideoCanWatchIndex + 1));
+  if (lessonCanWatch) {
+    isCanWatch = lessonCanWatch.id == lesson.id;
+  }
+
   const currentLesson = useSelector((state) => state.baiHoc.currentLesson);
   const hightLightcss =
     currentLesson?.id === lesson.id
       ? "btn-highlight-baihoc bg-opacity-30  text-color-title font-medium hover "
       : "";
-      
+
+  let isLock = false;
+  // if (isLearned)
+  //   isLock = false;
+  // if (hightLightcss)
+  //   isLock = false;
+  // if (isCanWatch)
+  //   isLock = false;
+
   switch (lesson.maLoaiBaiHoc) {
     case "VIDEO_FPT":
       return (
@@ -64,6 +78,8 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
           isCancelUserClick={isCancelUserClick()}
           isDemoUser={isDemoUser}
           onToggle={onToggle}
+          isCanWatch={isCanWatch}
+          isLock={isLock}
         />
       );
 
@@ -75,6 +91,8 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
           isLearned={isLearned}
           isCancelUserClick={isCancelUserClick()}
           onToggle={onToggle}
+          isCanWatch={isCanWatch}
+          isLock={isLock}
         />
       );
 
@@ -86,6 +104,8 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
           isLearned={isLearned}
           isCancelUserClick={isCancelUserClick()}
           onToggle={onToggle}
+          isCanWatch={isCanWatch}
+          isLock={isLock}
         />
       );
     case "QUIZ_WRITE":
@@ -96,6 +116,8 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle }) {
           isLearned={isLearned}
           isDemoUser={isDemoUser}
           onToggle={onToggle}
+          isCanWatch={isCanWatch}
+          isLock={isLock}
         />
       );
 

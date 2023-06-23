@@ -40,9 +40,11 @@ export default function LoTrinhPage() {
   }, []);
 
   useEffect(() => {
-    !isDemoUser && dispatch(getLoTrinhDaDangKiAciton(userInfor?.id));
-    dispatch(getTatCaLoTrinhAciton(userInfor?.id));
-    
+    if (!isDemoUser) {
+      dispatch(getLoTrinhDaDangKiAciton(userInfor?.id));
+      dispatch(getTatCaLoTrinhAciton(userInfor?.id));
+    }
+
     httpServ.getAllTypeLoTrinh().then((res) => {
       dispatch(setTypeFiltersLoTrinh(res.data.content));
     });

@@ -12,11 +12,9 @@ export default function ContentQuizzWrite_DetailKhoaHoc() {
     <Content className="w-full h-max-content space-y-3 flex-shrink-0 relative overflow-hidden flex flex-col justify-start">
       <div className="w-full flex-grow  rounded-none border-none">
         <div className="w-full h-full card_theme border-none">
-          <Content_QuizzWrite data={currentLesson} />
+          <Content_QuizzWrite currentLesson={currentLesson} />
         </div>
       </div>
-
-      <TabDetailBaiHoc />
     </Content>
   );
 }

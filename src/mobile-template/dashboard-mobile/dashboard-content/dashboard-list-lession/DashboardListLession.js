@@ -14,6 +14,7 @@ export default function DashboardListLession() {
         httpServ
             .getKhoaDangHoc(userInfor?.id)
             .then((res) => {
+                console.log(res.data.content);
                 if (res.data.content.length > 0) {
                     dispatch(setKhoaDangHoc(res.data.content));
                 } else {

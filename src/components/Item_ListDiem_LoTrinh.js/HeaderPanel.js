@@ -44,12 +44,22 @@ let HeaderPanel = ({ loTrinh }) => {
     content: () => componentRefBangDiem.current,
   });
 
-  let percent = Math.floor(
-    (loTrinh.soLuongHoanThanh / loTrinh.soLuongBaiTap) * 100
-  ); 
+  let percent  = 0;
+
+  if(loTrinh.soLuongBaiTap == 0){
+    percent = 100;
+  }
+  else{
+    percent = Math.floor(
+      (loTrinh.soLuongHoanThanh / loTrinh.soLuongBaiTap) * 100
+    ); 
+  }
 
   const handleDownloadChungNhan = (e) => {
     e.stopPropagation();
+    if (!loTrinh.chungNhan)
+      return message.warning('Chưa có chứng nhận cho lộ trình này!');
+
     if (!loTrinh.daHoanThanh)
       return message.warning('Bạn chưa được cấp chứng nhận do chưa hoàn thành tất cả khóa học!');
 

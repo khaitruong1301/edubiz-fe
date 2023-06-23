@@ -32,7 +32,12 @@ const SubMenu_Sider_DetailKhoaHoc = ({ course, onToggle }) => {
         height={collapsed ? 0 : "auto"} // see props documentation below
       >
         { course.danhSachBaiHoc?.map((lesson, index) => {
-          return <BtnTitleBaiHoc onToggle={onToggle} key={index} lesson={lesson} isDemoUser={isDemoUser} />;
+          return <BtnTitleBaiHoc 
+                    onToggle={onToggle} 
+                    key={index} 
+                    lesson={lesson} 
+                    isDemoUser={isDemoUser}
+                  />;
         })}
       </AnimateHeight>
     </div> : null

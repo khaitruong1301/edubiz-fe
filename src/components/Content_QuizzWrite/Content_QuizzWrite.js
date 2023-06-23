@@ -1,40 +1,102 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setBaiTapNop } from "../../redux/reducer/baiHocContentReducer";
-import httpServ from "../../services/http.service";
-import localStorageServ from "../../services/locaStorage.service";
-import Content_BaiTapNop_type_0 from "./Content_BaiTapNop_type_0";
-import Content_BaiTapNop_type_1 from "./Content_BaiTapNop_type_1";
-import Content_BaiTapNop_type_2 from "./Content_BaiTapNop_type_2";
-import Content_BaiTapNop_type_3 from "./Content_BaiTapNop_type_3";
-import Content_BaiTapNop_type_4 from "./Content_BaiTapNop_type_4";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Portal } from "react-portal";
+import _ from "lodash";
+import Footer_QuizzWrite from "./Footer_QuizzWrite";
+import MuiEditor from "../../mobile-template/common/editor/MuiEditor";
 
-export default function Content_QuizzWrite({ data }) {
-  const dispatch = useDispatch();
+export default function Content_QuizzWrite({ currentLesson }) {
 
-  let baiTapNop = useSelector((state) => state.baiHoc.baiTapNop);
-  let userInfor = localStorageServ.userInfor.get()
+  let dispatch = useDispatch();
+
+  let [currentQuestionIndex, setCurrentQuestsionIndex] = useState(0);
+  const [allQuestions, setAllQuestions] = useState([]);
+  const [isDisableNextBtn, setIsDisableNextBtn] = useState(true);
+
   useEffect(() => {
-    httpServ.getThongTinBaiTapNop(userInfor?.id, data.id)
-      .then((res) => {
-        dispatch(setBaiTapNop(res.data.content));
-      })
-      .catch((err) => {
-        // console.log(err);
-      });
-  }, [])
-  switch (baiTapNop.trangThai) {
-    case 0:
-      return <Content_BaiTapNop_type_0 baiHoc={data} />;
-    case 1:
-      return <Content_BaiTapNop_type_1 baiTapNop={baiTapNop} baiHoc={data} />;
-    case 2:
-      return <Content_BaiTapNop_type_2 baiTapNop={baiTapNop} baiHoc={data} />;
-    case 3:
-      return <Content_BaiTapNop_type_3 baiTapNop={baiTapNop} baiHoc={data} />;
-    case 4:
-      return <Content_BaiTapNop_type_4 baiTapNop={baiTapNop} baiHoc={data} />;
-    default:
-      return <div></div>;
+    setAllQuestions(JSON.parse(currentLesson.noiDung));
+    setIsDisableNextBtn(true);
+  }, [currentLesson]);
+
+  // ===============================================
+  let handleClickNextQuestion = () => {
+    setCurrentQuestsionIndex(currentQuestionIndex + 1);
+    setIsDisableNextBtn(true);
+  };
+
+  // ===============================================
+  const handleQuestionAnswers = (field, value) => {
+    if (!value)
+      setIsDisableNextBtn(true);
+    else
+      setIsDisableNextBtn(false);
+
+    setAllQuestions(allQuestions.map((item, index) => {
+      if (index == currentQuestionIndex)
+        return { ...item, answers: value }
+      return item;
+    }));
+  };
+
+  let containerTracNhiem = document.getElementById("containerTracNhiem");
+  setTimeout(() => {
+    if (containerTracNhiem) {
+      let widthContainer = containerTracNhiem.clientWidth;
+      let navigateFooter = document.getElementById("footerTracNghiem");
+      if (navigateFooter) {
+        navigateFooter.style.width = `${widthContainer}px`;
+        var rect = containerTracNhiem.getBoundingClientRect();
+        navigateFooter.style.marginLeft = `${rect.left}px`;
+      }
+    }
+  }, 300);
+
+  const renderQuestion = () => {
+    const question = allQuestions[currentQuestionIndex];
+    if (!question) return null;
+    return <div className="QuizzWrite">
+      <div className="QuizzWrite_Title">{question.question}</div>
+      <div className="QuizzWrite_Answers">
+        <MuiEditor
+          html={question.answers ?? ''}
+          onChange={(handleQuestionAnswers)}
+          placeholder="Nhập đáp án của bạn"
+          tagName="div"
+          field="dapAn"
+        />
+      </div>
+    </div>
   }
+
+  return (
+    <div
+      id="containerTracNhiem"
+      className="w-full  flex-grow h-full flex flex-col "
+    >
+      <div className="w-full h-full  flex-grow flex flex-col  p-3 relative">
+        <div className="w-full question-wrapper">
+          {
+            allQuestions ? renderQuestion() : null
+          }
+        </div>
+        <div className="h-22 w-full"></div>
+      </div>
+      <Portal>
+        <div
+          id="footerTracNghiem"
+          className="h-max-content  FooterTracNghiem flex-shrink-0  bg-transparent fixed bottom-3 card_theme  border-none shadow-lg hover:shadow-xl transition duration-200 cursor-pointer left-0  border-0"
+        >
+          <Footer_QuizzWrite
+            current={currentQuestionIndex + 1}
+            total={allQuestions.length}
+            handleClickNextQuestion={handleClickNextQuestion}
+            isDisableBtn={isDisableNextBtn}
+            currentLesson={currentLesson}
+            allQuestions={allQuestions}
+          />
+        </div>
+      </Portal>
+    </div>
+  );
 }
+

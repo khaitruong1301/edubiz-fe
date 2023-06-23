@@ -9,7 +9,7 @@ export default function Content_Quizz_Success({ stateQuizz }) {
   const dispatch = useDispatch();
   const currentLesson = useSelector((state) => state.baiHoc.currentLesson);
   const { userInfor } = useSelector((state) => state.authUser);
-  const tatCaBaiHoc = useSelector((state) => state.khoaHoc.allLessons);
+  const tatCaBaiHoc = useSelector((state) => state.khoaHoc.allLessons); 
   const [isOpenModal, setIsOpenModal] = useState(false)
   let currentLessonIndex = tatCaBaiHoc.findIndex((item) => {
     return item.id === currentLesson.id;

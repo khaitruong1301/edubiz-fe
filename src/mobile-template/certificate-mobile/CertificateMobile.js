@@ -28,6 +28,7 @@ function CertificateMobile(props) {
             });
     }, []);
 
+    const dsLoTrinh = danhSachLoTrinh.filter(x => x.daHoanThanh);
     return (
         <>
             <NavBar title={props.title} isPrev={false} />
@@ -49,7 +50,7 @@ function CertificateMobile(props) {
                 </div>
                 <div>
                     {
-                        danhSachLoTrinh.map((loTrinh, index) => {
+                        dsLoTrinh.map((loTrinh, index) => {
                             return <CertificateItem key={index} loTrinh={loTrinh} keyIndex={index + 1} />;
                         })
                     }

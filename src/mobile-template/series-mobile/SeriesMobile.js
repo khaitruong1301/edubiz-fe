@@ -6,7 +6,7 @@ import { checkDemoUser } from '../../utils/HocDemoUtils';
 import AllSeries from './all-series/AllSeries';
 import ListSeries from './list-series/ListSeries';
 import ListSeriesSuccess from './list-series-success/ListSeriesSuccess';
-import { setLoTrinhDaDangKi, setTatCaLoTrinh, setLoTrinhDaHoanThanh } from '../../redux/reducer/loTrinhReducer';
+import { setLoTrinhDaDangKi, setTatCaLoTrinh, setLoTrinhDaHoanThanh, getLoTrinhDaDangKiAciton } from '../../redux/reducer/loTrinhReducer';
 import './SeriesMobile.css';
 
 
@@ -30,16 +30,8 @@ function SeriesMobile(props) {
 
     const getSeries = () => {
         !checkDemoUser() &&
-            httpServ.getLoTrinhDaDangKI(userInfor?.id).then((res) => {
-                let resLoTrinhDangHoc = [];
-                let resLoTrinhDaHoanThanh = [];
-                if (res.data.content && res.data.content.length) {
-                    resLoTrinhDangHoc = res.data.content.filter(item => item.choDuyet && !item.daHetHan);
-                    resLoTrinhDaHoanThanh = res.data.content.filter(item => item.choDuyet && item.daHetHan);
-                    dispatch(setLoTrinhDaDangKi(resLoTrinhDangHoc));
-                    dispatch(setLoTrinhDaHoanThanh(resLoTrinhDaHoanThanh));
-                }
-            });
+            dispatch(getLoTrinhDaDangKiAciton(userInfor?.id));
+
         !checkDemoUser() &&
             httpServ.getTatCaLoTrinh(userInfor?.id).then((res) => {
                 console.log(res.data.content);

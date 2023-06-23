@@ -5,3 +5,7 @@
 .dashboard-content .dashboard-content_wrapper{
     padding-left: 0.25rem;
 }
+
+.dashboard-content .dashboard-lession{
+    border-bottom: 1px solid #aaa;
+}

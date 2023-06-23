@@ -8,7 +8,7 @@ import {
 import httpServ from "../../services/http.service";
 import localStorageServ from "../../services/locaStorage.service";
 
-export default function BtnTitleQuizz_Write({ lesson, hightLightcss, isLearned, isDemoUser, onToggle }) {
+export default function BtnTitleQuizz_Write({ lesson, hightLightcss, isLearned, isDemoUser, onToggle, isCanWatch, isLock }) {
   const dispatch = useDispatch();
 
 
@@ -16,6 +16,19 @@ export default function BtnTitleQuizz_Write({ lesson, hightLightcss, isLearned, 
   const userInfor = localStorageServ.userInfor.get();
   let disableXemdemo = isDemoUser && !lesson.xemDemo;
   let color = !disableXemdemo ? "text-color-title" : "text-color-content";
+
+  const renderIcon = () => {
+    if (hightLightcss)
+      return <i className="fa fa-play mr-3 flex-shrink-0" style={{ color: 'rgb(16 185 129)' }}></i>
+    else if (isLearned) {
+      return <i className="fa fa-check mr-3 text-sm flex-shrink-0 text-green-600"></i>
+    }
+    else if (isCanWatch)
+      return <i className="mr-3 flex-shrink-0"></i>
+    else
+      return <i className="fa fa-lock mr-3 flex-shrink-0"></i>
+  }
+
   const renderButton = () => {
     return (
       <div
@@ -25,8 +38,8 @@ export default function BtnTitleQuizz_Write({ lesson, hightLightcss, isLearned, 
         }
         key={lesson.id + "menuItem"}
         onClick={() => {
-          !isDemoUser && dispatch(setCurrentLesson(lesson));
-          !isDemoUser &&
+          !isLock && dispatch(setCurrentLesson(lesson));
+          !isLock &&
             httpServ
               .getThongTinBaiTapNop(userInfor?.id, lesson.id)
               .then((res) => {
@@ -46,14 +59,8 @@ export default function BtnTitleQuizz_Write({ lesson, hightLightcss, isLearned, 
         //   getUrlVideo(lesson.noiDung);
         // }}
         >
-          <div className="   break-words text-center px-1 font-normal  text-base lg:text-lg  text-blue-theme flex items-center space-y-1  justify-start w-6 h-6 left-6  flex-shrink-0 rounded-full bg-gray-300 mr-2">
-            <i
-              className={
-                isLearned
-                  ? "fa fa-check mr-3 text-sm flex-shrink-0 text-green-600"
-                  : "fa fa-check mr-3 text-sm flex-shrink-0 text-transparent"
-              }
-            ></i>
+          <div className="btn-icon break-words text-center px-1 font-normal  text-base lg:text-lg  text-blue-theme flex items-center space-y-1  justify-start w-6 h-6 left-6  flex-shrink-0 rounded-full bg-gray-300 mr-2">
+            { renderIcon() }
           </div>
           <div
             className={
@@ -82,7 +89,8 @@ export default function BtnTitleQuizz_Write({ lesson, hightLightcss, isLearned, 
       </div>
     );
   };
-  return !disableXemdemo ? (
+
+  return !isLock ? (
     renderButton()
   ) : (
     <Tooltip
@@ -95,7 +103,7 @@ export default function BtnTitleQuizz_Write({ lesson, hightLightcss, isLearned, 
       color="white"
       title={
         <p className="text-blue-theme  p-1  text-center">
-          Bạn cần đăng kí lộ trình để xem được video này
+          Bạn hãy hoàn thành các bài học trước để có thể học bài này!
         </p>
       }
     >

@@ -58,6 +58,7 @@ function ExamDesktop(props) {
     return (
         <div className="ExamDesktop">
             {
+                danhSachDeThi && danhSachDeThi.length > 0 ? 
                 danhSachDeThi.map((item, i) => {
                     return <div className='ExamDesktopItem' key={i}>
                         <div className='ExamDesktopItem-Title'>
@@ -78,7 +79,7 @@ function ExamDesktop(props) {
                             </div>
                         </div>
                     </div>
-                })
+                })  : <div>CHƯA CÓ BÀI KIỂM TRA ĐÁNH GIÁ!</div>
             }
             {
                 visibled ? <ExamDesktopForm

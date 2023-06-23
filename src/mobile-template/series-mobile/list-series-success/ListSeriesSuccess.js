@@ -3,7 +3,10 @@ import { useSelector } from "react-redux";
 import ListSeriesItem from "../list-series-item/ListSeriesItem";
 
 export default function ListSeriesSuccess() {
-    const loTrinhDaHoanThanh = useSelector((state) => state.loTrinh.loTrinhDaHoanThanh);
+    let loTrinhDaHoanThanh = useSelector((state) => state.loTrinh.loTrinhDaDangKi);
+    if(loTrinhDaHoanThanh && loTrinhDaHoanThanh.length){
+        loTrinhDaHoanThanh = loTrinhDaHoanThanh.filter(x => x.daHoanThanh);
+    }
     return (
         <div className="list-series">
             {

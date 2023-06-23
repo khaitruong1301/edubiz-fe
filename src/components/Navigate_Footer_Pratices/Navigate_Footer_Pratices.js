@@ -19,7 +19,7 @@ export default function Navigate_Footer_Pratices({
   const { khoaHocContent } = useSelector((state) => state.khoaHoc);
 
   const listQuestion = baiHoc.listQuestion;
-  const userInfor = useSelector((state) => state.authUser.userInfor);
+  const userInfor = useSelector((state) => state.authUser.userInfor); 
   let questionFail = [];
 
   useEffect(() => {

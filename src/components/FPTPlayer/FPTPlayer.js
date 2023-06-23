@@ -66,44 +66,50 @@ export default class FPTPlayer extends Component {
     }
 
     handleTimeChange = (value) => {
-        this.player.pause();
         const { videoState, maxTime, progress } = this.state;
         if (!videoState) return;
+        const seekTime = Math.floor((value * videoState.duration)) / 100;
+        this.setState({ progress: value });
+        this.player.seek(seekTime);
+       
+        this.player.pause();
+        // const { videoState, maxTime, progress } = this.state;
+        // if (!videoState) return;
 
-        // NẾU TUA LẦN ĐẦU
-        if (maxTime == 0) {
-            // TUA VỀ TRƯỚC
-            if (value >= progress) {
-                // KO CHO TUA 
-                this.setState({ progress: progress });
-            }
-            else { // TUA VỀ SAU
-                this.setState({ maxTime: progress }); // LƯU LẠI THỜI GIAN LÚC CHƯA TUA
-                const seekTime = Math.floor((value * videoState.duration)) / 100;
-                this.player.seek(seekTime);
-                this.player.pause();
-            }
-        }
-        // NẾU TUA TỪ LẦN THỨ 2 NGƯỜI DÙNG ĐÃ XEM QUA MAX TIME CŨ => UPDATE LẠI MAX TIME
-        else if(progress > maxTime){ 
-            this.setState({ maxTime: progress });
-            if (value >= progress){ // KO CHO TUA VỀ TRƯỚC
-                this.setState({ progress: progress });
-            }
-            else { // TUA VỀ SAU
-                const seekTime = Math.floor((value * videoState.duration)) / 100;
-                this.player.seek(seekTime);
-                this.player.pause();
-            }
-        }
-        else if(value > maxTime){
-            this.setState({ progress: maxTime });
-        }
-        else{
-             const seekTime = Math.floor((value * videoState.duration)) / 100;
-                this.player.seek(seekTime);
-                this.player.pause();
-        }
+        // // NẾU TUA LẦN ĐẦU
+        // if (maxTime == 0) {
+        //     // TUA VỀ TRƯỚC
+        //     if (value >= progress) {
+        //         // KO CHO TUA 
+        //         this.setState({ progress: progress });
+        //     }
+        //     else { // TUA VỀ SAU
+        //         this.setState({ maxTime: progress }); // LƯU LẠI THỜI GIAN LÚC CHƯA TUA
+        //         const seekTime = Math.floor((value * videoState.duration)) / 100;
+        //         this.player.seek(seekTime);
+        //         this.player.pause();
+        //     }
+        // }
+        // // NẾU TUA TỪ LẦN THỨ 2 NGƯỜI DÙNG ĐÃ XEM QUA MAX TIME CŨ => UPDATE LẠI MAX TIME
+        // else if(progress > maxTime){ 
+        //     this.setState({ maxTime: progress });
+        //     if (value >= progress){ // KO CHO TUA VỀ TRƯỚC
+        //         this.setState({ progress: progress });
+        //     }
+        //     else { // TUA VỀ SAU
+        //         const seekTime = Math.floor((value * videoState.duration)) / 100;
+        //         this.player.seek(seekTime);
+        //         this.player.pause();
+        //     }
+        // }
+        // else if(value > maxTime){
+        //     this.setState({ progress: maxTime });
+        // }
+        // else{
+        //      const seekTime = Math.floor((value * videoState.duration)) / 100;
+        //         this.player.seek(seekTime);
+        //         this.player.pause();
+        // }
 
     }
 

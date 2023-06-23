@@ -10,11 +10,12 @@ export default function Menu_Sider_DetailKhoaHoc({ onToggle }) {
   )
 
   return (
-    <div className=" w-full h-ful ">
-
-      {listChuongHoc?.map((item, index_ChuongHoc) => {
-        return <SubMenu_Sider_DetailKhoaHoc onToggle={onToggle} key={index_ChuongHoc} course={item} />;
-      })}
+    <div className="w-full h-ful">
+      {
+        listChuongHoc?.map((item, index_ChuongHoc) => {
+          return <SubMenu_Sider_DetailKhoaHoc onToggle={onToggle} key={index_ChuongHoc} course={item} />;
+        })
+      }
     </div>
   );
 }

@@ -28,6 +28,7 @@ export default function ChungNhanPage() {
       });
   }, []);
   
+  const dsLoTrinh = danhSachLoTrinh.filter(x => x.daHoanThanh);
   return (
     <div className="w-full h-full flex flex-grow  p-3  flex-col ">
       <div className="w-full   card_theme flex-grow   space-y-7 p-3 ">
@@ -50,7 +51,7 @@ export default function ChungNhanPage() {
           </div>
         </div>
         <div className="flex-grow space-y-5  lg:p-3 border-none">
-          {danhSachLoTrinh.map((loTrinh) => {
+          {dsLoTrinh.map((loTrinh) => {
             return <Item_ListDiem_LoTrinh loTrinh={loTrinh} />;
           })}
         </div>

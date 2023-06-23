@@ -5,12 +5,11 @@ import { useDispatch } from "react-redux";
 import { setCurrentLesson } from "../../redux/reducer/baiHocContentReducer";
 import httpServ from "../../services/http.service";
 const BtnTitleVideo = React.memo(
-  ({ lesson, isLearned, hightLightcss, isCancelUserClick, isDemoUser, onToggle }) => {
+  ({ lesson, isLearned, hightLightcss, isCancelUserClick, isDemoUser, onToggle, isCanWatch, isLock }) => {
 
     const dispatch = useDispatch();
 
     const getUrlVideo = (noiDung) => {
-      if (!isCancelUserClick) return message.error('Bạn chưa hoàn thành bài đang học!');
       httpServ.getUrlVideo_FPT(noiDung).then((res) => {
         dispatch(setCurrentLesson(lesson));
         if (onToggle)
@@ -27,7 +26,17 @@ const BtnTitleVideo = React.memo(
     }
 
 
-    
+    const renderIcon = () => {
+      if (hightLightcss)
+        return <i className="fa fa-play mr-3 flex-shrink-0" style={{ color: 'rgb(16 185 129)' }}></i>
+      else if (isLearned) {
+        return <i className="fa fa-check mr-3 text-sm flex-shrink-0 text-green-600"></i>
+      }
+      else if (isCanWatch)
+        return <i className="mr-3 flex-shrink-0"></i>
+      else
+        return <i className="fa fa-lock mr-3 flex-shrink-0"></i>
+    }
 
     const renderButton = () => {
       return (
@@ -44,22 +53,11 @@ const BtnTitleVideo = React.memo(
           <button
             className=" items-center  flex  px-2  justify-center   p-1 min-h-16 h-max-content   transform duration-300  rounded-lg w-full "
             onClick={() => {
-              isCancelUserClick &&
-                !isDemoUser &&
-                getUrlVideo(lesson.noiDung);
-              if (isDemoUser && lesson.xemDemo) {
-                getUrlVideo(lesson.noiDung);
-              }
+              !isLock && getUrlVideo(lesson.noiDung);
             }}
           >
-            <div className="   break-words text-center px-1 font-normal text-sm lg:text-lg  text-blue-theme flex items-center space-y-1  justify-start w-6 h-6 left-6  flex-shrink-0 rounded-full bg-gray-300 mr-2">
-              <i
-                className={
-                  isLearned || hightLightcss
-                    ? "fa fa-check mr-3 text-sm flex-shrink-0 text-green-600"
-                    : "fa fa-lock mr-3 flex-shrink-0"
-                }
-              ></i>{" "}
+            <div className="btn-icon break-words text-center px-1 font-normal text-sm lg:text-lg  text-blue-theme flex items-center space-y-1  justify-start w-6 h-6 left-6  flex-shrink-0 rounded-full bg-gray-300 mr-2">
+              {renderIcon()}
             </div>
             <div className="flex  flex-col w-full justify-start  h-max-content">
               <span
@@ -79,61 +77,28 @@ const BtnTitleVideo = React.memo(
                     {lesson.thoiLuong} phút
                   </span>
                 </div>
-                {lesson.moTa ? (
-                  isDemoUser ? (
-                    <Tooltip
-                      mouseEnterDelay={0}
-                      mouseLeaveDelay={0.3}
-                      trigger={["click", "hover"]}
-                      placement="right"
-                      animation="zoom"
-                      overlayClassName="  "
-                      color="white"
-                      title={
-                        <p className="text-blue-theme  p-1  text-center">
-                          Bạn cần đăng kí lộ trình để tải được tài nguyên này
-                        </p>
-                      }
-                    >
-                      <span>
-                        <button
-                          className="flex items-center space-x-1 h-max-content rounded p-1 border-gray-600 w-max flex-shrink-0 border-1 text-color-content cursor-pointer hover:text-gray-900  px-2 transform duration-300 hover:border-gray-500"
-                        >
-                          <i className="fa fa-folder-open"></i>
-                          <span>Tài nguyên</span>
-                          <i className="fa fa-download"></i>
-                        </button>
-                      </span>
-                    </Tooltip>
-                  ) : (
-                    <a
-                      onClick={() => {
-                        window.open(`https://backend.edubiz.vn${lesson.moTa}`, '_blank').focus();
-                      }}
-                      // href={`https://backend.cyberlearn.vn/${lesson.moTa}`}
-                      target="_blank"
-                    >
-                      <button
-                        className="flex items-center space-x-1 h-max-content rounded p-1 border-gray-600 w-max flex-shrink-0 border-1 text-color-content cursor-pointer hover:text-gray-900  px-2 transform duration-300 hover:border-gray-500
-            "
-                      >
-                        <i className="fa fa-folder-open"></i>
-                        <span>Tài nguyên</span>
-                        <i className="fa fa-download"></i>
-                      </button>
-                    </a>
-                  )
-                ) : (
-                  ""
-                )}
+                {
+                  lesson.moTa ? <a onClick={() => { window.open(`https://backend.edubiz.vn${lesson.moTa}`, '_blank').focus(); }}
+                    // href={`https://backend.cyberlearn.vn/${lesson.moTa}`}
+                    target="_blank"
+                  >
+                    <button className="flex items-center space-x-1 h-max-content rounded p-1 border-gray-600 w-max flex-shrink-0 border-1 text-color-content cursor-pointer hover:text-gray-900  px-2 transform duration-300 hover:border-gray-500">
+                      <i className="fa fa-folder-open"></i>
+                      <span>Tài nguyên</span>
+                      <i className="fa fa-download"></i>
+                    </button>
+                  </a> : null
+                }
               </div>
             </div>
           </button>
         </div>
       );
     };
-    return !disableXemdemo ? (
-      isCancelUserClick ? (
+
+
+    return (
+      !isLock ? (
         renderButton()
       ) : (
         <Tooltip
@@ -155,24 +120,7 @@ const BtnTitleVideo = React.memo(
           {renderButton()}
         </Tooltip>
       )
-    ) : (
-      <Tooltip
-        mouseEnterDelay={0}
-        mouseLeaveDelay={0.3}
-        trigger={["click", "hover"]}
-        placement="right"
-        animation="zoom"
-        overlayClassName="  "
-        color="white"
-        title={
-          <p className="text-blue-theme  p-1  text-center">
-            Bạn cần đăng kí lộ trình để xem được video này
-          </p>
-        }
-      >
-        {renderButton()}
-      </Tooltip>
-    );
+    )
   }
 );
 export default BtnTitleVideo;
