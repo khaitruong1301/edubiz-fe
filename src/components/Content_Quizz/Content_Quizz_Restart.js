@@ -43,6 +43,10 @@ export default function Content_Quizz_Restart({ stateQuizz }) {
             });
     }
 
+    const openViewAnswers = () => {
+        dispatch(setTrangThaiQuizz({ trangThai: 3 }));
+    }
+
     return (
         <div className="w-full h-full ContentQuizz flex flex-col items-center justify-center bg-dark-theme bg-opacity-20">
             <Modal
@@ -80,6 +84,12 @@ export default function Content_Quizz_Restart({ stateQuizz }) {
                     <p className="text-base">Lựa chọn <b>LÀM LẠI</b> để cải thiện điểm!</p>
                 </div>
                 <div className="flex items-center space-x-5">
+                    <button
+                        onClick={() => openViewAnswers()}
+                        className=" cursor-pointer card_theme p-3 font-medium text-base text-color-blue-white border-none shadow-design_code space-x-2"
+                    >
+                        <span> Xem kết quả</span> <i className="fa fa-eye"></i>
+                    </button>
                     <button
                         onClick={() => {
                             setIsOpenModal(true)

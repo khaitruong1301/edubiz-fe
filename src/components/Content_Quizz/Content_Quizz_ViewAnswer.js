@@ -1,131 +1,157 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Answer_Practices_ChooseAnswer from "../PraticesAnswer/Answer_Practices_ChooseAnser";
-import Answer_Practices_ChooseAnswerToFill from "../PraticesAnswer/Answer_Praticees_ChooseAnserToFill";
-import Answer_Practices_HTML_CSS from "../PraticesAnswer/Answer_Practices_HTML_CSS";
-import Answer_Practices_FillCodeToInput from "../PraticesAnswer/Answer_Practices_FillCodeToInput";
-import Answer_Practices_MultipleChoice from "../PraticesAnswer/Answer_Practices_MultipleChoice";
-import { setListQuestion } from "../../redux/reducer/baiHocContentReducer";
+import { setCurrentLesson, setIsRedoQuizz, setIsTotalRedoQuizz, setListQuestion, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
 import { initalAnwerUser } from "../../utils/ConvertLesson";
 import { Portal } from "react-portal";
 import Navigate_Footer_ViewAnsers from "../Navigate_Footer_ViewAnsers/Navigate_Footer_ViewAnsers";
+import { Checkbox, message } from 'antd';
+import httpServ from "../../services/http.service";
+
+const replaceString = (str, charOld) => {
+  let strNew = '';
+  let count = 1;
+  for (var i = 0; i < str.length; i++) {
+    if (str[i] === charOld) {
+      strNew += `-----`;
+      count++;
+    }
+    else
+      strNew += str[i];
+
+  }
+  return strNew;
+}
 
 export default function ContentQuizz_ViewAnsers({ stateQuizz }) {
-  let [currentQuestionIndex, setCurrentQuestsionIndex] = useState(0);
-  let { currentLesson, isRedoQuizz } = useSelector((state) => state.baiHoc);
-  let allQuestions = useSelector((state) => state.baiHoc.listQuestion);
   let dispatch = useDispatch();
+  let listQuestionState = useSelector((state) => state.baiHoc.listQuestion);
+  const currentLesson = useSelector((state) => state.baiHoc.currentLesson);
+  let totalRedoQuizz = useSelector((state) => state.baiHoc.totalRedoQuizz);
+  const tatCaBaiHoc = useSelector((state) => state.khoaHoc.allLessons);
+  const { userInfor } = useSelector((state) => state.authUser);
+
+  const [allQuestions, setAllQuestions] = useState([]);
+
   useEffect(() => {
-    let listQuestionRaw = JSON.parse(currentLesson.noiDung).map((item, index) => {
-      let userAnser = initalAnwerUser(item);
-      return {
-        id: index,
-        noiDung: item,
-        isCorrect: false,
-        userAnsers: [],
-      };
-    });
-    let baseNumber = Math.floor(listQuestionRaw.length / 3)
-    let listQuestion = []
-    if (!isRedoQuizz) {
-      listQuestion = listQuestionRaw.slice(baseNumber * 2).concat(listQuestionRaw.slice(0, baseNumber))
-    } else {
-      listQuestion = listQuestionRaw.slice(0, baseNumber * 2)
-    }
-    dispatch(setListQuestion(listQuestion));
-    setCurrentQuestsionIndex(0);
-  }, [stateQuizz?.trangThai, currentLesson.id]);
+    setAllQuestions(listQuestionState)
+  }, [listQuestionState]);
 
+  const answerChecked = (items) => {
+    if (!items) return null;
+    return items.map((item, index) => {
+      return <div key={index} className="QuizzViewAnswerItem_Answer">
+        <Checkbox checked={item.checked}>{item.value}</Checkbox>
+      </div>
+    })
+  }
 
-  let arrRenderQuestion = [];
-  arrRenderQuestion = allQuestions.map((question, index) => {
-    let keyIndex = index + currentLesson?.id;
-    switch (question?.noiDung.maLoaiBaiTap) {
-      case "SINGLE":
-        return (
-          <Answer_Practices_ChooseAnswer
-            key={keyIndex}
-            question={question}
-          />
-        );
-      case "multiple_choice":
-        return (
-          <Answer_Practices_MultipleChoice
-            key={keyIndex}
-            question={question}
-          />
-        );
-      case "fill_inblank_css":
-        return (
-          <Answer_Practices_HTML_CSS
-            key={keyIndex}
-            question={question}
-          />
-        );
-      case "fill_inblank":
-        return (
-          <Answer_Practices_ChooseAnswerToFill
-            key={keyIndex}
-            question={question}
-          />
-        );
-      case "fill_input":
-        return (
-          <Answer_Practices_FillCodeToInput
-            key={keyIndex}
-            question={allQuestions[currentQuestionIndex]}
-          />
-        );
+  const answerSorting = (items) => {
+    if (!items) return null;
+    return items.map((item, index) => {
+      return <div key={index} className="QuizzViewAnswerItem_Answer">
+        {item.value}
+      </div>
+    })
+  }
 
+  const answerFillWord = (description, userAnswers) => {
+    if (!description) return null;
+    const desc = description ? replaceString(description, '♥') : '';
+    return <div className="QuizzViewAnswerItem_Desc">
+      <div dangerouslySetInnerHTML={{ __html: desc }} className="QuizzViewAnswerItem_DescQuestion"></div>
+      {
+        userAnswers ? userAnswers.map((item, index) => {
+          return <div key={index} className="QuizzViewAnswerItem_Answer">
+            {`${index + 1}. ${item}`}
+          </div>
+        }) : null
+      }
+    </div>
+  }
+
+  const renderQuestion = (question) => {
+    switch (question.type) {
+      case 'SINGLE':
+        return answerChecked(question.items);
+      case 'TRUEORFALSE':
+        return answerChecked(question.items);
+      case 'SINGLE', 'TRUEORFALSE', 'MULTIPLE':
+        return answerChecked(question.items);
+      case 'SORTING':
+        return answerSorting(question.items);
+      case 'FILLWORD':
+        return answerFillWord(question.description, question.userAnswers);
       default:
         break;
     }
-  });
 
+  }
 
+  const handleConfirmRedoQuizz = () => {
+    httpServ.getLamLaiTracNghiem(userInfor.id, currentLesson.id).then((res) => {
+      httpServ
+        .getTrangThaiQuizz(userInfor?.id, currentLesson.id)
+        .then((res) => {
+          dispatch(setTrangThaiQuizz(res.data.content));
+          dispatch(setIsRedoQuizz(true));
+          dispatch(setIsTotalRedoQuizz(totalRedoQuizz + 1));
+        })
+        .catch((err) => {
+        });
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-
-  let containerTracNhiem = document.getElementById("containerTracNhiem");
-  setTimeout(() => {
-    if (containerTracNhiem) {
-      let widthContainer = containerTracNhiem.clientWidth;
-      let navigateFooter = document.getElementById("footerTracNghiem");
-      if (navigateFooter) {
-        navigateFooter.style.width = `${widthContainer}px`;
-        var rect = containerTracNhiem.getBoundingClientRect();
-        navigateFooter.style.marginLeft = `${rect.left}px`;
-      }
-    }
-  }, 300);
-
-  let handleChangeCurrentQuestion = (value) => {
-    setCurrentQuestsionIndex(currentQuestionIndex + value);
+  const handleNextLesson = () => {
+    let currentLessonIndex = tatCaBaiHoc.findIndex((item) => {
+      return item.id === currentLesson.id;
+    });
+    dispatch(setCurrentLesson(tatCaBaiHoc[currentLessonIndex + 1]));
   };
+
+  let diemQuizz = 0;
+  if (allQuestions.length > 0) {
+    let countCorrected = 0;
+    for (let index = 0; index < allQuestions.length; index++) {
+      const question = allQuestions[index];
+      question.isCorrect && countCorrected++;
+    }
+    diemQuizz = (countCorrected / allQuestions.length) * 100;
+  }
+
   return (
-    <div
-      id="containerTracNhiem"
-      className="w-full  flex-grow h-full flex flex-col "
-    >
-      <div className="w-full h-full  flex-grow flex flex-col  relative p-2">
-        <div className="w-full  ">
-          {arrRenderQuestion[currentQuestionIndex]}
-        </div>
-
-        <div className="h-22 w-full"></div>
+    <div className="QuizzViewAnswer">
+      <div className="QuizzViewAnswer_Title">Kết quả bài kiểm tra</div>
+      {
+        allQuestions.map((item, i) => {
+          return <div className="QuizzViewAnswerItem">
+            <div className="QuizzViewAnswerItem_Title">
+              <b style={{ color: item.isCorrect ? 'green' : 'red' }}>{item.isCorrect ? 'ĐÚNG' : 'SAI'} - </b>
+              <b>{item.question}</b>
+            </div>
+            {renderQuestion(item)}
+            {
+              item.feedback ? <div className="QuizzViewAnswerItem_FeedBack">
+                <b>Phản hồi: </b> {'  '} {item.feedback}
+              </div> : null
+            }
+          </div>
+        })
+      }
+      <div className="QuizzViewAnswer_Button">
+        <button onClick={() => handleConfirmRedoQuizz()}>
+          Làm lại
+          <i className="fa fa-redo-alt"></i>
+        </button>
+        {
+          diemQuizz > 70 ? <button onClick={() => handleNextLesson()}>
+            Bài tiếp theo
+            <i className="fa fa-chevron-circle-right"></i>
+          </button> : null
+        }
       </div>
-      <Portal>
-        <div
-          id="footerTracNghiem"
-          className="h-max-content   flex-shrink-0  bg-transparent fixed bottom-3 card_theme  border-none shadow-lg hover:shadow-xl transition duration-200 cursor-pointer left-0  border-0"
-        >
-          <Navigate_Footer_ViewAnsers
-            current={currentQuestionIndex + 1}
-            total={allQuestions.length}
-            handleChangeCurrentQuestion={handleChangeCurrentQuestion}
-
-          />
-        </div>
-      </Portal>
     </div>
-  );
+  )
 }

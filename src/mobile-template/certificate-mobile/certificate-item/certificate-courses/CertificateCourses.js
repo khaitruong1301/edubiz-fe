@@ -52,7 +52,7 @@ export default function CertificateCourses({ khoaHoc, keyIndex }) {
                             </div>
                             <div className="certificatecourses-info_row">
                                 <span className="info_row-title">Loại bài tập: </span>
-                                <span>{baiTap.loaiBaiTap === QUIZ ? "Trắc nghiệm" : "Nộp"}</span>
+                                <span>{baiTap.loaiBaiTap === QUIZ ? "Trắc nghiệm" : "Tự luận"}</span>
                             </div>
                             {/* <div className="certificatecourses-info_row">
                                 <span className="info_row-title">Trạng thái: </span>
@@ -62,10 +62,10 @@ export default function CertificateCourses({ khoaHoc, keyIndex }) {
                                 <span className="info_row-title">Điểm: </span>
                                 <b style={{ color: 'red' }}>{baiTap.diem}</b>
                             </div>
-                            {/* <div className="certificatecourses-info_row">
+                            <div className="certificatecourses-info_row">
                                 <span className="info_row-title">Nhận xét: </span>
-                                <span>{baiTap.nhanXet}</span>
-                            </div> */}
+                                <span>{baiTap.nhanXet ? baiTap.nhanXet : 'Chưa có đánh giá!'}</span>
+                            </div>
                         </div>
                     })
                 }

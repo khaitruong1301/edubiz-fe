@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsRedoQuizz, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
 import httpServ from "../../services/http.service";
@@ -9,6 +9,7 @@ import ContentQuizz_ViewAnsers from "./Content_Quizz_ViewAnswer";
 import './Praticess.css'
 import Content_Quizz_Out_Time from "./Content_Quizz_Out_Time";
 import Content_Quizz_Restart from "./Content_Quizz_Restart";
+import { Modal } from "antd";
 
 export default function Content_Quizz() {
 
@@ -40,8 +41,8 @@ export default function Content_Quizz() {
 
 
   switch (stateQuizz?.trangThai) {
-    case 3: // XEM CÂU TRẢ LỜI
-      return <ContentQuizz_ViewAnsers stateQuizz={stateQuizz} />;
+    case 3: // XEM BÀI LÀM
+      return <ContentQuizz_ViewAnsers />;
     case 0: // BẮT ĐẦU LÀM
       return <ContentQuizz_Start stateQuizz={stateQuizz} />;
     case 1: // KHÔNG QUA BÀI TEST
@@ -56,5 +57,6 @@ export default function Content_Quizz() {
 
       break;
   }
+
   return <div></div>;
 }

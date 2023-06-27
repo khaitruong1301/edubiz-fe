@@ -9,7 +9,7 @@ export default function Content_Quizz_Success({ stateQuizz }) {
   const dispatch = useDispatch();
   const currentLesson = useSelector((state) => state.baiHoc.currentLesson);
   const { userInfor } = useSelector((state) => state.authUser);
-  const tatCaBaiHoc = useSelector((state) => state.khoaHoc.allLessons); 
+  const tatCaBaiHoc = useSelector((state) => state.khoaHoc.allLessons);
   const [isOpenModal, setIsOpenModal] = useState(false)
   let currentLessonIndex = tatCaBaiHoc.findIndex((item) => {
     return item.id === currentLesson.id;
@@ -38,6 +38,12 @@ export default function Content_Quizz_Success({ stateQuizz }) {
         console.log(err);
       });
   }
+
+
+  const openViewAnswers = () => {
+    dispatch(setTrangThaiQuizz({ trangThai: 3 }));
+  }
+
   return (
     <div className="w-full h-full ContentQuizz  flex flex-col items-center justify-center bg-dark-theme bg-opacity-20">
       <Modal
@@ -77,6 +83,12 @@ export default function Content_Quizz_Success({ stateQuizz }) {
         </div>
         <div className="flex items-center space-x-5">
           <button
+            onClick={() => openViewAnswers()}
+            className=" cursor-pointer card_theme p-3 font-medium text-base text-color-blue-white border-none shadow-design_code space-x-2"
+          >
+            <span> Xem kết quả</span> <i className="fa fa-eye"></i>
+          </button>
+          <button
             onClick={() => {
               setIsOpenModal(true)
             }}
@@ -84,14 +96,6 @@ export default function Content_Quizz_Success({ stateQuizz }) {
           >
             <span> Làm lại</span> <i className="fa fa-redo-alt"></i>
           </button>
-          {/* <button
-            onClick={() => {
-              dispatch(setTrangThaiQuizz({ trangThai: 3 }))
-            }}
-            className=" cursor-pointer  btn-theme p-3 shadow-xl font-medium text-base text-white border-none rounded-lg flex space-x-1 items-center  "
-          >
-            Xem đáp án
-          </button> */}
           {currentLessonIndex + 1 !== tatCaBaiHoc.length && <button
             onClick={() => {
               handleNextLesson();

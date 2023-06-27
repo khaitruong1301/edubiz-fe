@@ -67,3 +67,69 @@
     padding: 0 0.5rem !important;
   }
 }
+
+.QuizzViewAnswer {
+  padding: 1rem;
+}
+
+.QuizzViewAnswer_Title{
+  display: flex;
+  justify-content: center;
+  margin: 0.25rem 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.QuizzViewAnswerItem {
+  margin-bottom: 1rem;
+}
+
+.QuizzViewAnswerItem_Title {
+  margin-bottom: 0.5rem;
+}
+
+.QuizzViewAnswerItem_Title b {
+  font-size: 1.15rem;
+}
+
+.QuizzViewAnswerItem_Answer {
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.QuizzViewAnswerItem_Answer label {
+  font-size: 1.1rem;
+}
+
+.QuizzViewAnswerItem_FeedBack {
+  margin-left: 1rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+.QuizzViewAnswerItem_DescQuestion {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+}
+
+.QuizzViewAnswer_Button {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.QuizzViewAnswer_Button button {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #aaa;
+  background: #3a2aa5;
+  color: #fff;
+}
+
+.QuizzViewAnswer_Button button i{
+  margin-left: 0.5rem;
+}
