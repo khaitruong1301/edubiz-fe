@@ -11,7 +11,8 @@ export default function Footer_QuizzWrite({
     handleClickNextQuestion,
     isDisableBtn,
     currentLesson,
-    allQuestions
+    allQuestions,
+    baiTapDaNop
 }) {
     const dispatch = useDispatch();
     const baiHoc = useSelector((state) => state.baiHoc);
@@ -33,14 +34,26 @@ export default function Footer_QuizzWrite({
             baiLam: JSON.stringify(allQuestions),
         };
 
-        httpServ
-            .postBaiTapTuLuanQuizz(inforQuizz)
-            .then((res) => {
-                dispatch(setCurrentLesson(tatCaBaiHoc[currentLessonIndex + 1]));
-            })
-            .catch((err) => {
-                console.log("no", err);
-            });
+        if (baiTapDaNop.trangThai == 'PENDING') {
+            httpServ
+                .putRedoBaiTapTuLuanQuizz(baiTapDaNop.id, inforQuizz)
+                .then((res) => {
+                    dispatch(setCurrentLesson(tatCaBaiHoc[currentLessonIndex + 1]));
+                })
+                .catch((err) => {
+                    console.log("no", err);
+                });
+        }
+        else {
+            httpServ
+                .postBaiTapTuLuanQuizz(inforQuizz)
+                .then((res) => {
+                    dispatch(setCurrentLesson(tatCaBaiHoc[currentLessonIndex + 1]));
+                })
+                .catch((err) => {
+                    console.log("no", err);
+                });
+        }
 
         httpServ
             .postCompletedBaiHoc({

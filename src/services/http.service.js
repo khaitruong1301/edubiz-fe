@@ -14,7 +14,10 @@ class HttpRequestService {
     return AxiosServ.postMethod(uri, data, setLoading);
   };
 
-
+  getTuDongGiaHanLoTrinh = (setLoading = true) => {
+    const uri = `/lotrinh/tu-dong-gia-han`;
+    return AxiosServ.getMethod(uri, setLoading);
+  };
   getLoTrinhDaDangKI = (idUser, setLoading = true) => {
     const uri = `/lotrinh/lay-ds-tt-lotrinh/${idUser}/1`;
     return AxiosServ.getMethod(uri, setLoading);
@@ -133,6 +136,12 @@ class HttpRequestService {
     const uri = `nopbai/nopbaitap`;
     return AxiosServ.postMethod(uri, data, setLoading);
   };
+
+  getDiemBaiTap = (idNguoiDung, idBaiHoc, setLoading = true) => {
+    const uri = `nopbai/laydiem/${idBaiHoc}/${idNguoiDung}`;
+    return AxiosServ.getMethod(uri, setLoading);
+  };
+
   postNopBaiTapNop = (data, setLoading = true) => {
     const uri = `nopbai/nopbaitap`;
     return AxiosServ.postMethod(uri, data, setLoading);
@@ -146,6 +155,11 @@ class HttpRequestService {
   postBaiTapTuLuanQuizz = (data, setLoading = true) => {
     const uri = `nopbai/noptuluan`;
     return AxiosServ.postMethod(uri, data, setLoading);
+  };
+
+  putRedoBaiTapTuLuanQuizz = (id, data, setLoading = true) => {
+    const uri = `nopbai/noplaituluan/${id}`;
+    return AxiosServ.putMethod(uri, data, setLoading);
   };
 
   getStatisChartDashboard = (

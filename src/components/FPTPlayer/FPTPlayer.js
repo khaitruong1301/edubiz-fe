@@ -158,6 +158,7 @@ export default class FPTPlayer extends Component {
         return timeVideoLession.timeVideo;
     }
 
+    
     render() {
         const { progress } = this.state;
         return (

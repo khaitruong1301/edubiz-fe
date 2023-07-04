@@ -67,6 +67,10 @@ function DesktopTemlate() {
     if (!isDemoUser) {
       connection.on("GetThongBaoFakeRT", (items) => { });
     }
+
+    httpServ.getTuDongGiaHanLoTrinh()
+    .then(res => console.log(true))
+    .catch(err => console.log(err))
   }, []);
 
   useEffect(() => {

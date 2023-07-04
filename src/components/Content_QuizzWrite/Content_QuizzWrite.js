@@ -5,7 +5,7 @@ import _ from "lodash";
 import Footer_QuizzWrite from "./Footer_QuizzWrite";
 import MuiEditor from "../../mobile-template/common/editor/MuiEditor";
 
-export default function Content_QuizzWrite({ currentLesson }) {
+export default function Content_QuizzWrite({ currentLesson, baiTapDaNop }) {
 
   let dispatch = useDispatch();
 
@@ -52,6 +52,8 @@ export default function Content_QuizzWrite({ currentLesson }) {
   }, 300);
 
   const renderQuestion = () => {
+    if(!allQuestions) return null;
+
     const question = allQuestions[currentQuestionIndex];
     if (!question) return null;
     return <div className="QuizzWrite">
@@ -76,7 +78,7 @@ export default function Content_QuizzWrite({ currentLesson }) {
       <div className="w-full h-full  flex-grow flex flex-col  p-3 relative">
         <div className="w-full question-wrapper">
           {
-            allQuestions ? renderQuestion() : null
+            renderQuestion()
           }
         </div>
         <div className="h-22 w-full"></div>
@@ -93,6 +95,7 @@ export default function Content_QuizzWrite({ currentLesson }) {
             isDisableBtn={isDisableNextBtn}
             currentLesson={currentLesson}
             allQuestions={allQuestions}
+            baiTapDaNop={baiTapDaNop}
           />
         </div>
       </Portal>
