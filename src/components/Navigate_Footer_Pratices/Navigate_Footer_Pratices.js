@@ -1,4 +1,4 @@
-import { Button, Progress } from "antd";
+import { Button, Modal, Progress } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setIsTotalRedoQuizz, setTrangThaiQuizz } from "../../redux/reducer/baiHocContentReducer";
@@ -19,7 +19,7 @@ export default function Navigate_Footer_Pratices({
   const { khoaHocContent } = useSelector((state) => state.khoaHoc);
 
   const listQuestion = baiHoc.listQuestion;
-  const userInfor = useSelector((state) => state.authUser.userInfor); 
+  const userInfor = useSelector((state) => state.authUser.userInfor);
   let questionFail = [];
 
   useEffect(() => {

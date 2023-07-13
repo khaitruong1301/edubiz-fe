@@ -1,7 +1,8 @@
-import { Button, Progress } from "antd";
+import { Button, Modal, Progress } from "antd";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import httpServ from "../../services/http.service";
+import { useHistory } from "react-router-dom";
 import { setCurrentLesson } from "../../redux/reducer/baiHocContentReducer";
 import { setdanhSachBaiDaHoc } from "../../redux/reducer/khoaHocReducer";
 
@@ -15,6 +16,7 @@ export default function Footer_QuizzWrite({
     baiTapDaNop
 }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const baiHoc = useSelector((state) => state.baiHoc);
     const { khoaHocContent } = useSelector((state) => state.khoaHoc);
     const tatCaBaiHoc = useSelector((state) => state.khoaHoc.allLessons);
@@ -34,7 +36,7 @@ export default function Footer_QuizzWrite({
             baiLam: JSON.stringify(allQuestions),
         };
 
-        if (baiTapDaNop.trangThai == 'PENDING') {
+        if (baiTapDaNop && baiTapDaNop.trangThai == 'PENDING') {
             httpServ
                 .putRedoBaiTapTuLuanQuizz(baiTapDaNop.id, inforQuizz)
                 .then((res) => {
@@ -54,7 +56,6 @@ export default function Footer_QuizzWrite({
                     console.log("no", err);
                 });
         }
-
         httpServ
             .postCompletedBaiHoc({
                 loTrinhId: khoaHocContent.maLoTrinh,
@@ -64,6 +65,17 @@ export default function Footer_QuizzWrite({
             })
             .then((res) => {
                 dispatch(setdanhSachBaiDaHoc(res.data.content.baiDaHoc));
+                if(currentLessonIndex + 1 == tatCaBaiHoc.length){
+                    Modal.confirm({
+                        title: "Xác nhận",
+                        content: 'Bạn đã hoàn thành tất cả các bài học!',
+                        cancelText: 'Ở lại',
+                        okText: 'Xem lộ trình',
+                        onOk: () => {
+                            history.push('/lo-trinh');
+                        }
+                    })
+                }
             })
             .catch((err) => {
                 console.log(err);

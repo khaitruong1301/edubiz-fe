@@ -284,9 +284,14 @@ class HttpRequestService {
     return AxiosServ.getMethod(uri, setLoading);
   };
 
-  ketNoiMangXaHoi = (data, setLoading = true) => {
-    const uri = `/mangxahoi/ketnoi`;
-    return AxiosServ.postMethod(uri, data, setLoading);
+  ketNoiMangXaHoi = (maNguoiDung, maPhongBan, setLoading = true) => {
+    const uri = `/mangxahoi/ketnoi/${maNguoiDung}/${maPhongBan}`;
+    return AxiosServ.getMethod(uri, setLoading);
+  };
+
+  ngatKetNoiMangXaHoi = (maNguoiDung, maPhongBan, setLoading = true) => {
+    const uri = `/mangxahoi/ngatketnoi/${maNguoiDung}/${maPhongBan}`;
+    return AxiosServ.getMethod(uri, setLoading);
   };
 
   dangTrangThai = (data, setLoading = true) => {

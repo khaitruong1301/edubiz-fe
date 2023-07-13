@@ -23,6 +23,7 @@ function PrivateRouter() {
                 <Route path={URL_PAGE.EXAM_TEST} component={(props) => <ExamTestListMobile {...props} title="Kiểm tra đánh giá"/>} />
                 <Route path={URL_PAGE.EVENT} component={(props) => <EventMobile {...props} title="Sự kiện"/>} />
                 <Route path={`${URL_PAGE.COURSE}/:id`} component={(props) => <CourseMobile {...props} title="Khóa học"/>} />
+                <Route path={URL_PAGE.SOCIAL} component={(props) => <SocialMobile {...props} title="Thảo luận"/>} />
             </LayoutContent>
             <BottomBar />
         </>

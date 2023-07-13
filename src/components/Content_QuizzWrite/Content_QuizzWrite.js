@@ -16,6 +16,7 @@ export default function Content_QuizzWrite({ currentLesson, baiTapDaNop }) {
   useEffect(() => {
     setAllQuestions(JSON.parse(currentLesson.noiDung));
     setIsDisableNextBtn(true);
+    setCurrentQuestsionIndex(0)
   }, [currentLesson]);
 
   // ===============================================

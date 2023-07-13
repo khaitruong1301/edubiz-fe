@@ -11,11 +11,11 @@ export const connection = new signalR.HubConnectionBuilder()
   .withUrl(environment.baseUrl + "/apphub")
   .configureLogging(signalR.LogLevel.Information)
   .build();
-connection.start().then(() => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById("root")
-  );
-});
+  connection.start().then(() => {
+    ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.getElementById("root")
+    );
+  });

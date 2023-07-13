@@ -1,8 +1,9 @@
 import { useState } from "react"
 import httpServ from "../../../services/http.service";
 import { useEffect } from "react";
+import { connection } from '../../../index';
 
-export default function SocailStatusForm({ nguoiDung }) {
+export default function SocailStatusForm({ nguoiDung, group }) {
     const [isShow, setIsShow] = useState(false);
     const [content, setContent] = useState("");
 
@@ -20,7 +21,7 @@ export default function SocailStatusForm({ nguoiDung }) {
 
     const handleSubmit = () => {
         const data = {
-            maPhongBan: nguoiDung.maPhongBan,
+            maPhongBan: group,
             maNguoiDung: nguoiDung.id,
             noiDung: content,
             dsBinhLuan: [],
@@ -28,9 +29,7 @@ export default function SocailStatusForm({ nguoiDung }) {
             dsDaXem: [nguoiDung.id]
         }
 
-        httpServ.dangTrangThai(data)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+        connection.send('PushStatus', data);
     }
 
     return <>
@@ -46,7 +45,7 @@ export default function SocailStatusForm({ nguoiDung }) {
                 <div className='socailmobile-status-form-head'>
                     <span>Đăng thông báo</span>
                     <span onClick={(handleCloseForm)}>
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                        <i className="fa fa-times" aria-hidden="true"></i>
                     </span>
                 </div>
                 <div className='socailmobile-status-form-body'>
@@ -54,7 +53,7 @@ export default function SocailStatusForm({ nguoiDung }) {
                 </div>
                 <div className='socailmobile-status-form-footer'>
                     <button onClick={(handleSubmit)}>
-                        <span><i class="fa fa-paper-plane" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-paper-plane" aria-hidden="true"></i></span>
                         <span>Đăng</span>
                     </button>
                 </div>

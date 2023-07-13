@@ -6,7 +6,7 @@ import httpServ from "../../services/http.service";
 import localStorageServ from "../../services/locaStorage.service";
 import { removeDemoUser } from "../../utils/HocDemoUtils";
 import { getCurrentDay } from "../../utils/LogOut";
-import { triggerTour } from "../../utils/TriggerTourUtils";
+import { triggerTour } from "../../utils/TriggerTourUtils"; 
 import { URL_PAGE } from "../common";
 import { message } from "antd";
 import './LoginMobile.css';
