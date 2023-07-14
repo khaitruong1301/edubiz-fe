@@ -26,6 +26,16 @@ export default function ContentQuizzWrite_DetailKhoaHoc() {
       .catch(err => console.log(err))
   }, []);
 
+  useEffect(() => {
+    const daHoanThanh = danhSachBaiDaHoc.find(x => x.baiHocId == currentLesson.id);
+    setDaHoanThanh(daHoanThanh ? true : false);
+    httpServ.getDiemBaiTap(userInfor.id, currentLesson.id)
+      .then(res => {
+        setBaiTapDaNop(res.data.content);
+      })
+      .catch(err => console.log(err))
+  }, [currentLesson.id]);
+
   return (
     <Content className="w-full h-max-content space-y-3 flex-shrink-0 relative overflow-hidden flex flex-col justify-start">
       <div className="w-full flex-grow  rounded-none border-none">

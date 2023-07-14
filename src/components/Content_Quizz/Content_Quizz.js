@@ -27,6 +27,7 @@ export default function Content_Quizz() {
         dispatch(setTrangThaiQuizz(res.data.content));
       })
       .catch((err) => {
+        console.log(err);
       });
 
     return () => {

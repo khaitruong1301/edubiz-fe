@@ -56,6 +56,7 @@ export default function Footer_QuizzWrite({
                     console.log("no", err);
                 });
         }
+        
         httpServ
             .postCompletedBaiHoc({
                 loTrinhId: khoaHocContent.maLoTrinh,
