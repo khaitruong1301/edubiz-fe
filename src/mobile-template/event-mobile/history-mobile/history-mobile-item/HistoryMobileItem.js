@@ -14,6 +14,9 @@ function HistoryMobileItem({ data, typeThongBao }) {
         if (objNoiDung.SuKien == 'TIENTRINH') {
             return <Link to="/series">Bạn đã được ghi danh vào lộ trình {objNoiDung.NoiDung}</Link>
         }
+        else if (objNoiDung.SuKien == 'NOPBAI') {
+            return <Link to={"/detail-khoa-hoc/" + objNoiDung.ItemId}>{objNoiDung.NoiDung}</Link>
+        }
     }
 
     return (
@@ -24,7 +27,7 @@ function HistoryMobileItem({ data, typeThongBao }) {
             <div>
                 <p className="font-medium text-sm text-color-title">
                     {
-                         data.loaiThongBao == 'HOCTAP' ||  data.phanLoai == 'GHIDANH' ? renderThongBao(data.noiDung) : HtmlParser(data.noiDung)
+                        data.loaiThongBao == 'HOCTAP' || data.phanLoai == 'GHIDANH' ? renderThongBao(data.noiDung) : HtmlParser(data.noiDung)
                     }
                 </p>
                 <p className="text-color-content">

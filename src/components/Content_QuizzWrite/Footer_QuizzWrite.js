@@ -73,7 +73,12 @@ export default function Footer_QuizzWrite({
                         cancelText: 'Ở lại',
                         okText: 'Xem lộ trình',
                         onOk: () => {
-                            history.push('/lo-trinh');
+                            if(window.innerWidth >= 992){
+                                history.push('/lo-trinh');
+                            }
+                            else{
+                                history.push('/series');
+                            }
                         }
                     })
                 }

@@ -120,6 +120,18 @@ export default function BtnTitleBaiHoc({ lesson, isDemoUser, onToggle, itemIndex
           isLock={isLock}
         />
       );
+    case "EXCEL_FILE":
+      return (
+        <BtnTitleQuizz_Write
+          hightLightcss={hightLightcss}
+          lesson={lesson}
+          isLearned={isLearned}
+          isDemoUser={isDemoUser}
+          onToggle={onToggle}
+          isCanWatch={isCanWatch}
+          isLock={isLock}
+        />
+      );
 
     default:
       break;

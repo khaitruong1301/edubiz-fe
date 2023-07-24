@@ -13,9 +13,10 @@ export default function DropdowThongBao() {
   const { allThongBao } = useSelector((state) => state.thongBao);
   const { userInfor } = useSelector((state) => state.authUser);
   let newThongBao = allThongBao?.filter((item) => {
-    return item.daXem === false;
+    return item.daXem === false; 
   });
   let history = useHistory();
+  
   const handleFetch = () => {
     httpServ
       .getAllThongBao(userInfor.id, disableSetLoading)
@@ -43,6 +44,7 @@ export default function DropdowThongBao() {
   }, []);
 
   const renderThongBao = (noiDung) => {
+    console.log(noiDung);
     const objNoiDung = JSON.parse(noiDung);
     if (objNoiDung.SuKien == 'TIENTRINH') {
       return <Link to="/lo-trinh">Bạn đã được ghi danh vào lộ trình {objNoiDung.NoiDung}</Link>

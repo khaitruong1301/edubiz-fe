@@ -5,6 +5,7 @@ import ContentQuizzWrite_DetailKhoaHoc from "./ContentQuizzWrite_DetailKhoaHoc";
 import ContentQuizz_DetailKhoaHoc from "./ContentQuizz_DetailKhoaHoc";
 import ContentVideo_DetailKhoaHoc from "./ContentVideo_DetailKhoaHoc";
 import './Content_DetailKhoaHoc.css'
+import ContentExcel_DetailKhoaHoc from "./ContentExcel_DetailKhoaHoc";
 
 export default function Content_DetailKhoaHoc() {
   const typeContentDisplay = useSelector(
@@ -14,12 +15,12 @@ export default function Content_DetailKhoaHoc() {
   switch (typeContentDisplay) {
     case "VIDEO_FPT":
       return <ContentVideo_DetailKhoaHoc />;
-
+    case "EXCEL_FILE":
+      return <ContentExcel_DetailKhoaHoc />;
     case "ARTICLE":
       return <ContentArticle_DetailKhoaHoc />;
     case "QUIZ":
       return <ContentQuizz_DetailKhoaHoc />;
-
     case "QUIZ_WRITE":
       return <ContentQuizzWrite_DetailKhoaHoc />;
     default:

@@ -4,7 +4,7 @@ import { getHinhAnh } from "../../utils/GetHinhanh";
 import User_Top_Avatar from "../User_Top_Avatar/User_Top_Avatar";
 import LazyLoad from "react-lazyload";
 
-const User_Top_Ranking = React.memo(({ user, index }) => {
+const User_Top_Ranking = React.memo(({ user, index, tab }) => {
   let extraCss = "";
   let arrName = user.hoTen.split(" ");
   if (arrName.length > 3) {
@@ -14,6 +14,20 @@ const User_Top_Ranking = React.memo(({ user, index }) => {
       arrName[arrName.length - 1],
     ];
   }
+
+  const renderText = () => {
+    switch (tab) {
+      case 0:
+        return <span>{user.tongThoiGian} <small>phút</small></span>
+      case 1:
+        return <span>{user.tongDiem} <small>điểm</small></span>
+      case 2:
+        return <>{iconXp} {user.kinhNghiem}</>
+      default:
+        break;
+    }
+  }
+
   return (
     <div
       className={`w-full flex items-center   px-2 h-20 ${extraCss} bg-opacity-20 relative border-b   border-white shadow py-4 `}
@@ -43,7 +57,10 @@ const User_Top_Ranking = React.memo(({ user, index }) => {
 
 
         <div className="  p-0 m-0 flex justify-center text-color-content ">
-          {iconXp} {user.kinhNghiem}
+          {/* {iconXp} {user.kinhNghiem} */}
+          {
+            renderText()
+          }
         </div>
         <p style={{ color: "#4884ee" }} className="pl-2 text-xs font-medium text-color-content ">
           Level: {user.capDo}

@@ -2,10 +2,10 @@ import React from "react";
 import User_Top_Ranking from "./User_Top_Ranking";
 import "./UserTop.css";
 
-export default function List_Top_UserTicCuc({ listUser }) {
+export default function List_Top_UserTicCuc({ listUser, tab }) {
   const render_List_Top_User = () => {
     return listUser.map((user, index) => {
-      return <User_Top_Ranking user={user} index={index} key={index} />;
+      return <User_Top_Ranking tab={tab} user={user} index={index} key={index} />;
     });
   };
   return (

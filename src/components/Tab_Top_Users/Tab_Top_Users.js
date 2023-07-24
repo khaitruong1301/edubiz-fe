@@ -58,7 +58,7 @@ export default function Tab_Top_Users() {
                 <p
                   className="font-medium px-3 "
                   onClick={() => {
-                    handleChangeTopUsers(1);
+                    handleChangeTopUsers(0);
                   }}
                 >
                   Tích cực
@@ -66,7 +66,7 @@ export default function Tab_Top_Users() {
               }
               key="1"
             >
-              <List_Top_UserTicCuc listUser={topUsers.tichCuc} />
+              <List_Top_UserTicCuc tab={0} listUser={topUsers.tichCuc} />
             </TabPane>
 
             <TabPane
@@ -77,12 +77,12 @@ export default function Tab_Top_Users() {
                     handleChangeTopUsers(1);
                   }}
                 >
-                  Học giỏi
+                  Tổng điểm
                 </p>
               }
               key="3"
             >
-              <List_Top_User_Learned_Time listUser={topUsers.hocGioi} />
+              <List_Top_User_Learned_Time tab={1} listUser={topUsers.hocGioi} />
             </TabPane>
             <TabPane
               tab={
@@ -97,7 +97,7 @@ export default function Tab_Top_Users() {
               }
               key="2"
             >
-              <List_Top_UserTicCuc listUser={topUsers.capDo} />
+              <List_Top_UserTicCuc tab={2} listUser={topUsers.capDo} />
             </TabPane>
           </Tabs>
         </div>

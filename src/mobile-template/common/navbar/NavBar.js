@@ -4,23 +4,40 @@ import './NavBar.css'
 import { URL_PAGE } from "..";
 import { useDispatch, useSelector } from "react-redux";
 import { setHistory } from "../../../redux/reducer/historyReducer";
+import httpServ from "../../../services/http.service";
+import { setAllThongBao } from "../../../redux/reducer/thongBaoReducer";
 
 export default function NavBar({ title }) {
     const dispatch = useDispatch();
     const history = useSelector(state => state.history);
+    const { allThongBao } = useSelector((state) => state.thongBao);
+    const { userInfor } = useSelector((state) => state.authUser);
+
     const [historyState, setHistoryState] = useState(history.content);
+    
+    let newThongBao = allThongBao?.filter((item) => {
+        return item.daXem === false;
+    });
 
     useEffect(() => {
-        if(window.location.pathname == URL_PAGE.DASHBOARD){
+        if (window.location.pathname == URL_PAGE.DASHBOARD) {
             setHistoryState({ prevUrl: "", title: title });
         }
-        else{
+        else {
             setHistoryState(history.content);
         }
         dispatch(setHistory({
             prevUrl: window.location.pathname,
             title: title
         }))
+        httpServ
+            .getAllThongBao(userInfor.id)
+            .then((res) => {
+                dispatch(setAllThongBao(res.data.content));
+            })
+            .catch((err) => {
+                // console.log(err);
+            });
     }, [])
 
     return (
@@ -35,11 +52,12 @@ export default function NavBar({ title }) {
             </div>
             <div className="navbar-item navbar-icon">
                 <Link to={URL_PAGE.EVENT} className="navbar-icon_alert">
-                    <span>5</span>
+                    { newThongBao.length ? <span>{newThongBao.length}</span> :  <span></span>}
                     <span><i className="fa fa-bell" aria-hidden="true"></i></span>
                 </Link>
                 <Link to={URL_PAGE.SOCIAL} className="navbar-icon_chat">
-                    <span>10</span>
+                    {/* <span>10</span> */}
+                    <span></span>
                     <span><i className="fa fa-comment" aria-hidden="true"></i></span>
                 </Link>
 

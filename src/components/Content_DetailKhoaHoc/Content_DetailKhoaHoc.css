@@ -13,3 +13,21 @@
 .article-table{
     overflow-y: scroll;
 }
+
+.table-container {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  
+  table {
+    width: auto;
+    border-collapse: collapse;
+    white-space: nowrap;
+  }
+  
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
