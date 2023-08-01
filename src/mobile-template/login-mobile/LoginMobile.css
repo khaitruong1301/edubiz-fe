@@ -58,3 +58,22 @@
     outline: unset;
     width: 100%;
   }
+
+  .login-mobile-img{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     margin-bottom: 2rem;
+
+  }
+
+  .login-mobile-img img{
+    width: 25%;
+    margin-bottom: 2rem;
+ }
+
+ .login-mobile-img span{
+    font-weight: bold;
+    font-size: 1.15rem;
+}

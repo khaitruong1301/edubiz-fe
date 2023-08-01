@@ -6,7 +6,7 @@ import { setCertificateItemKeyIndex } from "../../../redux/reducer/certificateRe
 import './CertificateItem.css'
 
 
-export default function CertificateItem({ loTrinh, userInfo, keyIndex }) {
+export default function CertificateItem({ loTrinh, userInfo, keyIndex, setLoTrinhPrint }) {
     const [isShow, setIsShow] = useState(false);
     const dispatch = useDispatch();
     const certificateItemKey = useSelector(state => state.certificate.certificateItemKeyIndex);
@@ -37,6 +37,7 @@ export default function CertificateItem({ loTrinh, userInfo, keyIndex }) {
                     userInfo={userInfo} 
                     isShow={isShow} 
                     onToggle={onToggle}
+                    setLoTrinhPrint={setLoTrinhPrint}
                 />
             </div>
             <div className={`certificateitem-courses ${isShow ? 'show' : 'hide'}`}>

@@ -64,6 +64,7 @@ function DesktopTemlate() {
     connection.on("GetThongBaoRT", (items) => {
       dispatch(setAllThongBao(items));
     });
+    
     if (!isDemoUser) {
       connection.on("GetThongBaoFakeRT", (items) => { });
     }
@@ -71,6 +72,7 @@ function DesktopTemlate() {
     httpServ.getTuDongGiaHanLoTrinh()
     .then(res => console.log(true))
     .catch(err => console.log(err))
+
   }, []);
 
   useEffect(() => {

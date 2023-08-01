@@ -9,6 +9,16 @@ import Flash_sale from "../../components/Flash_Sale/Flash_sale";
 import Sider_HomeTemplate from "../../components/Sider/Sider_HomeTemplate";
 import localStorageServ from "../../services/locaStorage.service";
 import useWindowSize from "../../hook/useWindowSize";
+import httpServ from "../../services/http.service";
+
+function checkTimeAgainstCurrentDate(targetDate) {
+  const currentDate = new Date();
+  if (!(targetDate instanceof Date))
+    targetDate = new Date(targetDate);
+
+  return currentDate.toDateString() === targetDate.toDateString();
+}
+
 export default function HomeTemplate(props) {
   let { Component, isCurrentDetailPage } = props;
   const { Header, Content } = Layout;
@@ -24,14 +34,28 @@ export default function HomeTemplate(props) {
   const eableFlashSale = !isCurrentDetailPage;
 
   useEffect(() => {
-    eableFlashSale && setTimeout(() => {}, 1000);
+    eableFlashSale && setTimeout(() => { }, 1000);
   }, []);
 
   useEffect(() => {
+    const userInfo = localStorageServ.userInfor.get();
     if (!localStorageServ.userDemo.get() && !localStorageServ.userInfor.get()) {
       window.location.href = "/lms";
     }
+
+    let checkDanhGia = localStorage.getItem('CHECKDANHGIA') ? JSON.parse(localStorage.getItem('CHECKDANHGIA')) : null;
+
+    console.log(checkTimeAgainstCurrentDate(checkDanhGia?.ngayKiemTra));
+
+    if (!checkDanhGia || !checkTimeAgainstCurrentDate(checkDanhGia.ngayKiemTra))
+      httpServ.getCheckBaiKiemTraDanhGia(userInfo.id)
+        .then(res => {
+          localStorage.setItem('CHECKDANHGIA', JSON.stringify(res.data.content));
+        })
+        .catch()
+
   }, []);
+
   const { widthWindow, heightWindow } = useWindowSize();
   return (
     <Route

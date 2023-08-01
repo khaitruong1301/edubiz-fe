@@ -14,6 +14,12 @@ export default function ItemThongBaoPage({ data, typeThongBao = true }) {
     if (objNoiDung.SuKien == 'TIENTRINH') {
       return <Link to="/lo-trinh">Bạn đã được ghi danh vào lộ trình {objNoiDung.NoiDung}</Link>
     }
+    else if (objNoiDung.SuKien == 'NOPBAI') {
+      return <Link to={"/detail-khoa-hoc/" + objNoiDung.ItemId}>{objNoiDung.NoiDung}</Link>
+    }
+    else if (objNoiDung.SuKien == 'KIEMTRA') {
+      return <Link to={"/kiem-tra"}>{objNoiDung.NoiDung}</Link>
+    }
   }
   return (
     <div className="flex  my-3 items-center space-x-3 card_theme_item  border-none shadow min-h-16 py-2 h-max-content">

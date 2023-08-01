@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.de8e2311.chunk.css",
-    "main.js": "/static/js/main.c64cf813.chunk.js",
-    "main.js.map": "/static/js/main.c64cf813.chunk.js.map",
+    "main.css": "/static/css/main.4dbbe890.chunk.css",
+    "main.js": "/static/js/main.eaec14da.chunk.js",
+    "main.js.map": "/static/js/main.eaec14da.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b1d2ab74.js",
     "runtime-main.js.map": "/static/js/runtime-main.b1d2ab74.js.map",
     "static/css/2.709debb4.chunk.css": "/static/css/2.709debb4.chunk.css",
-    "static/js/2.97749c47.chunk.js": "/static/js/2.97749c47.chunk.js",
-    "static/js/2.97749c47.chunk.js.map": "/static/js/2.97749c47.chunk.js.map",
+    "static/js/2.bbc7f577.chunk.js": "/static/js/2.bbc7f577.chunk.js",
+    "static/js/2.bbc7f577.chunk.js.map": "/static/js/2.bbc7f577.chunk.js.map",
     "static/js/3.77641383.chunk.js": "/static/js/3.77641383.chunk.js",
     "static/js/3.77641383.chunk.js.map": "/static/js/3.77641383.chunk.js.map",
     "static/js/4.abf9b658.chunk.js": "/static/js/4.abf9b658.chunk.js",
@@ -16,8 +16,8 @@
     "static/js/5.ceaeb4e1.chunk.js.map": "/static/js/5.ceaeb4e1.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.709debb4.chunk.css.map": "/static/css/2.709debb4.chunk.css.map",
-    "static/css/main.de8e2311.chunk.css.map": "/static/css/main.de8e2311.chunk.css.map",
-    "static/js/2.97749c47.chunk.js.LICENSE.txt": "/static/js/2.97749c47.chunk.js.LICENSE.txt",
+    "static/css/main.4dbbe890.chunk.css.map": "/static/css/main.4dbbe890.chunk.css.map",
+    "static/js/2.bbc7f577.chunk.js.LICENSE.txt": "/static/js/2.bbc7f577.chunk.js.LICENSE.txt",
     "static/js/3.77641383.chunk.js.LICENSE.txt": "/static/js/3.77641383.chunk.js.LICENSE.txt",
     "static/js/4.abf9b658.chunk.js.LICENSE.txt": "/static/js/4.abf9b658.chunk.js.LICENSE.txt",
     "static/js/5.ceaeb4e1.chunk.js.LICENSE.txt": "/static/js/5.ceaeb4e1.chunk.js.LICENSE.txt",
@@ -35,7 +35,7 @@
     "static/media/imgCarouselLoTrinh1.f8b55303.png": "/static/media/imgCarouselLoTrinh1.f8b55303.png",
     "static/media/lightlogo.ed0837d2.png": "/static/media/lightlogo.ed0837d2.png",
     "static/media/logo.f905cef4.png": "/static/media/logo.f905cef4.png",
-    "static/media/logoCyberDarkTheme.36b21adf.png": "/static/media/logoCyberDarkTheme.36b21adf.png",
+    "static/media/logoCyberDarkTheme.f905cef4.png": "/static/media/logoCyberDarkTheme.f905cef4.png",
     "static/media/logo_opcacity.8ab9838e.png": "/static/media/logo_opcacity.8ab9838e.png",
     "static/media/lucky_20_10_mobie.d8bf101c.png": "/static/media/lucky_20_10_mobie.d8bf101c.png",
     "static/media/lucky_20_10_web.0380f01f.jpg": "/static/media/lucky_20_10_web.0380f01f.jpg",
@@ -45,8 +45,8 @@
   "entrypoints": [
     "static/js/runtime-main.b1d2ab74.js",
     "static/css/2.709debb4.chunk.css",
-    "static/js/2.97749c47.chunk.js",
-    "static/css/main.de8e2311.chunk.css",
-    "static/js/main.c64cf813.chunk.js"
+    "static/js/2.bbc7f577.chunk.js",
+    "static/css/main.4dbbe890.chunk.css",
+    "static/js/main.eaec14da.chunk.js"
   ]
 }

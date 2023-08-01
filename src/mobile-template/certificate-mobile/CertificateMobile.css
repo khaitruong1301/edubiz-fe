@@ -27,3 +27,20 @@
     margin-bottom: 0.4rem;
     font-size: 0.8rem;
 }
+
+.print-div{
+    display: none;
+}
+
+@media print {
+    .print-div{
+        display: block;
+    }
+    /*con2 lai none*/
+    .certificateseries-item,
+    .certificate-banner,
+    .bottombar,
+    .navbar{
+        display: none !important;
+    }
+}

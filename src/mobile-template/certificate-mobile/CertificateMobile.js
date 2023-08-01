@@ -8,11 +8,15 @@ import { setDanhSachLoTrinh } from '../../redux/reducer/diemAndChungNhanReducer'
 import lotrinhLottie1 from "../../assets/lottie_json/chungNhanLottie.json";
 import './CertificateMobile.css'
 import CertificateItem from './certificate-item/CertificateItem';
+import { useState } from 'react';
+import LayOutInBangDiem from '../../components/TableBanDiemPrint/TableBanDiemPrint';
 
 function CertificateMobile(props) {
     const dispatch = useDispatch();
     const { danhSachLoTrinh } = useSelector((state) => state.diemChungNhan);
     const { userInfor } = useSelector((state) => state.authUser);
+
+    const [loTrinhPrint, setLoTrinhPrint] = useState(null);
 
     useEffect(() => {
         dispatch(getLoTrinhDaDangKiAciton(userInfor?.id));
@@ -27,6 +31,13 @@ function CertificateMobile(props) {
                 console.log(err);
             });
     }, []);
+
+    const handlePrintBangDiem = (loTrinh) => {
+        setLoTrinhPrint(loTrinh);
+        setTimeout(() => {
+            window.print();
+        }, 200);
+    }
 
     const dsLoTrinh = danhSachLoTrinh.filter(x => x.daHoanThanh);
     return (
@@ -51,10 +62,18 @@ function CertificateMobile(props) {
                 <div>
                     {
                         dsLoTrinh.map((loTrinh, index) => {
-                            return <CertificateItem key={index} loTrinh={loTrinh} keyIndex={index + 1} />;
+                            return <CertificateItem
+                                key={index}
+                                loTrinh={loTrinh}
+                                keyIndex={index + 1}
+                                setLoTrinhPrint={handlePrintBangDiem}
+                            />;
                         })
                     }
                 </div>
+            </div>
+            <div className="print-div">
+                { loTrinhPrint ? <LayOutInBangDiem loTrinh={loTrinhPrint} nguoiDung={userInfor} /> :  null }
             </div>
         </>
     )

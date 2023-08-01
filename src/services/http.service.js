@@ -18,6 +18,12 @@ class HttpRequestService {
     const uri = `/lotrinh/tu-dong-gia-han`;
     return AxiosServ.getMethod(uri, setLoading);
   };
+
+  getCheckBaiKiemTraDanhGia = (nguoiDungId, setLoading = true) => {
+    const uri = `/nganhangdethi/kiem-tra/${nguoiDungId}`;
+    return AxiosServ.getMethod(uri, setLoading);
+  };
+
   getLoTrinhDaDangKI = (idUser, setLoading = true) => {
     const uri = `/lotrinh/lay-ds-tt-lotrinh/${idUser}/1`;
     return AxiosServ.getMethod(uri, setLoading);

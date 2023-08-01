@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 function CertificateMobilePDF(props) {
     const { userInfor } = useSelector((state) => state.authUser);
 
-    const { chungNhan, loTrinh } = props; 
+    const { chungNhan, loTrinh } = props;
 
     const [image, setImage] = useState(null);
     const [noiDung, setNoiDung] = useState([]);
@@ -34,6 +34,13 @@ function CertificateMobilePDF(props) {
         setNoiDung(listText);
     }, []);
 
+    useEffect(() => {
+        if (image && window.innerWidth <= 992){
+            handleDownLoad();
+            props.handleClose(false);
+        }
+    }, [image])
+
     const handleDownLoad = () => {
         try {
             const stage = stageRef.current;
@@ -48,7 +55,7 @@ function CertificateMobilePDF(props) {
             );
             pdf.save('chung-nhan.pdf');
         }
-        catch{
+        catch {
             console.log('Error crossOrigin');
         }
     }

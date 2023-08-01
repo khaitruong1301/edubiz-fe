@@ -7,6 +7,7 @@ import localStorageServ from "../../services/locaStorage.service";
 import { removeDemoUser } from "../../utils/HocDemoUtils";
 import { getCurrentDay } from "../../utils/LogOut";
 import { triggerTour } from "../../utils/TriggerTourUtils"; 
+import logoLight from "../../assets/img/logo.png";
 import { URL_PAGE } from "../common";
 import { message } from "antd";
 import './LoginMobile.css';
@@ -55,8 +56,10 @@ function LoginMobile() {
     return (
         <div className="login-mobile-container">
             <div className="login-mobile-wrapper">
-                <h2>ĐĂNG NHẬP</h2>
-                {/* <p>{message}</p> */}
+                <div className="login-mobile-img">
+                    <img src={logoLight} />
+                    <span>Hệ thống đào tạo Di Động Việt</span>
+                </div>
                 <form onSubmit={(onSubmit)}>
                     <div className="mobile-input-group">
                         <label>Email</label>

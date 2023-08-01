@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import './NavBar.css'
 import { URL_PAGE } from "..";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,12 +9,13 @@ import { setAllThongBao } from "../../../redux/reducer/thongBaoReducer";
 
 export default function NavBar({ title }) {
     const dispatch = useDispatch();
+    const navigate = useHistory();
     const history = useSelector(state => state.history);
     const { allThongBao } = useSelector((state) => state.thongBao);
     const { userInfor } = useSelector((state) => state.authUser);
 
     const [historyState, setHistoryState] = useState(history.content);
-    
+
     let newThongBao = allThongBao?.filter((item) => {
         return item.daXem === false;
     });
@@ -30,6 +31,10 @@ export default function NavBar({ title }) {
             prevUrl: window.location.pathname,
             title: title
         }))
+        handleFetch();
+    }, [])
+
+    const handleFetch = () => {
         httpServ
             .getAllThongBao(userInfor.id)
             .then((res) => {
@@ -38,7 +43,21 @@ export default function NavBar({ title }) {
             .catch((err) => {
                 // console.log(err);
             });
-    }, [])
+    };
+
+    const handleNavigate = (e) => {
+        e.preventDefault();
+        httpServ
+            .getChangeStatusThongBao(userInfor.id)
+            .then((res) => {
+                // console.log(res);
+                handleFetch();
+                navigate.push(URL_PAGE.EVENT);
+            })
+            .catch((err) => {
+            });
+
+    }
 
     return (
         <div className="navbar">
@@ -51,8 +70,8 @@ export default function NavBar({ title }) {
                 {title}
             </div>
             <div className="navbar-item navbar-icon">
-                <Link to={URL_PAGE.EVENT} className="navbar-icon_alert">
-                    { newThongBao.length ? <span>{newThongBao.length}</span> :  <span></span>}
+                <Link onClick={(handleNavigate)} className="navbar-icon_alert">
+                    {newThongBao.length ? <span>{newThongBao.length}</span> : <span></span>}
                     <span><i className="fa fa-bell" aria-hidden="true"></i></span>
                 </Link>
                 <Link to={URL_PAGE.SOCIAL} className="navbar-icon_chat">

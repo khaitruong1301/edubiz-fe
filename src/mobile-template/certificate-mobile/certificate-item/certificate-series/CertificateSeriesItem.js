@@ -7,10 +7,14 @@ import { setCertificateReportKeyIndex } from '../../../../redux/reducer/certific
 import { } from "../../../../";
 import { useDispatch, useSelector } from 'react-redux';
 import CertificateMobilePDF from '../../certificate-mobile-pdf/CertificateMobilePDF';
+import { jsPDF } from "jspdf";
+import environment from '../../../../environments/environment';
+import LayOutInBangDiem from '../../../../components/TableBanDiemPrint/TableBanDiemPrint';
 
-export default function CertificateSeriesItem({ loTrinh, onToggle, isShow = false, keyIndex }) {
+export default function CertificateSeriesItem({ loTrinh, onToggle, keyIndex, setLoTrinhPrint, isShow = false }) {
     const dispatch = useDispatch();
     const certificateItemReportKey = useSelector(state => state.certificate.certificateReportKeyIndex);
+    
     const [toggleReport, setToggleReport] = useState(false);
     const [visiblePDF, setVisiblePDF] = useState(false);
 
@@ -60,49 +64,57 @@ export default function CertificateSeriesItem({ loTrinh, onToggle, isShow = fals
         if (diemTrungBinh < 7)
             return message.warning('Bạn chưa được cấp chứng nhận do điểm trung bình chưa đạt 7.0 !');
 
-        setVisiblePDF(true)
+        setVisiblePDF(true);
+
     }
 
+    const handlePrintBangDiem = () => {
+        setLoTrinhPrint(loTrinh);
+    }
 
     return (
-        <div className='certificateseries-item'>
-            <div className='certificateseries-item_left' onClick={onToggle}>
-                <div className='certificateseries-item_progress'>
-                    <Progress
-                        format={(percent) => (
-                            <span style={{ color: "rgb(117, 95, 211)" }}>{percent}% </span>
-                        )}
-                        strokeColor={"rgb( 117, 95, 211)"}
-                        trailColor={"rgba( 117, 95, 211,0.3)"}
-                        type="circle"
-                        className="w-16"
-                        strokeWidth={8}
-                        percent={percent}
-                    />
-                </div>
-                <div className='certificateseries-item_title'>{loTrinh.tenLoTrinh}</div>
-                <div className='certificateseries-item_dropdown'>
-                    <div className='certificateseries-item_dropdown--child' onClick={onToggle}>
-                        <i className={`fa ${isShow ? 'fa-angle-double-up' : 'fa-angle-double-down'}`} aria-hidden="true"></i>
+        <>
+            <div className='certificateseries-item'>
+                <div className='certificateseries-item_left' onClick={onToggle}>
+                    <div className='certificateseries-item_progress'>
+                        <Progress
+                            format={(percent) => (
+                                <span style={{ color: "rgb(117, 95, 211)" }}>{percent}% </span>
+                            )}
+                            strokeColor={"rgb( 117, 95, 211)"}
+                            trailColor={"rgba( 117, 95, 211,0.3)"}
+                            type="circle"
+                            className="w-16"
+                            strokeWidth={8}
+                            percent={percent}
+                        />
+                    </div>
+                    <div className='certificateseries-item_title'>{loTrinh.tenLoTrinh}</div>
+                    <div className='certificateseries-item_dropdown'>
+                        <div className='certificateseries-item_dropdown--child' onClick={onToggle}>
+                            <i className={`fa ${isShow ? 'fa-angle-double-up' : 'fa-angle-double-down'}`} aria-hidden="true"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className='certificateseries-item_right'>
-                <i className="fa fa-bars" aria-hidden="true" onClick={(handleToggleReport)}></i>
-                <CertificateReport
-                    toggle={toggleReport}
-                    handleDownloadChungNhan={handleDownloadChungNhan}
-                />
-            </div>
-            {
-                visiblePDF ?
-                    <CertificateMobilePDF
-                        chungNhan={loTrinh.chungNhan}
-                        handleClose={setVisiblePDF}
-                        loTrinh={loTrinh}
+                <div className='certificateseries-item_right'>
+                    <i className="fa fa-bars" aria-hidden="true" onClick={(handleToggleReport)}></i>
+                    <CertificateReport
+                        toggle={toggleReport}
+                        setToggleReport={setToggleReport}
+                        handleDownloadChungNhan={() => handleDownloadChungNhan()}
+                        handlePrintBangDiem={handlePrintBangDiem}
                     />
-                    : null
-            }
-        </div>
+                </div>
+                {
+                    visiblePDF ?
+                        <CertificateMobilePDF
+                            chungNhan={loTrinh.chungNhan}
+                            handleClose={setVisiblePDF}
+                            loTrinh={loTrinh}
+                        />
+                        : null
+                }
+            </div>
+        </>
     )
 }

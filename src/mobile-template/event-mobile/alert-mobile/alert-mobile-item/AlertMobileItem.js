@@ -11,15 +11,15 @@ function AlertMobileItem({ data, typeThongBao }) {
 
     const renderThongBao = (noiDung) => {
         const objNoiDung = JSON.parse(noiDung);
-        const renderThongBao = (noiDung) => {
-            const objNoiDung = JSON.parse(noiDung);
-            if (objNoiDung.SuKien == 'TIENTRINH') {
-              return <Link to="/series">Bạn đã được ghi danh vào lộ trình {objNoiDung.NoiDung}</Link>
-            }
-            else if (objNoiDung.SuKien == 'NOPBAI') {
-              return <Link to={"/detail-khoa-hoc/" + objNoiDung.ItemId}>{objNoiDung.NoiDung}</Link>
-            }
-          }
+        if (objNoiDung.SuKien == 'TIENTRINH') {
+            return <Link to="/series">Bạn đã được ghi danh vào lộ trình {objNoiDung.NoiDung}</Link>
+        }
+        else if (objNoiDung.SuKien == 'NOPBAI') {
+            return <Link to={"/course/" + objNoiDung.ItemId}>{objNoiDung.NoiDung}</Link>
+        }
+        else if (objNoiDung.SuKien == 'KIEMTRA') {
+            return <Link to={"/exam-test"}>{objNoiDung.NoiDung}</Link>
+        }
     }
 
     return (

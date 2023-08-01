@@ -45,7 +45,7 @@ let HeaderPanel = ({ loTrinh }) => {
   });
 
   let percent  = 0;
-
+ 
   if(loTrinh.soLuongBaiTap == 0){
     percent = 100;
   }

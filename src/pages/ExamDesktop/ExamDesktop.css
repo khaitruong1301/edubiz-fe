@@ -41,6 +41,16 @@
     color: #1890ff;
 }
 
+.ExamDesktop .ExamDesktopItem-Button .btn-success{
+    border: 1px solid #28a745;
+    color: #28a745;
+}
+
+.ExamDesktop .ExamDesktopItem-Button .btn-danger{
+    border: 1px solid #dc3545;
+    color: #dc3545;
+}
+
 .ExamDesktop .ExamDesktopItem-Button .btn-info:hover,
 .ExamDesktop .ExamDesktopItem-Button .btn-info:focus{
     border: 1px solid #fff;

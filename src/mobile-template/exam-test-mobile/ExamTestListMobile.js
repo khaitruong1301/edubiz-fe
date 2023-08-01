@@ -5,16 +5,24 @@ import httpServ from '../../services/http.service';
 import { NavBar } from '../common';
 import ExamDesktopForm from '../../pages/ExamDesktop/ExamDesktopForm/ExamDesktopForm';
 
-const checkDate = (date) => {
-    const dateNow = new Date(Date.now());
-    const dateEnd = new Date(date);
-    if (dateNow.getFullYear() != dateEnd.getFullYear())
-        return false;
-    else if (dateNow.getMonth() != dateEnd.getMonth())
-        return false;
-    else if (dateNow.getDate() < dateEnd.getDate() || dateNow.getDate() > dateEnd.getDate() + 3)
-        return false;
-    return true;
+function checkTimeAgainstCurrentDate(targetDate) {
+    // Lấy ngày hiện tại
+    const currentDate = new Date();
+    // Chuyển đổi targetDate thành đối tượng Date (nếu nó không phải là đối tượng Date)
+    if (!(targetDate instanceof Date)) {
+        targetDate = new Date(targetDate);
+    }
+    // So sánh ngày và giờ
+    if (targetDate > currentDate) {
+        // "targetDate nằm trong tương lai.";
+        return -1;
+    } else if (targetDate < currentDate) {
+        // "targetDate nằm trong quá khứ.";
+        return 1;
+    } else {
+        // "targetDate là ngày hiện tại!";
+        return 0;
+    }
 }
 
 const dateToString = (ngayKichHoat) => {
@@ -32,20 +40,25 @@ function ExamTestListMobile(props) {
     useEffect(() => {
         httpServ.getDeThiTheoNguoiDung(userInfo.id)
             .then(res => {
-                const data = res.data.content.map(item => {
-                    return {
-                        ...item,
-                        // ngayKichHoat: new Date(item.ngayKichHoat).toLocaleDateString("en-IN"),
-                        // kichHoat: checkDate(item.ngayKichHoat)
-                        // kichHoat: true
-                    }
-                })
-                setDanhSachDeThi(data)
+                const data = res.data.content;
+                setDanhSachDeThi(data) 
             })
             .catch(err => {
                 console.log(err);
             })
     }, [])
+
+    const renderButton = (record) => {
+        const ketQua = checkTimeAgainstCurrentDate(record.ngayKichHoat);
+        if (record.daNopBai)
+            return <button className="btn-success"> Đã nộp bài </button>;
+        else if (record.kichHoat)
+            return <button className="btn-info" onClick={() => handleDoWork(record)}>Làm bài</button>
+        else if (ketQua == -1)
+            return <button className="btn-dark">Chưa kích hoạt</button>
+        else if (ketQua == 1)
+            return <button className="btn-danger">Đã quá hạn</button>
+    }
 
     const handleDoWork = (deThi) => {
         if (!deThi.kichHoat) return message.error('Bài kiểm tra chưa kích hoạt do chưa đến thời gian thực hiện!');
@@ -71,10 +84,7 @@ function ExamTestListMobile(props) {
                                 </div>
                                 <div className='ExamDesktopItem-Button'>
                                     {
-                                        item.daNopBai ? <button className={item.kichHoat ? 'btn-info' : ''} onClick={() => handleDoWork(item)}>
-                                            {item.kichHoat ? 'Làm bài' : 'Đang khóa'}
-                                        </button> :
-                                            <button> Đã nộp bài </button>
+                                        renderButton(item)
                                     }
                                 </div>
                             </div>

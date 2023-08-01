@@ -64,6 +64,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
 
   // ===============================================
   const handleUserAnswers = (items, userAnswers, index) => {
+    
     const newAllQuestion = allQuestions.map((question, i) => {
       if (i != index) return question;
       return {
@@ -86,7 +87,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
     else {
       for (let i = 0; i < answers.length; i++) {
         // check từng đáp án
-        if (answers[i].toLocaleLowerCase() != userAnswers[i].toLocaleLowerCase()) {
+        if (answers[i].toLocaleLowerCase().trim() != userAnswers[i].toLocaleLowerCase().trim()) {
           correct = false;
           break;
         }

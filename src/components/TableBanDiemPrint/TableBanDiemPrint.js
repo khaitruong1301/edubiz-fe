@@ -5,7 +5,7 @@ import "./table.css";
 let diemTB = 0;
 
 const TITLE = "HỆ THỐNG ĐÀO TẠO TRỰC TUYẾN EDUBIZ";
-const WEBSITE = 'https://edubiz.vn/'
+const WEBSITE = 'https://edubiz.vn/' 
 
 export default class LayOutInBangDiem extends Component {
   xuatBaiNop = () => {
@@ -26,7 +26,7 @@ export default class LayOutInBangDiem extends Component {
         noiDung.push(
           <tr>
             <td style={{ padding: 10, textAlign: "center" }}>{++iSTT}</td>
-            <td style={{ padding: 10 }}>{baitap.tenBaiTap}</td>
+            <td style={{ padding: 10, width: '25%' }}>{baitap.tenBaiTap}</td>
             <td style={{ padding: 10, textAlign: "center" }}>
               {Number(baitap.diem)}
             </td>
@@ -36,7 +36,7 @@ export default class LayOutInBangDiem extends Component {
             {maKhoaHoc != khoaHoc.tenKhoaHoc && (
               <td
                 rowSpan={demBaiHoc}
-                style={{ padding: 10, textAlign: "center" }}
+                style={{ padding: 10, textAlign: "center", width: '25%' }}
               >
                 {khoaHoc.tenKhoaHoc}
               </td>
@@ -120,13 +120,14 @@ export default class LayOutInBangDiem extends Component {
               margin: "18px",
               border: "1px solid black",
               borderCollapse: "collapse",
+              width: '100%'
             }}
             className="table_BangDiem"
           >
             <tbody>
               <tr style={{ textAlign: "center", fontWeight: "bold" }}>
                 <td style={{ padding: 10 }}>STT</td>
-                <td style={{ padding: 10 }}>Tên bài tập/dự án </td>
+                <td style={{ padding: 10 }} width="25%">Tên bài tập/dự án </td>
                 <td style={{ padding: 10 }}>Điểm</td>
                 <td style={{ padding: 10 }}>Hệ 10</td>
                 <td style={{ padding: 10 }} width="25%">
