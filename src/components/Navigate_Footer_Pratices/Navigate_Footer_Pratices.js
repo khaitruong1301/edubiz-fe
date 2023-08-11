@@ -47,7 +47,7 @@ export default function Navigate_Footer_Pratices({
       soCauDung: countCorrected,
     };
 
-    if (diemQuizz < 0.7) {
+    if (diemQuizz < 1) {
       if (totalRedoQuizz >= 3) {
         inforQuizz.diem = Math.floor(diemQuizz * 100);
         setloading(true);
