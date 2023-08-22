@@ -146,7 +146,7 @@ export default function ContentQuizz_ViewAnsers({ stateQuizz }) {
           <i className="fa fa-redo-alt"></i>
         </button>
         {
-          diemQuizz > 70 ? <button onClick={() => handleNextLesson()}>
+          diemQuizz >= 100 ? <button onClick={() => handleNextLesson()}>
             Bài tiếp theo
             <i className="fa fa-chevron-circle-right"></i>
           </button> : null

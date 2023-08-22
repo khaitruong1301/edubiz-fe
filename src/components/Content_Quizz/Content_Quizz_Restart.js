@@ -80,7 +80,7 @@ export default function Content_Quizz_Restart({ stateQuizz }) {
                         <i className="fa  fa-check mr-2 text-green-theme text-xl"></i>{" "}
                         {diemQuizz ? Math.floor(diemQuizz * 100) : 0}/100 điểm
                     </p>
-                    <p className="text-base">Bạn cần ít nhất 70 điểm để qua bài kiểm tra!</p>
+                    <p className="text-base">Bạn cần đạt 100 điểm để qua bài kiểm tra!</p>
                     <p className="text-base">Lựa chọn <b>LÀM LẠI</b> để cải thiện điểm!</p>
                 </div>
                 <div className="flex items-center space-x-5">

@@ -79,6 +79,8 @@ export default function ContentQuizz_Start({ stateQuizz }) {
   }
   // ===================================================
   const checkCorrectAnswer = (answers, userAnswers) => {
+    console.log(answers);
+    console.log(userAnswers);
     let correct = true;
     // Số đáp an ko bằng nhau => đáp án của user sai
     if (answers.length != userAnswers.length) {
@@ -94,6 +96,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
       }
     }
 
+    console.log(correct);
     return correct;
   }
   // ===============================================
