@@ -79,8 +79,6 @@ export default function ContentQuizz_Start({ stateQuizz }) {
   }
   // ===================================================
   const checkCorrectAnswer = (answers, userAnswers) => {
-    console.log(answers);
-    console.log(userAnswers);
     let correct = true;
     // Số đáp an ko bằng nhau => đáp án của user sai
     if (answers.length != userAnswers.length) {
@@ -88,15 +86,16 @@ export default function ContentQuizz_Start({ stateQuizz }) {
     }
     else {
       for (let i = 0; i < answers.length; i++) {
+        const dapAn = answers[i].toLocaleLowerCase().trim();
+        const dapAnUser = userAnswers[i].toLocaleLowerCase().trim();
         // check từng đáp án
-        if (answers[i].toLocaleLowerCase().trim() != userAnswers[i].toLocaleLowerCase().trim()) {
+        const collator = new Intl.Collator('vi', { sensitivity: 'base' });
+        if (collator.compare(dapAn, dapAnUser) !== 0) {
           correct = false;
           break;
         }
       }
     }
-
-    console.log(correct);
     return correct;
   }
   // ===============================================
