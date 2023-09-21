@@ -60,10 +60,10 @@ function BtnTitleArticle({ isCancelUserClick, lesson, hightLightcss, isLearned, 
             </span>
           </div>
           {
-            lesson.moTa ? <a
-              onClick={() => {
-                window.open(`https://backend.edubiz.vn${lesson.moTa}`, '_blank').focus();
-              }}
+             lesson.moTa ? <a onClick={() => { 
+              if (lesson.moTa?.split('.').slice(-1)[0] === "pptx") return window.open(`https://docs.google.com/viewerng/viewer?url=https://backend.edubiz.vn${lesson.moTa}`, '_blank').focus();
+              return  window.open(`https://backend.edubiz.vn${lesson.moTa}`, '_blank').focus()
+             }}
               // href={`https://backend.cyberlearn.vn/${lesson.moTa}`}
               target="_blank"
             >
