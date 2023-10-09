@@ -77,7 +77,7 @@ export default function Content_QuizzWrite({ currentLesson, baiTapDaNop }) {
       className="w-full  flex-grow h-full flex flex-col "
     >
       <div className="w-full h-full  flex-grow flex flex-col  p-3 relative">
-        <div className="w-full question-wrapper">
+        <div className="w-full h-full question-wrapper">
           {
             renderQuestion()
           }

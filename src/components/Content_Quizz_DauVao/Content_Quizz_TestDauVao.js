@@ -323,7 +323,7 @@ export default function Content_Quizz_TestDauVao() {
       </Modal>
 
       <div className="w-full h-full  flex-grow flex flex-col  p-3 relative">
-        <div className="w-full  ">
+        <div className="w-full  h-full">
           {/* {!isOpenModal && arrRenderQuestion[currentQuestionIndex]} */}
           {arrRenderQuestion[currentQuestionIndex]}
         </div>

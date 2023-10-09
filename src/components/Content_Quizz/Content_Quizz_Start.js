@@ -239,7 +239,7 @@ export default function ContentQuizz_Start({ stateQuizz }) {
       )}
 
       <div className="w-full h-full  flex-grow flex flex-col  p-3 relative">
-        <div className="w-full question-wrapper">
+        <div className="w-full h-full question-wrapper">
           <div className="quizz-close" style={{display: 'none'}}>
             <div><CloseOutlined /></div>
           </div>
